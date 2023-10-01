@@ -20,7 +20,6 @@
 	<script id="Mathjax-js" async src="%PUBLIC_URL%/tex-chtml-full.js"></script>
   </head>
   <body class="is-preload">
-	<div id="wrapper" class="fade-in">
     <noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id="not">
 			<div class="note" role="status">
@@ -42,9 +41,10 @@
 			<div class="loading" style="font-size: 16px; text-align: center">Loading</div>
 		</div>
 		<div id="load">
-			<div id="root"></div>
-		</div>
-    </div>
+			<div id="wrapper" class="fade-in">
+				<div id="root"></div>
+			</div>
+    		</div>
 
     <script>
 			document.getElementById('load').style.display='none';
