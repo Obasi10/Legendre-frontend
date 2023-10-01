@@ -43,7 +43,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
             if (json.error) {
               setIsLoading(false)
               setErrorr(json.error)
-              setm({...modal, signed: true})
+              setm({...modal, Ready: false})
             } else {
               // save the user to local storage
               localStorage.setItem('user', JSON.stringify(json))
