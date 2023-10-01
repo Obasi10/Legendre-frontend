@@ -81,7 +81,7 @@ const Log = ({modal, setm, setlog, setErrorr}) => {
             exit="exit"
             style={{height: "fit-content"}}
           >
-            <section className="beginner bgbtn container-lg pt-3" style={{borderRadius: "10%"}}>
+            <section className="beginner bgbtn container-lg pt-1" style={{borderRadius: "10%"}}>
               <div className={w<700?"text-center beginner":"text-center fs-5"}>
                   <h2 className={w>700?"color1":"color1 fs-3"}><strong>Login/ Sign up</strong></h2>
                   <p className={w>700?"lead":"fs-5 lead"}>Join the community to get unlimited access...</p>
