@@ -19,7 +19,7 @@ const modal1 = {
   hidden: { y: "-100vh", opacity: 0 },
   visible: {
     margin: "auto",
-    y: "200px", 
+    y: "100px", 
     opacity: 1,
     transition: { delay: 0.5 }
   },
