@@ -109,7 +109,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
         <p className="beginner text-center lead text-muted">Stupendous design of innovative solutions...</p>
       </div>
       <div className="row justify-content-center mb-5">
-        <div className="col-lg-6 col-11"> 
+        <div className="col-lg-6 col-md-8 col-10"> 
           {!log && (<form 
             method="post" 
             encType="multipart/form-data"
