@@ -62,7 +62,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
               </span>
             </a>
             <div className='d-flex align-items-center text-end ms-5'>
-            <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0' style={{background: "transparent", textAlign:"end"}}><i className='bi bi-search textpep'></i></button>
+            <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0 me-5' style={{background: "transparent", textAlign:"end"}}><i className='bi bi-search textpep'></i></button>
             <button className="navbar-toggler border-0 py-1 col-1" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
               <i className="bi bi-three-dots-vertical textpep p-1" ></i>
             </button>
