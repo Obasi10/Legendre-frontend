@@ -55,13 +55,13 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
       <div className="container col-lg-10">
         <nav className="navbar fixed-top navbar-expand-md bgcon py-1 align-items-center d-block">
           <div style={{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}} className={document.documentElement.clientWidth<650?"container-md":"container-md table-responsive stytab fs-5"}>
-            <a className="navbar-brand col-lg-3 began col-7" href="#intro">
+            <a className="navbar-brand text-start me-5 began" href="#intro">
               <span className="fw-bold motion1">
                 <i className="bi bi-calculator"></i>
                 UltimateCalc
               </span>
             </a>
-            <div className='d-flex align-items-center text-end ms-4'>
+            <div className='d-flex align-items-center text-end ms-5'>
             <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0' style={{background: "transparent", textAlign:"end"}}><i className='bi bi-search textpep'></i></button>
             <button className="navbar-toggler border-0 py-1 col-1" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
               <i className="bi bi-three-dots-vertical textpep p-1" ></i>
