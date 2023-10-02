@@ -61,6 +61,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                 UltimateCalc
               </span>
             </a>
+            <div className='d-flex align-items-center text-end ms-4'>
             <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0' style={{background: "transparent", textAlign:"end"}}><i className='bi bi-search textpep'></i></button>
             <button className="navbar-toggler border-0 py-1 col-1" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
               <i className="bi bi-three-dots-vertical textpep p-1" ></i>
@@ -77,15 +78,15 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                 </>)}
                 {!user && (
                   <li className="nav-item px-3">
-                    <Link to="/login" style={{textDecoration:"none"}} className={lock==="l"?"nav-link active textpep":"nav-link textpep"}>Login/ SignUp</Link>
+                    <Link to="/login" style={{textDecoration:"none", width:"150px"}} className={lock==="l"?"nav-link active textpep":"nav-link textpep"}>Login/ SignUp</Link>
                   </li>
                 )}
                 <li className="nav-item px-3">
-                  <Link to="/contact" style={{textDecoration:"none"}} className={lock==="c"?"nav-link active textpep":"nav-link textpep"}>Get in touch</Link>
+                  <Link to="/contact" style={{textDecoration:"none", width:"140px"}} className={lock==="c"?"nav-link active textpep":"nav-link textpep"}>Get in touch</Link>
                 </li>
                 {user && (<>
                   <li className="nav-item px-3"><i className='bi bi-person-bounding-box fs-4 textpep'></i></li>
-                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
+                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} style={{width:"120px"}} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
                 )}
 
                 <ul style={{display: "flex", justifyContent: "space-around"}} id="icons1">
@@ -107,7 +108,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                   </li>
                 </ul>
               </ul>
-
+            </div>
             </div>
           </div>
           {(search) && (
