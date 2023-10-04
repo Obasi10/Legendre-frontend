@@ -514,19 +514,20 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
     const [f, setf]=useState(window.screen.availHeight)
 
     useEffect(()=>{
-        function handle(){setdim({
+        function handle(){
+        setdim({
             w: document.documentElement.clientWidth,
             h: document.documentElement.clientHeight
         })
-        seth1(dim.w<=1280?((1280-dim.w))*(30/1000)+"%":"0%")
+        seth1(dim.w<=1280?((1280-dim.w))*(34/1000)+"%":"0%")
         setf(window.screen.availHeight)
         }
         window.addEventListener('resize', handle)
         
         return _=>{
-            window.removeEventListener('resize', handle)
+          window.removeEventListener('resize', handle)
         }
-    });
+      });
 
     const [da, setda]=useState(Math.log10(2**n/a))
     useEffect(()=>{
@@ -594,7 +595,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
         } else {
             try{
                 setm({...modal, Ready: true})
-                const response = await fetch('https://the-ultimate-calc.onrender.com/api/workouts', {
+                const response = await fetch('/api/workouts/', {
                     method: 'POST',
                     body: JSON.stringify(workout),
                     headers: {
@@ -624,8 +625,9 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
     }
 
     return (
-        <div className="container d-block wrapper2 m-0 p-1" style={{minHeight: 1.1*f+"px"}}>
-        <div className="tab-content justify-content-center col-lg-8 col-12" id="nav-tabContent" style={{margin: "auto",marginTop: h1}}>
+        <div className="wrapper2">
+        <div className="d-block m-0 p-1" style={w<=1280?{minHeight: 1.1*f+"px", paddingTop:0+"%"}:{minHeight: 1.1*f+"px",paddingTop:"0%"}}>
+        <div className="tab-content justify-content-center col-lg-8 col-12" id="nav-tabContent" style={{margin: "auto", marginTop: h1}}>
             <AnimatePresence >
             <motion.div className="tab-pane fade show active" id="nav-solution" role="tabpanel" 
                 key="solution1"
@@ -829,6 +831,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
                 </footer>
             </motion.div>
             </AnimatePresence>
+        </div>
         </div>
         </div>
     )
