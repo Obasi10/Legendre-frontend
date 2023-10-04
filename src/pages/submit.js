@@ -46,7 +46,7 @@ const Submit =({dim, modal, setm})=>{
                 {modal.delete && (<p className="text-dark">Deleted successfully.</p>)}
                 {modal.saved && (<p className="text-dark">Saved successfully.</p>)}
                 {!modal.logSub && (<motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpep p-2"
-                    onClick={()=>setm({...modal, alert:false, submit:false, D: false, logged: false, signed: false, saved: false, delete: false})}
+                    onClick={()=>setm({...modal, logpage:false, alert:false, submit:false, D: false, logged: false, signed: false, saved: false, delete: false})}
                 >Ok</motion.button>)}
                 {(modal.logSub && (<motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpep p-2"
                     onClick={()=>setm({...modal, logSub: false, logpage: true})}
