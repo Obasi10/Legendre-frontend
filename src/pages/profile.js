@@ -50,6 +50,13 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr})=>{
             window.removeEventListener('resize', handle)
         }
     });
+    useEffect(()=>{
+        if(workouts){
+            sets(false)
+        } else {
+            sets(true)
+        }
+    },[workouts])
     return(
         <div className={dim.w<700?"wrapper3 beginner px-1": "wrapper3 fs-4 px-1"}>
             <div className="container d-block m-0 p-lg-0 pb-2" style={{minHeight: f+"px"}}>
@@ -66,9 +73,9 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr})=>{
                     <section>
                         <div className="mt-4 text-danger">
                             {workouts && workouts.map((workout) => (
-                            <CalcDetails onLoad={()=>sets(true)} key={workout._id} workout={workout} modal={modal} setm={setm} setn={setn} n={n} />
+                            <CalcDetails key={workout._id} workout={workout} modal={modal} setm={setm} setn={setn} n={n} />
                             ))}
-                            {(!workouts && set) && <div>Oops, you have not saved anything yet. Click on the save button in your solution so you can keep track of them</div>}
+                            {set && <div>Oops, you have not saved anything yet. Click on the save button in your solution so you can keep track of them</div>}
                         </div>
                     </section>
                 </div>
