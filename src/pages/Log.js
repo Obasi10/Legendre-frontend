@@ -51,7 +51,7 @@ const Log = ({modal, setm, setlog, setErrorr}) => {
         if (json.error) {
           setIsLoading(false)
           setErrorr(json.error)
-          setm({...modal, Ready:false, logpage: false})
+          setm({...modal,  logpage: false, Ready:false})
         } else {
           // save the user to local storage
           localStorage.setItem('user', JSON.stringify(json))
