@@ -89,13 +89,12 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
     e.preventDefault()
     await queryfunction(user, queryName, queryEmail, queryType, query)
   }
-  const [h1, seth1]=useState(dim.w<=1280?((1280-dim.w))*(5/1000)+"%":"0%")
   useEffect(()=>{
     function handle(){setdim({
         w: document.documentElement.clientWidth,
         h: document.documentElement.clientHeight
     })
-    seth1(dim.w<=1270?((1280-dim.w))*(10/1000)+"%":"0%")
+    const h1=dim.w<=1270?((1280-dim.w))*(10/1000)+"%":"0%"
     }
     window.addEventListener('resize', handle)
     
@@ -108,7 +107,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
           {/* <!-- contact form -->
           <!-- form-control, form-label, form-select, input-group, input-group-text --> */}
           <div className={w<=700?"m-0 beginner":"m-0 fs-5"}>
-            <div className="container container-lg row col-lg-7 beginner" style={{margin:"auto", marginTop:"0%"}} >
+            <div className="container container-lg row col-lg-7 col-md-9 beginner" style={w<=1280?{margin:"auto", paddingTop:(9-(w/(1280/9)))+"%"}:{paddingTop:"0%"}} >
               <div className="text-center">
                 <h2 className="textpop fw-bold fs-1">About <span className="">Corner St<motion.span className="bi bi-diamond-fill text-primary" initial={{opacity:0, rotate:[0,180,0,-180]}}
                   animate={{rotate: 0, opacity:1, transition:{repeat:Infinity, duration: 5}}}></motion.span>ne</span> Tech.</h2>
@@ -124,7 +123,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
                 <p className="beginner text-center lead text-muted">Questions to ask? Fill out the form to contact us directly...</p>
               </div>
               <div className="row justify-content-center mb-5">
-                <div className="col-lg-6">
+                <div className="col-md-6">
                   
                   <form 
                     method="post" 
