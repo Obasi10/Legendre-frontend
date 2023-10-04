@@ -61,7 +61,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
   useEffect(() => {
     const fetchWorkouts = async () => {
       try{
-        const response = await fetch('/api/workouts', {
+        const response = await fetch('/api/workouts/', {
           method: 'POST',
           body: JSON.stringify({title: ""}),
           headers: {
