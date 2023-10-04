@@ -45,7 +45,8 @@ const App =()=>{
   const [tab, settab]=useState(false)
   const [log, setlog]=useState(true)
   useEffect(()=>{
-    function handle(){setdim({
+    function handle(){
+    setdim({
         w: document.documentElement.clientWidth,
         h: document.documentElement.clientHeight
     })
