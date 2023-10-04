@@ -44,6 +44,7 @@ const Offcanvas =({dim, modal, setm, lock})=>{
         <AnimatePresence>
           {(modal.offcanvas && w<=700) && (
             <motion.div className="backdroppe"
+                style={{background: "rgba(0,0,0,0.7)"}}
               variants={backdrop}
               initial="hidden"
               animate="visible"
@@ -69,19 +70,19 @@ const Offcanvas =({dim, modal, setm, lock})=>{
                     {user && (
                     <div className="justify-content-center d-flex" style={{alignContent:"center", alignItems:"center"}}><div className='bi bi-person-fill begin textpop my-0 mb-4'></div><div className='ms-4'>{user.name}</div></div>
                     )}
-                    <Link to="/" type="button" style={lock!=="h"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="h"?"nav-link active":""}>
+                    <Link to="/" type="button" style={lock!=="h"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="h"?"nav-link active":""} onClick={()=>setm({...modal, offcanvas:false})}>
                     <li className={lock!=="h"?"nav-item btnlist beginner px-1 my-1":"nav-item beginner px-1 my-1 textpele"}>Home</li></Link>
                     
-                    {user && (<><Link to="/profile" type="button" style={lock!=="p"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="p"?"nav-link active":""}>
+                    {user && (<><Link to="/profile" type="button" style={lock!=="p"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="p"?"nav-link active":""} onClick={()=>setm({...modal, offcanvas:false})}>
                     <li className={lock!=="p"?"nav-item btnlist beginner px-1 my-1":"nav-item beginner px-1 my-1 textpele"}>Profile</li></Link>
                     
-                    <li type="button" onClick={()=>setTimeout(()=>setm({...modal, logOutpage: true, offcanvas: false}),1000)} className={lock!=="lo"?"nav-item btnlist beginner px-3 my-1":"nav-item beginner px-3 my-1 textpele"}>Log out</li>
+                    <li type="button" onClick={()=>setTimeout(()=>setm({...modal, logOutpage: true, offcanvas: false}),500)} className={lock!=="lo"?"nav-item btnlist beginner px-3 my-1":"nav-item beginner px-3 my-1 textpele"}>Log out</li>
                     </>)}
                     {!user && (
-                    <Link to="/login" type="button" style={lock!=="l"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="l"?"nav-link active":""}>
+                    <Link to="/login" type="button" style={lock!=="l"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="l"?"nav-link active":""} onClick={()=>setm({...modal, offcanvas:false})}>
                         <li className={lock!=="l"?"nav-item btnlist beginner px-1 my-1":"nav-item beginner px-1 my-1 textpele"}>Login/ Signup</li></Link>
                     )}
-                    <Link to="/contact" type="button" style={lock!=="c"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="c"?"nav-link active":""}>
+                    <Link to="/contact" type="button" style={lock!=="c"?{textDecoration:"none", color: "black", paddingLeft:"5%"}:{textDecoration:"none", color: "white", paddingLeft:"5%"}} className={lock==="c"?"nav-link active":""} onClick={()=>setm({...modal, offcanvas:false})}>
                         <li className={lock!=="c"?"nav-item btnlist beginner px-1 my-1":"nav-item beginner px-1 my-1 textpele"}>Get in touch</li></Link>
                     <ul style={{display: "flex", justifyContent: "space-around"}}>
                         <li className="p-2 nav-link"><Link to="https://www.linkedin.com/in/innocent-obasi-72ab6022a" target="_blank">
