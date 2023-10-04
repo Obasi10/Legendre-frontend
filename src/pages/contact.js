@@ -184,7 +184,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
               </div>
             </div>
           </div>
-          <footer id='footer' className='beginer textpop col-lg-6 col-11 text-decoration-none text-start' style={{margin:"auto"}}>
+          <footer id='footer' className='beginer textpop col-lg-6 col-md-8 col-11 text-decoration-none text-start' style={{margin:"auto"}}>
             <section className="split contact box">
                 <section className="alt py-2 align-items-center px-2">
                   <h5 className='textpop beginner'>Address</h5>
