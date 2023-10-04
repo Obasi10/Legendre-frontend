@@ -52,18 +52,19 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
      !modal.review && !modal.error && !modal.logpage && !modal.logSub) && 
     (
     <div>
-      <div className="container col-lg-10">
-        <nav className="navbar fixed-top navbar-expand-md bgcon py-1 align-items-center d-block">
-          <div style={{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}} className={document.documentElement.clientWidth<650?"container-md":"container-md table-responsive stytab fs-5"}>
-            <a className="navbar-brand text-start me-5 began" href="#intro">
+      <div className="container col-lg-10 col-12 mb-0">
+        <nav className="navbar fixed-top navbar-expand-md bgcon py-1 d-block">
+          <div style={document.documentElement.clientWidth<350?{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"97%"}:{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}
+          } className={document.documentElement.clientWidth<550?"container-md":"container-md table-responsive stytab2 fs-5"}>
+            <Link to="/" className="navbar-brand text-start text-decoration-none me-md-5 began">
               <span className="fw-bold motion1">
                 <i className="bi bi-calculator"></i>
                 UltimateCalc
               </span>
-            </a>
-            <div className='d-flex align-items-center text-end ms-5'>
-            <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0 me-5' style={{background: "transparent", textAlign:"end"}}><i className='bi bi-search textpep'></i></button>
-            <button className="navbar-toggler border-0 py-1 col-1" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
+            </Link>
+            <div className='d-flex align-items-center justify-content-space-around text-end ms-md-5'>
+            <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0 me-md-5' style={{background: "transparent"}}><i className='bi bi-search textpep'></i></button>
+            <button className="navbar-toggler border-0 py-1 col-1 text-end" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
               <i className="bi bi-three-dots-vertical textpep p-1" ></i>
             </button>
 
@@ -78,7 +79,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                 </>)}
                 {!user && (
                   <li className="nav-item px-3">
-                    <Link to="/login" style={{textDecoration:"none", width:"150px"}} className={lock==="l"?"nav-link active textpep":"nav-link textpep"}>Login/ SignUp</Link>
+                    <Link to="/login" className={lock==="l"?"nav-link active textpep":"nav-link textpep"} style={{textDecoration:"none", width:"150px"}}>Login/ SignUp</Link>
                   </li>
                 )}
                 <li className="nav-item px-3">
@@ -86,10 +87,10 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                 </li>
                 {user && (<>
                   <li className="nav-item px-3"><i className='bi bi-person-bounding-box fs-4 textpep'></i></li>
-                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} style={{width:"120px"}} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
+                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
                 )}
 
-                <ul style={{display: "flex", justifyContent: "space-around"}} id="icons1">
+                <ul style={{display: "flex", justifyContent: "space-around"}} id={document.documentElement.clientWidth>=1280?"icons1":""}>
                   <li className="p-2 nav-link textpep"><Link to="https://www.linkedin.com/in/innocent-obasi-72ab6022a" target="_blank">
                     <motion.svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-linkedin" viewBox="0 0 16 16" variants={svgVariants} initial="hidden" animate="visible">
                       <motion.path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" variants={pathVariants}/>
