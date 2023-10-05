@@ -55,32 +55,57 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
         setErrorr("Network problem! check your connection and try again.")
       } else{
         setm({...modal, Ready: true})
-        const response = await fetch('/api/user/p1', {
-          method: 'PATCH',
-          headers: {'Authorization': `Bearer ${user.token}`,
-                    'Content-Type': 'application/json'},
-          body: JSON.stringify({...user, queryName, queryEmail, queryType, query})
+
+        let didTimeOut=false;
+        return new Promise(function(resolve, reject){
+          const timeout= setTimeout(()=>{
+            didTimeOut=true;
+            reject(new Error('Your request took too long, please try again.'))
+          }, 8000);
+    
+          fetch('/api/user/p1', {
+            method: 'PATCH',
+            headers: {'Authorization': `Bearer ${user.token}`,
+                      'Content-Type': 'application/json'},
+            body: JSON.stringify({...user, queryName, queryEmail, queryType, query})
+          })
+          .then(response=>{
+            clearTimeout(timeout);
+            if (!didTimeOut){
+              resolve(response)
+            }
+          })
+          .catch(err=>{
+            if (didTimeOut){
+              reject(err)
+            }
+          });
         })
-        const json = await response.json()
-        .then((json)=>{
-          if (json.error && json.error[0]==='P'){
-            setErrorr(json.error)
-            setEmptyFields(json.emptyFields)
-            setm({...modal, Ready: false})
-          } else if (!json.error && json.email){
-            setQemail('')
-            setQname('')
-            setQtype('')
-            setQuery('')
-            setEmptyFields([])
-            setm({...modal, Ready: false})
-            setm({...modal, submit: true})
-          } else {
-            logout()
-            setm({...modal, Ready: false})
-            setErrorr(json.error)
-          }
-          
+        .then(response=>{
+          response.json()
+          .then((json)=>{
+            if (json.error && json.error[0]==='P'){
+              setErrorr(json.error)
+              setEmptyFields(json.emptyFields)
+              setm({...modal, Ready: false})
+            } else if (!json.error && json.email){
+              setQemail('')
+              setQname('')
+              setQtype('')
+              setQuery('')
+              setEmptyFields([])
+              setm({...modal, Ready: false})
+              setm({...modal, submit: true})
+            } else {
+              logout()
+              setm({...modal, Ready: false})
+              setErrorr(json.error)
+            }
+          })
+        })
+        .catch((err)=>{
+          setm({...modal, Ready: false})
+          setErrorr(err.message)
         })
     }
     }}
@@ -184,7 +209,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
               </div>
             </div>
           </div>
-          <footer id='footer' className='beginer textpop col-lg-6 col-md-8 col-11 text-decoration-none text-start' style={{margin:"auto"}}>
+          <footer id='footer' className='beginer textpop col-lg-6 col-11 text-decoration-none text-start' style={{margin:"auto"}}>
             <section className="split contact box">
                 <section className="alt py-2 align-items-center px-2">
                   <h5 className='textpop beginner'>Address</h5>
