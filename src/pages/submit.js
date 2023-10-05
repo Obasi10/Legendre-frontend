@@ -25,7 +25,7 @@ const Submit =({dim, modal, setm})=>{
           { (modal.submit || modal.alert || modal.D || modal.logSub || modal.signed || modal.logged
             || modal.delete || modal.saved
           ) && (
-            <motion.div className="backdroppe"
+            <motion.div className="backdrop"
               variants={backdrop}
               initial="hidden"
               animate="visible"
