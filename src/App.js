@@ -89,7 +89,7 @@ const App =()=>{
       <Submit dim={dim} modal={modal} count={count} setm={setm}/>
       <Available modal={modal} dim={dim}/>
       <Selector modal={modal} count={count} setc={setc} setm={setm} input={input} setnav={setnav} nav={nav}/>
-      <Log modal={modal} count={count} setm={setm} setc={setc} setlog={setlog} setErrorr={setErrorr}/>
+      <Log modal={modal} user={user} count={count} setm={setm} setc={setc} setlog={setlog} setErrorr={setErrorr}/>
       <Logout modal={modal} dim={dim} setm={setm} setl={setl}/>
       <News modal={modal} count={count} setm={setm} dim={dim} setc={setc}/>
       <Ready modal={modal} setm={setm} dim={dim}/>
