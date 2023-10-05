@@ -26,7 +26,7 @@ const modal1 = {
   exit: { y: "100vh", opacity: 0 }
 }
 
-const Log = ({modal, setm, setlog, setErrorr}) => {
+const Log = ({modal, setm, setlog, setErrorr, user}) => {
   const w=document.documentElement.clientWidth
   const [email, setEmail] = useState('')
   const [butt, setb]=useState(false)
@@ -91,7 +91,7 @@ const Log = ({modal, setm, setlog, setErrorr}) => {
   }
   return (
     <AnimatePresence>
-      { (modal.logpage) && (
+      { (modal.logpage && !user) && (
         <motion.div className="backdrop"
           variants={backdrop}
           initial="hidden"
