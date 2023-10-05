@@ -36,32 +36,56 @@ const Log = ({modal, setm, setlog, setErrorr}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setm({...modal, Ready:true})
     if (!navigator.onLine){
       setErrorr("Network problem! check your connection and try again.")
     } else {
-      // await handleSubmit()
-      const response =await fetch('/api/user/login', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, password })
+      setm({...modal, Ready:true})
+      let didTimeOut=false;
+      return new Promise(function(resolve, reject){
+        const timeout= setTimeout(()=>{
+          didTimeOut=true;
+          reject(new Error('Your request took too long, please try again.'))
+        }, 8000);
+  
+        fetch('/api/user/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ email, password })
+        })
+        .then(response=>{
+          clearTimeout(timeout);
+          if (!didTimeOut){
+            resolve(response)
+          }
+        })
+        .catch(err=>{
+          if (didTimeOut){
+            reject(err)
+          }
+        });
       })
-      const json= await response.json()
-      .then((json)=>{
-        if (json.error) {
-          setIsLoading(false)
-          setErrorr(json.error)
-          setm({...modal,  logpage: false, Ready:false})
-        } else {
-          // save the user to local storage
-          localStorage.setItem('user', JSON.stringify(json))
-          // update loading state
-          setIsLoading(false)
-          // update the auth context
-          dispatch({type: 'LOGIN', payload: json})
-          setm({...modal, Ready:false})
-          setm({...modal, logged: true})
-        }
+      .then(response=>{
+        response.json()
+        .then((json)=>{
+          if (json.error) {
+            setIsLoading(false)
+            setErrorr(json.error)
+            setm({...modal, logpage:false, Ready:false})
+          } else {
+            // save the user to local storage
+            localStorage.setItem('user', JSON.stringify(json))
+            // update loading state
+            setIsLoading(false)
+            // update the auth context
+            dispatch({type: 'LOGIN', payload: json})
+            setm({...modal, Ready:false})
+            setm({...modal, logged: true})
+          }
+        })
+      })
+      .catch((err)=>{
+        setm({...modal, Ready: false})
+        setErrorr(err.message)
       })
     }
   }
