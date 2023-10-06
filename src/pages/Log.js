@@ -40,12 +40,10 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
       setErrorr("Network problem! check your connection and try again.")
     } else {
       setm({...modal, Ready:true})
-      let didTimeOut=false;
       return new Promise(function(resolve, reject){
         const timeout= setTimeout(()=>{
-          didTimeOut=true;
-          reject(new Error('Your request took too long, please try again.'))
-        }, 8000);
+          reject()
+        }, 5000);
   
         fetch('/api/user/login', {
           method: 'POST',
@@ -54,38 +52,28 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
         })
         .then(response=>{
           clearTimeout(timeout);
-          if (!didTimeOut){
-            resolve(response)
-          }
+          response.json()
+          .then((json)=>{
+            if (json.error) {
+              setIsLoading(false)
+              setErrorr(json.error)
+              setm({...modal, Ready:false})
+            } else {
+              // save the user to local storage
+              localStorage.setItem('user', JSON.stringify(json))
+              // update loading state
+              setIsLoading(false)
+              // update the auth context
+              dispatch({type: 'LOGIN', payload: json})
+              setm({...modal, Ready:false})
+              setm({...modal, logpage: false})
+              setm({...modal, logged: true})
+            }
+          })
         })
-        .catch(err=>{
-          if (didTimeOut){
-            reject(err)
-          }
-        });
-      })
-      .then(response=>{
-        response.json()
-        .then((json)=>{
-          if (json.error) {
-            setIsLoading(false)
-            setErrorr(json.error)
-            setm({...modal, logpage:false, Ready:false})
-          } else {
-            // save the user to local storage
-            localStorage.setItem('user', JSON.stringify(json))
-            // update loading state
-            setIsLoading(false)
-            // update the auth context
-            dispatch({type: 'LOGIN', payload: json})
-            setm({...modal, Ready:false})
-            setm({...modal, logged: true})
-          }
+        .catch(()=>{
+          handleSubmit(e)
         })
-      })
-      .catch((err)=>{
-        setm({...modal, Ready: false})
-        setErrorr(err.message)
       })
     }
   }
