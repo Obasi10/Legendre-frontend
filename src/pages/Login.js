@@ -97,8 +97,9 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
       return new Promise(function(resolve, reject){
         const timeout= setTimeout(()=>{
           didTimeOut=true;
-          reject(new Error('Your request took too long, please try again.'))
-        }, 8000);
+          // reject(new Error('Your request took too long, please try again.'))
+          reject()
+        }, 5000);
   
         fetch('/api/user/login', {
           method: 'POST',
@@ -107,38 +108,27 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
         })
         .then(response=>{
           clearTimeout(timeout);
-          if (!didTimeOut){
-            resolve(response)
-          }
+          response.json()
+          .then((json)=>{
+            if (json.error) {
+              setIsLoading(false)
+              setErrorr(json.error)
+              setm({...modal, Ready:false})
+            } else {
+              // save the user to local storage
+              localStorage.setItem('user', JSON.stringify(json))
+              // update loading state
+              setIsLoading(false)
+              // update the auth context
+              dispatch({type: 'LOGIN', payload: json})
+              setm({...modal, Ready:false})
+              setm({...modal, logged: true})
+            }
+          })
         })
-        .catch(err=>{
-          if (didTimeOut){
-            reject(err)
-          }
-        });
-      })
-      .then(response=>{
-        response.json()
-        .then((json)=>{
-          if (json.error) {
-            setIsLoading(false)
-            setErrorr(json.error)
-            setm({...modal, Ready:false})
-          } else {
-            // save the user to local storage
-            localStorage.setItem('user', JSON.stringify(json))
-            // update loading state
-            setIsLoading(false)
-            // update the auth context
-            dispatch({type: 'LOGIN', payload: json})
-            setm({...modal, Ready:false})
-            setm({...modal, logged: true})
-          }
+        .catch(()=>{
+          logsub(e)
         })
-      })
-      .catch((err)=>{
-        setm({...modal, Ready: false})
-        setErrorr(err.message)
       })
     }
   }
