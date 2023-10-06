@@ -55,7 +55,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
       <div className="container col-lg-10 col-12 mb-0">
         <nav className="navbar fixed-top navbar-expand-md bgcon py-1 d-block">
           <div style={document.documentElement.clientWidth<350?{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"97%"}:{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}
-          } className={document.documentElement.clientWidth<550?"container-md":"container-md table-responsive stytab2 fs-5"}>
+          } className={document.documentElement.clientWidth<650?"container-md":"container-md table-responsive stytab2 fs-5"}>
             <Link to="/" className="navbar-brand text-start text-decoration-none me-md-5 began">
               <span className="fw-bold motion1">
                 <i className="bi bi-calculator"></i>
@@ -87,7 +87,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                 </li>
                 {user && (<>
                   <li className="nav-item px-3"><i className='bi bi-person-bounding-box fs-4 textpep'></i></li>
-                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
+                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} style={{width:"140px"}} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
                 )}
 
                 <ul style={{display: "flex", justifyContent: "space-around"}} id={document.documentElement.clientWidth>=1280?"icons1":""}>
