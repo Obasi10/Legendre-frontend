@@ -55,13 +55,10 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
         setErrorr("Network problem! check your connection and try again.")
       } else{
         setm({...modal, Ready: true})
-
-        let didTimeOut=false;
         return new Promise(function(resolve, reject){
           const timeout= setTimeout(()=>{
-            didTimeOut=true;
-            reject(new Error('Your request took too long, please try again.'))
-          }, 8000);
+            reject()
+          }, 500);
     
           fetch('/api/user/p1', {
             method: 'PATCH',
@@ -71,43 +68,32 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
           })
           .then(response=>{
             clearTimeout(timeout);
-            if (!didTimeOut){
-              resolve(response)
-            }
+            response.json()
+            .then((json)=>{
+              if (json.error && json.error[0]==='P'){
+                setErrorr(json.error)
+                setEmptyFields(json.emptyFields)
+                setm({...modal, Ready: false})
+              } else if (!json.error && json.email){
+                setQemail('')
+                setQname('')
+                setQtype('')
+                setQuery('')
+                setEmptyFields([])
+                setm({...modal, Ready: false})
+                setm({...modal, submit: true})
+              } else {
+                logout()
+                setm({...modal, Ready: false})
+                setErrorr(json.error)
+              }
+            })
           })
-          .catch(err=>{
-            if (didTimeOut){
-              reject(err)
-            }
+          .catch(()=>{
+            queryfunction( user, queryName, queryEmail, queryType, query)
           });
         })
-        .then(response=>{
-          response.json()
-          .then((json)=>{
-            if (json.error && json.error[0]==='P'){
-              setErrorr(json.error)
-              setEmptyFields(json.emptyFields)
-              setm({...modal, Ready: false})
-            } else if (!json.error && json.email){
-              setQemail('')
-              setQname('')
-              setQtype('')
-              setQuery('')
-              setEmptyFields([])
-              setm({...modal, Ready: false})
-              setm({...modal, submit: true})
-            } else {
-              logout()
-              setm({...modal, Ready: false})
-              setErrorr(json.error)
-            }
-          })
-        })
-        .catch((err)=>{
-          setm({...modal, Ready: false})
-          setErrorr(err.message)
-        })
-    }
+      }
     }}
 
   const handleSubmit = async (e)=>{
