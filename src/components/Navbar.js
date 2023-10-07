@@ -87,7 +87,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                 </li>
                 {user && (<>
                   <li className="nav-item px-3"><i className='bi bi-person-bounding-box fs-4 textpep'></i></li>
-                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} style={{width:"140px"}} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
+                  <li className="nav-item px-3"><div type="button" className={lock==="lo"?"nav-link active textpep":"nav-link textpep"} style={{width:"100px"}} onClick={()=>setm({...modal, logOutpage:true})}>Log out</div></li></>
                 )}
 
                 <ul style={{display: "flex", justifyContent: "space-around"}} id={document.documentElement.clientWidth>=1280?"icons1":""}>
