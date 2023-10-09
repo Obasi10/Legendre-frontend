@@ -43,7 +43,7 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
       return new Promise(function(resolve, reject){
         const timeout= setTimeout(()=>{
           reject()
-        }, 5000);
+        }, 3000);
   
         fetch('/api/user/login', {
           method: 'POST',
