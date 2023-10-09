@@ -6,11 +6,11 @@ const backdrop = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
 }
-const modal = {
+const modal1 = {
     hidden: { y: "-100vh", opacity: 0 },
     visible: {
       margin: "auto",
-      y: "200px", 
+      y: "100px", 
       opacity: 1,
       transition: { delay: 0.5 }
     },
@@ -32,7 +32,7 @@ const Submit =({dim, modal, setm})=>{
               exit="hidden"
             >
               <motion.div className="modale1 beginner col-lg-5 col-10" 
-                variants={modal}
+                variants={modal1}
                 initial="hidden"
                 animate="visible"
                 style={w<=700? {marginTop:"30%", height: "fit-content"}:{marginTop:"15%", height: "fit-content"}}
