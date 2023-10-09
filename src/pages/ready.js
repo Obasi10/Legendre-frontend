@@ -6,6 +6,16 @@ const backdrop = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
   }
+
+const modal1 = {
+    hidden: { y: "-100vh", opacity: 0 },
+    visible: {
+      margin: "auto",
+      y: "150px", 
+      opacity: 1,
+      transition: { delay: 0.5 }
+    },
+}
   const svgVariants = {
     hidden: { rotate: [180,0,-180,0] },
     visible: { 
@@ -66,7 +76,7 @@ const Ready =({dim, modal})=>{
               exit="hidden"
             >
               <motion.div className="modale1 col-lg-4 col-7 bg-trans" 
-                variants={modal}
+                variants={modal1}
                 style={w<=700? {marginTop:"30%", height: "fit-content"}:{marginTop:"20%", height: "fit-content"}}
               > 
               <div className="col-md-4 col-3 d-md-block">
