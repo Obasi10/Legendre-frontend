@@ -1571,54 +1571,13 @@ of styling from the begining all over again */
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgb(255, 0, 255);
-            background-image: url("bg.jpg");
-            background-blend-mode: multiply;
+            background: rgb(48, 1, 48);
             background-size: contain,							auto,														100% auto;
             background-position: center,								center,														top center;
             background-repeat: repeat,								no-repeat,													no-repeat;
             background-attachment: scroll,								scroll,														scroll;
             z-index: -1;
-            animation-name: mine;
-            animation-duration: 80s;
-            animation-iteration-count: 20;
-            animation-delay: 10s;
-            animation-direction: alternate;
-            animation-timing-function: linear;
-            animation-fill-mode: none;
         }
-        @keyframes mine {
-          0% {
-            background: rgb(255, 0, 255);
-            background-image: url("bg.jpg");
-            background-blend-mode: multiply;
-        }
-          20% {
-              background: rgb(210, 5, 210);
-              background-image: url("bg.jpg");
-              background-blend-mode: multiply;
-          }
-          40% {
-              background: rgb(173, 10, 173);
-              background-image: url("bg.jpg");
-              background-blend-mode: multiply;
-          }
-          60% {
-              background: rgb(173, 10, 173);
-              background-image: url("bg.jpg");
-              background-blend-mode: multiply;
-          }
-          80% {
-              background: rgb(210, 5, 210);
-              background-image: url("bg.jpg");
-              background-blend-mode: multiply;
-          }
-          100% {
-              background: rgb(255, 0, 255);
-              background-image: url("bg.jpg");
-              background-blend-mode: multiply;
-          }
-      }
                  
     #wrapper > .bg.fixed {
       position: fixed;
