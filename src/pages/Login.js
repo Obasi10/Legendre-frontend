@@ -60,7 +60,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
             })
           })
           .catch(()=>{
-            logsub(e)
+            setTimeout(()=>handleSubmit1(e),1000)
           });
         })
       } else {
@@ -110,7 +110,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
           })
         })
         .catch(()=>{
-          logsub(e)
+          setTimeout(()=>logsub(e),1000)
         })
       })
     }
