@@ -58,7 +58,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
         return new Promise(function(resolve, reject){
           const timeout= setTimeout(()=>{
             reject()
-          }, 3000);
+          }, 2000);
     
           fetch('/api/user/p1', {
             method: 'PATCH',
