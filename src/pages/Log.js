@@ -72,7 +72,7 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
           })
         })
         .catch(()=>{
-          setTimeout(()=>handleSubmit(e),1000)
+          setTimeout(()=>handleSubmit(e),2000)
         })
       })
     }
