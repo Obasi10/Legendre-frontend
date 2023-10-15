@@ -90,7 +90,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
             })
           })
           .catch(()=>{
-            setTimeout(()=>queryfunction( user, queryName, queryEmail, queryType, query),1000)
+            setTimeout(()=>queryfunction( user, queryName, queryEmail, queryType, query),2000)
           });
         })
       }
