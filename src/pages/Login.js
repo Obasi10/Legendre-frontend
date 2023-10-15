@@ -32,7 +32,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
         return new Promise(function(resolve, reject){
           const timeout= setTimeout(()=>{
             reject()
-          }, 3000);
+          }, 2000);
     
           fetch('/api/user/signup', {
             method: 'POST',
@@ -82,7 +82,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
       return new Promise(function(resolve, reject){
         const timeout= setTimeout(()=>{
           reject()
-        }, 3000);
+        }, 2000);
   
         fetch('/api/user/login', {
           method: 'POST',
