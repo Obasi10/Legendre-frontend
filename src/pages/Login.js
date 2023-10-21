@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useAuthContext } from "../hooks/useAuthContext"
 
-const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
+const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [password1, setPassword1] = useState('')
@@ -115,7 +115,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr}) => {
       })
     }
   }
-  useEffect(()=>{setm({...modal, Ready: false}); setl("l")},[])
+  useEffect(()=>{setm({...modal, Ready: false}); setl("l"); setp(0)},[])
   const w=document.documentElement.clientWidth
 
   return (
