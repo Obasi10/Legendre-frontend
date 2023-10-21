@@ -43,13 +43,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-           background: rgb(22, 0, 22);
+            background: rgb(17, 15, 17);
             background-size: contain,							auto,														100% auto;
             background-position: center,								center,														top center;
             background-repeat: repeat,								no-repeat,													no-repeat;
             background-attachment: scroll,								scroll,														scroll;
             z-index: -1;
         }
+                 
+    #wrapper > .bg.fixed {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+    }
         
                 .loading{
                     font-weight: bolder;
@@ -76,11 +82,7 @@
                     }
                 }
                    
-			#wrapper > .bg.fixed {
-				position: fixed;
-				width: 100vw;
-				height: 100vh;
-			}
+
 
             #btn--select{
                 background: purple;
