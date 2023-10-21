@@ -54,14 +54,14 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
   const {dispatch} = useWorkoutsContext()
   const {user} = useAuthContext()
   const {w, h}=dim
-  const height=h*0.5 +""
+  const height=h*0.3 +""
   const width=w*0.3+""
   const {logouter}=useLogout()
 
   useEffect(() => {
     const fetchWorkouts = async () => {
       try{
-        const response = await fetch('/api/workouts/', {
+        const response = await fetch('/api/workouts', {
           method: 'POST',
           body: JSON.stringify({title: ""}),
           headers: {
@@ -92,7 +92,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
               <div className="row g-md-2 g-1 col-lg-9 col-12 justify-content-around align-items-center" style={{margin: "auto"}}>
                 <div className="col-7 text-start">
                   <h1>
-                    <div className="display-3 fw-bolder mb-md-3 mt-md-5 mt-2 mb-1 begin textpep text-start">The Ultimate Calculator</div>
+                    <div className="display-3 fw-bolder mb-md-3 mt-md-5 mt-2 mb-1 begin textpep text-start" style={{fontStyle:"italic"}}>The Ultimate Calculator</div>
                     <div className="text-muted fs-5 text-start">Stupendous design of innovative solutions</div>
                   </h1>
                   <p className="lead my-lg-4 begine text-start" >Also introducing the simplest form of the ideal solution to the 
