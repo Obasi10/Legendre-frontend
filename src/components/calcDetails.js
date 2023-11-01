@@ -48,8 +48,8 @@ const CalcDetails = ({ workout, setn, n, modal, setm}) => {
       <p key="k4"><strong>{'$$y\\ =\\ C_1\\ P_{'+n+'}(x)\\ + C_2\\ Q_{'+n+'}(x)$$'}</strong></p>
       <p key="k5">{formatDistanceToNow(new Date((workout.createdAt)), { addSuffix: true })}</p>
       <div className='justify-content-center align-items-center align-self-center align-content-center' style={{margin:"auto", display: "flex"}}>
-        <button className="btn bgpupp textpep bi bi-trash mx-2 px-2" onClick={handleClick}>delete</button>
-        <Link to="/solution" className='text-decoration-none'><button className="btn bgpupp textpep mx-2 p-2" onClick={()=>{setm({...modal, Ready: true})}}>view</button></Link>
+        <button className="btn bgpupp textpele bi bi-trash mx-2 px-2" onClick={handleClick}>delete</button>
+        <Link to="/solution" className='text-decoration-none'><button className="btn bgpupp textpele mx-2 p-2" onClick={()=>{setm({...modal, Ready: true})}}>view</button></Link>
       </div>
     </div>
   )
