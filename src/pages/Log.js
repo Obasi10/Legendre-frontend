@@ -134,7 +134,7 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
                 </div>
                 
                 <div className="mb-4 text-center">
-                  <button type="submit" disabled={isLoading} className="btn btn-secondary textpep bgpupp">Log in</button>
+                  <button type="submit" disabled={isLoading} className="btn btn-secondary textpele bgpupp">Log in</button>
                 </div>
                 <div className="beginer" style={{color: "white"}}>
                   Don't have an account yet? <Link to="/login"><span type="button" className="textpop text-decoration-underline" onClick={()=>{setlog(false); setm({...modal, logpage:false})}}>Sign up now </span></Link>
