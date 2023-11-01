@@ -140,7 +140,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                 <i className="bi bi-envelope-fill text-secondary"></i>
               </span>
               <input type="text" id="email" onChange={(e)=>setEmail(e.target.value)} value={email}
-              className="form-control" placeholder="e.g. dean234@gmail.com" />
+              className="form-control bgliter" placeholder="e.g. dean234@gmail.com" />
               
               <span className="input-group-text textpop">
                 <span className="tt" data-bs-placement="bottom" title="Enter an email address we can reply to.">
@@ -154,7 +154,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                 <i className="bi bi-person-fill text-secondary"></i>
               </span>
               <input type="text" id="name" onChange={(e)=>setsname(e.target.value)} value={name}
-              className="form-control" placeholder="e.g. Daniel_127" />
+              className="form-control bgliter" placeholder="e.g. Daniel_127" />
               {/* <!-- tooltip --> */}
               <span className="input-group-text">
                 <span className="tt" data-bs-placement="bottom" title="Pretty self explanatory really...">
@@ -163,7 +163,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
               </span>
             </div>
             <div className="mb-4 mt-5 form-floating">
-              <textarea className="form-control" id="query" onChange={(e)=>setdes(e.target.value)} value={description}
+              <textarea className="form-control bgliter" id="query" onChange={(e)=>setdes(e.target.value)} value={description}
                 style={{height: "140px"}} placeholder="Briefly describe yourself..."></textarea>
               <label htmlFor="query">Brief description about you...</label>
             </div>
@@ -173,7 +173,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                 <i className="bi bi-key text-secondary"></i>
               </span>
               <input type={butt?"text":"password"} id="password" onChange={(e)=>setPassword(e.target.value)} value={password}
-                className="form-control"/>
+                className="form-control bgliter"/>
               <span className="input-group-text">
                 <span type="button" onClick={()=>butt?setb(false):setb(true)}>
                   <i className={!butt?"bi bi-eye-fill text-muted":"bi bi-eye text-muted"}></i>
@@ -186,7 +186,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                 <i className="bi bi-key text-secondary"></i>
               </span>
               <input type={butt1?"text":"password"} id="password1" onChange={(e)=>setPassword1(e.target.value)} value={password1}
-                className="form-control"/>
+                className="form-control bgliter"/>
               <span className="input-group-text">
                 <span type="button" onClick={()=>butt1?setb1(false):setb1(true)}>
                   <i className={!butt1?"bi bi-eye-fill text-muted":"bi bi-eye text-muted"}></i>
@@ -194,10 +194,10 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
               </span>
             </div>
             <div className="mb-4 text-center">
-              <button className="btn btn-secondary textpep bgpupp" disabled={isLoading}>Sign up</button>
+              <button className="btn btn-secondary textpele bgpupp" disabled={isLoading}>Sign up</button>
             </div>
             
-            <div className="beginer" style={{color: "white"}}>
+            <div className="beginer">
               Already have an account? <span type="button" className="textpop text-decoration-underline" onClick={()=>setlog(true)}>Login now</span>
             </div>
           </form>)}
@@ -214,7 +214,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                     <i className="bi bi-envelope-fill text-secondary"></i>
                   </span>
                   <input type="text" id="email" onChange={(e)=>setEmail(e.target.value)} value={email}
-                  className="form-control" />
+                  className="form-control bgliter" />
                   
                   <span className="input-group-text textpop">
                     <span className="tt" data-bs-placement="bottom" title="Enter your email">
@@ -228,7 +228,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                     <i className="bi bi-key text-secondary"></i>
                   </span>
                   <input type={butt?"text":"password"} id="password" onChange={(e)=>setPassword(e.target.value)} value={password}
-                  className="form-control"/>
+                  className="form-control bgliter"/>
                   <span className="input-group-text">
                     <span type="button" onClick={()=>butt?setb(false):setb(true)}>
                       <i className="bi bi-eye-fill text-muted"></i>
@@ -237,9 +237,9 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                 </div>
                 
                 <div className="mb-4 text-center">
-                  <button className="btn btn-secondary textpep bgpupp" disabled={isLoading} onClick={logsub}>Log in</button>
+                  <button className="btn btn-secondary textpele bgpupp" disabled={isLoading} onClick={logsub}>Log in</button>
                 </div>
-                <div className="beginer" style={{color: "white"}}>
+                <div className="beginer">
                   Don't have an account yet? <span type="button" className="textpop text-decoration-underline" onClick={()=>setlog(false)}>Sign up now </span>
                 </div>
               </form>
