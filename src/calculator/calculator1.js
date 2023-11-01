@@ -96,7 +96,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                 <div className="row g-0 note1 align-items-center justify-content-center">
                                 <input className="col-lg-4 col-6 text-center p-1" type="number" onInput={()=>setcalc(false)} id="input" placeholder="Enter the value of n (1,2,3...)" autoFocus={true}
                                   onChange={(e)=>{setn1(e.target.value); setn(Number(e.target.value))}} value={n1}/>
-                                <motion.button variants={Variants} whileHover="hover" className="btn textpep col-lg-2 col-3" id="btn--select" onClick={err}>Select</motion.button>
+                                <motion.button variants={Variants} whileHover="hover" className="btn textpele col-lg-2 col-3" id="btn--select" onClick={err}>Select</motion.button>
                                 </div>
                               </motion.div>
                             )
@@ -115,8 +115,8 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                 </header>
                                 <h2>
                                 <div className="row text-center g-5 justify-content-center align-items-center">
-                                  <Link to={(n1 || n===0)?"/solution":""} className="col-lg-1 col-2 mx-4"><motion.button variants={Variants} whileHover="hover" className="btn bgpupp beginner textpep p-2" onClick={()=>{setm({...modal, Ready:true})}} id="yes">yes</motion.button></Link>
-                                  <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpep col-lg-1 col-2 mx-4" id="no" onClick={()=>setse(false)}>No</motion.button>
+                                  <Link to={(n1 || n===0)?"/solution":""} className="col-lg-1 col-2 mx-4"><motion.button variants={Variants} whileHover="hover" className="btn bgpupp beginner textpele p-2" onClick={()=>{setm({...modal, Ready:true})}} id="yes">yes</motion.button></Link>
+                                  <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele col-lg-1 col-2 mx-4" id="no" onClick={()=>setse(false)}>No</motion.button>
                                 </div>
                                 </h2>
                               </motion.div>
@@ -174,7 +174,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                           </button>
                         </h2>
                         <div id="chapter-1" className="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#chapters">
-                          <div className="accordion-body justify-content-center">
+                          <div className="accordion-body bglight border-0 justify-content-center">
                             <p>The Legendre equation arises in mathematical models of heat conduction in spherical geometries and expansion of electromagnetic potential. It is encountered in situations where one has to solve partial differential equations containing the Laplacian polar coordinates. This Calculator presents the simplest form of the Legendre function of the second kind, \(Q_n(x)\). Before now, it had been presented in form of a recursion formula. The Legendre equation can be written as:</p>
                             <div className="text-center mb-2">\((1-x^2)y''-2xy'+n(n+1)y=0\)</div>
                             <div>\( where\ n=1,2,3,...\)</div>
@@ -195,7 +195,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                             </button>
                           </h2>
                           <div id="chapter-2" className="accordion-collapse collapse" aria-labelledby="heading-2" data-bs-parent="#chapters">
-                            <div className={dim.w<700?"accordion-body beginner justify-content-center":"accordion-body fs-5 justify-content-center"}>
+                            <div className={dim.w<700?"accordion-body beginner m-0 bglight border-0 justify-content-center":"accordion-body m-0 bglight border-0 fs-5 justify-content-center"}>
                               <p>
                                 \(P_n (x)\) is also referred to as Legendre polynomial. 
                               </p>
@@ -213,7 +213,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                             </button>
                           </h2>
                           <div id="chapter-3" className="accordion-collapse collapse" aria-labelledby="heading-3" data-bs-parent="#chapters">
-                            <div className="accordion-body justify-content-center">
+                            <div className="accordion-body m-0 bglight border-0 justify-content-center">
                             <div className="px-2 container table-responsive pt-0 my-3" style={{width:"fit-content", overflowX:"hidden", overflowY:"hidden"}} >
                             <motion.div className="align-items-center d-flex"
                               animate={{
@@ -244,7 +244,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                             </button>
                           </h2>
                           <div id="chapter-4" className="accordion-collapse collapse" aria-labelledby="heading-4" data-bs-parent="#chapters">
-                            <div className="accordion-body note1 justify-content-center">
+                            <div className="accordion-body m-0 bglight border-0 justify-content-center">
                               <ol>
                                 <li className="py-2"> Obasi, I. C. (2022). The Ideal Solution to the Legendre Equation and Laplace Equation. (Undergoing review)</li>
                                 <li className="py-2">Campbell, J. (2020). New families of double hypergeometric series for constants involving 1/π^2 .  hal-02986446</li>
