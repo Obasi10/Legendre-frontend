@@ -1,4 +1,4 @@
-import { useEffect, useState }from 'react';
+import { useEffect}from 'react';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import {Tooltip} from "bootstrap";
@@ -92,14 +92,16 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
               <div className="row g-md-2 g-1 col-lg-9 col-12 justify-content-around align-items-center" style={{margin: "auto"}}>
                 <div className="col-7 text-start">
                   <h1>
-                    <div className="display-3 fw-bolder mb-md-3 mt-md-5 mt-2 mb-1 begin textpep text-start" style={{fontStyle:"italic"}}>The Ultimate Calculator</div>
-                    <div className="text-muted fs-5 text-start">Stupendous design of innovative solutions</div>
+                    <div className="loading11 fw-bolder mb-md-3 mt-md-5 mt-2 mb-3 begin textpep text-start" style={{lineHeight: 1.1, fontFamily:"sans-serif"}} 
+                    >The Ultimate Calculator</div>
                   </h1>
-                  <p className="lead my-lg-4 begine text-start" >Also introducing the simplest form of the ideal solution to the 
-                    Legendre equation</p>
-                  <div><a href="#projects" className="mt-md-5 mt-1 text-muted text-decoration-none beginer">
+                  <div style={{fontStyle: "italic", lineHeight:1.1}}>
+                  <div className="loading12 beginer text-start" >Stupendous design of innovative solutions...</div>
+                  <div className="my-1 beginer motion3 text-start" style={{color: "purple"}} >Also introducing the simplest form of the ideal solution to the 
+                    Legendre equation.</div>
+                  <motion.p ><a href="#projects" className="mt-md-5 mt-1 text-muted text-decoration-none beginer">
                     Check out my other Projects
-                  </a></div>
+                  </a></motion.p></div>
                 </div>
                 <div className="col-md-4 col-3 me-2 d-md-block">
                   {/* <!-- tooltip --> */}
@@ -124,7 +126,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
 
           <motion.div className="accordion beginner col-lg-5 col-9 mt-lg-5 mt-md-2 mt-1" style={{margin: "auto"}} id="chapters" variants={nextVariants} initial="hidden" animate="visible"
           >
-            <div className="accordion-item">
+            <div className="accordion-item bgsel" >
               <h2 className="accordion-header" id="heading-1">
                 <button className="text-primary beginner accordion-button bgbtn mx-0 mt-0" style={{fontWeight: 700, textAlign: "center"}} 
                 type="button" data-bs-toggle="collapse" data-bs-target="#chapter-1" aria-expanded="true" aria-controls="chapter-1">
@@ -159,7 +161,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
             </div>
           </motion.div>
         
-          <section id="projects" className="bglight mt-5 py-4 col-lg-10 col-9" style={{borderRadius: "10%", margin:"auto"}}>
+          <section id="projects" className="bglight my-5 py-4 col-lg-10 col-9" style={{borderRadius: "10%", margin:"auto"}}>
             <div className="container-lg">
               <div className="text-center">
                 <h2 className="fw-bolder fs-1">Other Projects</h2>
@@ -174,7 +176,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                       <p className="lead card-subtitle beginner text-center mb-1">Estimating environmental loads</p>
                       <img src={pic1} className="img-fluid" alt="mooring analysis"/>
                       <p className="card-text mx-1 text-muted d-none fs-5 d-lg-block">Determining the maximum environmental load to move the anchor...</p>
-                      <a href={doc3} download="" className="btn bgpupp textpep btn-lg-lg mt-3">
+                      <a href={doc3} download="" className="btn bgpupp textpele btn-lg-lg mt-3">
                         view
                       </a>
                     </div>
@@ -190,7 +192,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                       <img src={pic3} className="img-fluid" alt="🎲"/>
                       <p className="card-text mx-1 text-muted d-none fs-5 d-lg-block">"... want to test your guessing ability? then be rest
                         assured you are in the right place."</p>
-                      <a href="https://roll-and-guess.vercel.app/" className="btn bgpupp textpep btn-lg-lg mt-3">
+                      <a href="https://roll-and-guess.vercel.app/" className="btn bgpupp textpele btn-lg-lg mt-3">
                         view
                       </a>
                     </div>
@@ -204,7 +206,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                       <p className="lead card-subtitle beginner text-center mb-1">Interactive Dashboard Design</p>
                       <img src={pic2} className="img-fluid" alt="alternative calculator"/>
                       <p className="card-text mx-1 text-muted d-none fs-5 d-lg-block">The excel file contains four sheets, namely: dashboard, Input data, master data and analysis sheet.</p>
-                      <a href={doc2} className="btn bgpupp textpep btn-lg-lg mt-3">
+                      <a href={doc2} className="btn bgpupp textpele btn-lg-lg mt-3">
                         view
                       </a>
                     </div>
@@ -222,13 +224,13 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
             <div className="container-lg mt-5">
               <div className="text-center">
                 <h2 className="textpop fw-bold fs-1"><i className="bi bi-stars textpop"></i>Reviews</h2>
-                <p className="lead text-muted beginner text-center">Reviews from scholars...</p>
+                <p className="lead text-muted beginner text-center mb-0">Reviews from scholars...</p>
               </div>
 
-              <div className="row justify-content-center mb-1 note1"  style={{borderRadius: "10%"}}>
+              <div className="row justify-content-center mb-1"  style={{borderRadius: "10%"}}>
                 <div className="col-lg-8">
                   <div className="list-group">
-                    <div className="list-group-item py-3">
+                    <div className="list-group-item bglight py-3">
                       <div className="pb-2">
                         <i className="bi bi-star-fill text-gold"></i>
                         <i className="bi bi-star-fill text-gold"></i>
@@ -240,7 +242,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                       <p className="mb-1 beginner">The design is really impressive. It will be helpful to students and researchers studying mathematics.</p>
                       <small className="textpop begine">Math_407</small>
                     </div>
-                    <div className="list-group-item py-3">
+                    <div className="list-group-item bglight py-3">
                       <div className="pb-2">
                         <i className="bi bi-star-fill text-gold"></i>
                         <i className="bi bi-star-fill text-gold"></i>
@@ -252,7 +254,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                       <p className="mb-1 beginner">Wow impressive, this is good work.</p>
                       <small className="textpop begine">Kobe_douche</small>
                     </div>
-                    <div className="list-group-item py-3">
+                    <div className="list-group-item bglight py-3">
                       <div className="pb-2">
                         <i className="bi bi-star-fill text-gold"></i>
                         <i className="bi bi-star-fill text-gold"></i>
