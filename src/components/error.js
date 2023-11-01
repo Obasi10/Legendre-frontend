@@ -47,7 +47,7 @@ const Error =({dim, modal, setm, setErrorr, error,lock})=>{
                 style={w<=700?{marginTop:"30%", height: "fit-content"}:{marginTop:"15%", height: "fit-content"}}
               >
                 <p className={w<=700?"beginner text-center fw-bolder text-danger":"fs-5 fw-bolder text-danger"}>{error}</p>
-                <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpep p-2"
+                <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele p-2"
                     onClick={handleSubmit}
                 >Ok</motion.button>
               </motion.div>
