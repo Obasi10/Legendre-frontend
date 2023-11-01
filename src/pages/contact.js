@@ -148,7 +148,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
                         <i className="bi bi-envelope-fill text-secondary"></i>
                       </span>
                       <input type="text" id="email" onChange={(e)=>setQemail(e.target.value)} value={queryEmail}
-                      className={emptyFields.includes('queryEmail') ? 'form-control error' : 'form-control'} placeholder="e.g. Ade@gmail.com" />
+                      className={emptyFields.includes('queryEmail') ? 'form-control error bgliter' : 'form-control bgliter'} placeholder="e.g. Ade@gmail.com" />
                       {/* <!-- tooltip --> */}
                       <span className="input-group-text textpop">
                         <span className="tt" data-bs-placement="bottom" title="Enter an email address we can reply to.">
@@ -162,7 +162,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
                         <i className="bi bi-person-fill text-secondary"></i>
                       </span>
                       <input type="text" id="name" onChange={(e)=>setQname(e.target.value)} value={queryName}
-                      className={emptyFields.includes('queryName') ? 'form-control error' : 'form-control'} placeholder="e.g. mike" />
+                      className={emptyFields.includes('queryName') ? 'form-control error bgliter' : 'form-control bgliter'} placeholder="e.g. mike" />
                       {/* <!-- tooltip --> */}
                       <span className="input-group-text">
                         <span className="tt" data-bs-placement="bottom" title="Pretty self explanatory really...">
@@ -183,12 +183,12 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
                       </select>
                     </div>
                     <div className="mb-4 mt-5 form-floating">
-                      <textarea className={emptyFields.includes('query') ? 'form-control error' : 'form-control'} id="query" onChange={(e)=>setQuery(e.target.value)} value={query}
+                      <textarea className={emptyFields.includes('query') ? 'form-control error bgliter' : 'form-control bgliter'} id="query" onChange={(e)=>setQuery(e.target.value)} value={query}
                        style={{height: "140px"}} placeholder="query"></textarea>
                       <label htmlFor="query">Your query...</label>
                     </div>
                     <div className="mb-4 text-center">
-                      <button type="submit" className="btn btn-secondary textpep bgpupp">Submit</button>
+                      <button type="submit" className="btn btn-secondary textpele bgpupp">Submit</button>
                     </div>
                   </form>
                 </div>
