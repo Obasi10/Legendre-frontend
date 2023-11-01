@@ -134,8 +134,8 @@ const Reviewer =({dim, modal, setm, count, setc, setErrorr})=>{
                   ))}
                 </div>
                 <div className="d-flex mt-4" style={{margin: "auto", justifyContent: "center", alignSelf: "center"}}>
-                  <button onClick={()=>setting()} className="btn bgpupp textpep mx-3 px-2"> proceed</button>
-                  <button onClick={()=>{setrev2(0)}} className="btn bgpupp textpep mx-3 px-2"> clear</button>
+                  <button onClick={()=>setting()} className="btn bgpupp textpele mx-3 px-2"> proceed</button>
+                  <button onClick={()=>{setrev2(0)}} className="btn bgpupp textpele mx-3 px-2"> clear</button>
                 </div>
               </div>)}
               {rev && (
@@ -172,7 +172,7 @@ const Reviewer =({dim, modal, setm, count, setc, setErrorr})=>{
                       <label htmlFor="query">Drop your review...</label>
                     </div>
                     <div className="mb-0 pb-0 text-center">
-                      <button type="submit" className="btn btn-secondary textpep bgpupp">Submit</button>
+                      <button type="submit" className="btn btn-secondary textpele bgpupp">Submit</button>
                     </div>
 
                   </form>
