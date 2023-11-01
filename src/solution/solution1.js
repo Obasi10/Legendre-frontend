@@ -625,7 +625,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
     }
 
     return (
-        <div className="wrapper2">
+        <>
         <div className="d-block m-0 p-1" style={w<=1280?{minHeight: 1.1*f+"px", paddingTop:0+"%"}:{minHeight: 1.1*f+"px",paddingTop:"0%"}}>
         <div className="tab-content justify-content-center col-lg-8 col-12" id="nav-tabContent" style={{margin: "auto", marginTop: h1}}>
             <AnimatePresence >
@@ -711,7 +711,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
                     <div>
                         <div className="mt-5" style={{alignContent: "center", display: "inline", alignItems: "center", alignSelf: "center", textAlign: "center", borderSpacing: "0ch"}}>
                         <input className="col-lg-5 col-8 text-center p-1" type="number" onChange={(e)=>setIn2(e.target.value)} value={input2} placeholder="Enter the value of x (-1 < x < 1)"/>
-                        <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpep" onClick={()=>{(compe || Number(input2)<-1 || Number(input2)>1)?setcom(false):compute()}}>Compute</motion.button>
+                        <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele" onClick={()=>{(compe || Number(input2)<-1 || Number(input2)>1)?setcom(false):compute()}}>Compute</motion.button>
                         </div>
                         {(comp && input2!==undefined) && (<div className={dim.w>800?"fs-5":"beginner"} style={{textAlign: "left", marginTop: "10%"}}>
                         <div style={{scale: "1.1"}}>{array[0]}</div>
@@ -822,8 +822,8 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
                         </div>
                 </div>
                 <div className="justify-content-center text-center mt-5 align-items-center">
-                    <button className="btn bgpupp textpep mx-3" id="download" onClick={()=>{setm({...modal, Ready: true});finish()}}>Download PDF</button>
-                    <button className="btn bgpupp textpep mx-3" onClick={handleSubmit}>Save</button>
+                    <button className="btn bgpupp textpele mx-3" id="download" onClick={()=>{setm({...modal, Ready: true});finish()}}>Download PDF</button>
+                    <button className="btn bgpupp textpele mx-3" onClick={handleSubmit}>Save</button>
                 </div>
                 </section>
                 <footer className='mb-3 row col-12'>
@@ -833,7 +833,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
             </AnimatePresence>
         </div>
         </div>
-        </div>
+        </>
     )
 }
 
