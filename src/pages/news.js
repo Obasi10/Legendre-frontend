@@ -67,7 +67,7 @@ const News =({dim, modal, count, setm, setc})=>{
                     <p className="text-muted my-4 mx-lg-2">We are on a journey to make life in mathematics easier for students, researchers, scientists, engineers etc. 
                     We will be providing innovative calculator designs on the various aspects of mathematics. 
                     Register to be alerted on the latest addition; it is no under-statement to tell you that this calculator will surpass your expectations.</p>
-                    <motion.button variants={Variants} whileHover="hover" className="btn rounded-pill bgpupp textpep"
+                    <motion.button variants={Variants} whileHover="hover" className="btn rounded-pill bgpupp textpele"
                         onClick={handleSubmit}
                     >
                         Register to get updates
