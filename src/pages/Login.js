@@ -32,7 +32,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
         return new Promise(function(resolve, reject){
           const timeout= setTimeout(()=>{
             reject()
-          }, 2000);
+          }, 5000);
     
           fetch('/api/user/signup', {
             method: 'POST',
@@ -60,7 +60,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             })
           })
           .catch(()=>{
-            setTimeout(()=>handleSubmit1(e),2000)
+            handleSubmit1(e);
           });
         })
       } else {
@@ -82,7 +82,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
       return new Promise(function(resolve, reject){
         const timeout= setTimeout(()=>{
           reject()
-        }, 2000);
+        }, 5000);
   
         fetch('/api/user/login', {
           method: 'POST',
@@ -110,7 +110,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
           })
         })
         .catch(()=>{
-          setTimeout(()=>logsub(e),2000)
+          logsub(e);
         })
       })
     }
