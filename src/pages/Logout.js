@@ -41,10 +41,10 @@ const Logout =({dim, modal, setm, setl})=>{
                 {!first && (<><p className={w<700?"beginner":"fs-5"}>Are you sure you want to log out?</p>
                 <div>
                   <button onClick={()=>setfirs(true)} className="btn bgpupp textpep mx-3 px-2"> Yes</button>
-                  <button onClick={()=>{setm({...modal, logOutpage:false}); setl("")}} className="btn bgpupp textpep mx-3 px-2"> no</button>
+                  <button onClick={()=>{setm({...modal, logOutpage:false}); setl("")}} className="btn bgpupp textpele mx-3 px-2"> no</button>
                 </div></>)}
                 {first && (<><p className={w<700?"beginner text-danger text-center":"fs-5 text-danger text-center"}>Log out successful.</p>
-                            <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpep p-2"
+                            <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele p-2"
                                 onClick={handleClick}
                             >Ok</motion.button>
                 </>)}
