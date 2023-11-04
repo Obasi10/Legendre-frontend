@@ -2157,5 +2157,9 @@ section.split{
   border-radius: 4px;
 }
 
+.textpele:hover{
+  color: rgb(15, 122, 164)
+}
+
 /* 
 } */
