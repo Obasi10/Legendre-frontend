@@ -92,7 +92,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
               <div className="row g-md-2 g-1 col-lg-9 col-12 justify-content-around align-items-center" style={{margin: "auto"}}>
                 <div className="col-7 text-start">
                   <h1>
-                    <div className="loading11 fw-bolder mb-md-3 mt-md-5 mt-2 mb-3 begin textpep text-start" style={{lineHeight: 1.1, fontFamily:"sans-serif"}} 
+                    <div className="loading11 fw-bolder mb-md-3 mt-lg-0 mt-4 mb-2 begin textpep text-start" style={{lineHeight: 1.1, fontFamily:"sans-serif"}} 
                     >The Ultimate Calculator</div>
                   </h1>
                   <div style={{fontStyle: "italic", lineHeight:1.1}}>
