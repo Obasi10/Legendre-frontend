@@ -2092,6 +2092,7 @@ section.split{
   }
   .nav-pills .nav-link{
     font-weight: lighter;
+    padding: 5%;
   }
 
   .nav-pills .nav-link.active{
