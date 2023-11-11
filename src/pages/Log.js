@@ -72,7 +72,7 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
           })
         })
         .catch(()=>{
-          handleSubmit(e);
+          setErrorr("Took too long to load");
         })
       })
     }
