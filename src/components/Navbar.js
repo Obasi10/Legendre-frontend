@@ -56,7 +56,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
         <nav className="navbar fixed-top navbar-expand-md bgcon py-0 d-block">
           <div style={document.documentElement.clientWidth<350?{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"97%"}:{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}
           } className={document.documentElement.clientWidth<650?"container-md":"container-md table-responsive stytab2 fs-5"}>
-            <Link to="/" className="navbar-brand text-start text-decoration-none me-md-5 began">
+            <Link to="/" className="navbar-brand text-start text-decoration-none me-md-5 fs-4 p-2">
               <span className="fw-bold motion1">
                 <i className="bi bi-calculator"></i>
                 UltimateCalc
@@ -165,22 +165,22 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
           {page===1 && ( <div className="my-2 col-lg-8 align-items-center table-responsive justify-content-lg-center container-lg stytab">
                 <div id="nav-tab" style={{minWidth: "40rem"}} role="tablist" >
                     <ul className="nav nav-pills justify-content-around p-0">
-                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link active textpele" id="nav-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-solution" type="button"
+                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link active fw-bold px-2 fst-italic textpele" id="nav-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-solution" type="button"
                         role="tab" aria-controls="nav-solution" aria-selected="true" onClick={()=>settab(false)}>
                         Solution
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link textpele" id="nav-calculator-tab" data-bs-toggle="tab" data-bs-target="#nav-calculator" type="button"
+                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link fw-bold px-2 fst-italic textpele" id="nav-calculator-tab" data-bs-toggle="tab" data-bs-target="#nav-calculator" type="button"
                         role="tab" aria-controls="nav-calculator" aria-selected="false" onClick={()=>settab(false)}>
                         Calculator
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link textpele" id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button"
+                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link fw-bold px-2 fst-italic textpele" id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button"
                         role="tab" aria-controls="nav-graph" aria-selected="false" onClick={()=>settab(true)}>
                         Simulation
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link textpele" id="nav-full-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-full-solution" type="button"
+                    <li className={document.documentElement.clientWidth>700?"nav-item px-3 fs-5":"nav-item p-0 px-2 beginner"}><button className="nav-link fw-bold px-2 fst-italic d-flex textpele" id="nav-full-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-full-solution" type="button"
                         role="tab" aria-controls="nav-full-solution" aria-selected="false" onClick={()=>settab(false)}>
                         Full Solution
                         </button>
