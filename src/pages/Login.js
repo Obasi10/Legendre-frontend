@@ -60,7 +60,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             })
           })
           .catch(()=>{
-            handleSubmit1(e);
+            setErrorr("Took too long to load");
           });
         })
       } else {
@@ -110,7 +110,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
           })
         })
         .catch(()=>{
-          logsub(e);
+          setErrorr("Took too long to load");
         })
       })
     }
