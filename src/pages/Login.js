@@ -32,7 +32,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
         return new Promise(function(resolve, reject){
           const timeout= setTimeout(()=>{
             reject()
-          }, 5000);
+          }, 3000);
     
           fetch('/api/user/signup', {
             method: 'POST',
@@ -60,6 +60,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             })
           })
           .catch(()=>{
+            setm({...modal, Ready:false})
             setErrorr("Took too long to load");
           });
         })
@@ -82,7 +83,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
       return new Promise(function(resolve, reject){
         const timeout= setTimeout(()=>{
           reject()
-        }, 5000);
+        }, 3000);
   
         fetch('/api/user/login', {
           method: 'POST',
@@ -110,6 +111,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
           })
         })
         .catch(()=>{
+          setm({...modal, Ready:false})
           setErrorr("Took too long to load");
         })
       })
