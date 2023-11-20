@@ -58,7 +58,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
         return new Promise(function(resolve, reject){
           const timeout= setTimeout(()=>{
             reject()
-          }, 2000);
+          }, 3000);
     
           fetch('/api/user/p1', {
             method: 'PATCH',
@@ -90,7 +90,8 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
             })
           })
           .catch(()=>{
-            setTimeout(()=>queryfunction( user, queryName, queryEmail, queryType, query),2000)
+            setm({...modal, Ready: false})
+            setErrorr("Took too long to load")
           });
         })
       }
@@ -122,9 +123,11 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
               <div className="text-center">
                 <h2 className="textpop fw-bold fs-1">About <span className="">Corner St<motion.span className="bi bi-diamond-fill text-primary" initial={{opacity:0, rotate:[0,180,0,-180]}}
                   animate={{rotate: 0, opacity:1, transition:{repeat:Infinity, duration: 5}}}></motion.span>ne</span> Tech.</h2>
-                <p className="beginner text-center lead text-muted">A pace-setter in web development...</p>
+                <p className="beginner text-center lead text-muted">A pace-setter in web development and data presentation...</p>
               </div>
               <div className="bglight p-md-5 p-4" style={{borderRadius: "15%"}}>
+              <p style={{fontWeight:400, fontStyle: "italic"}}><span>Corner St<motion.span className="bi bi-diamond-fill text-primary" initial={{opacity:0, rotate:[0,180,0,-180]}}
+                  animate={{rotate: 0, opacity:1, transition:{repeat:Infinity, duration: 5}}}></motion.span>ne</span> Tech is a firm founded and chaired by <a href="https://innocent-obasi.vercel.app">Innocent Obasi</a>, its lead engineer and developer: with the sole purpuse of bringin a new dimension of innovation to the IT sector.</p>
               <p style={{fontWeight:400, fontStyle: "italic"}}>Our aim is to champion comprehensible, better quality and aesthetical data presentations in the market of data presentation that yearns for more innovation.</p>
               <p style={{fontWeight:400, fontStyle: "italic"}}>Also; to harness skills in IT, science and engineering towards the goal of forming a niche in the cyberspace; that enhances the effective synchronization of these fields (careers), with the aim of providing quality and comprehensible solutions to the needs of the environment and the world at large.</p></div>
             </div>
@@ -208,7 +211,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
                 </section>
                 <section className="alt py-2 align-items-center px-2">
                   <h5 className='textpop beginner'>Email</h5>
-                  <p className="change ms-2">CornerStoneTech@gmail.com<br />
+                  <p className="change ms-2">contact.cornerStone.tech@gmail.com<br /> Obasiinno99@gmail.com<br />
                   Questerstores4u@gmail.com</p>
                 </section>
                 <section className="alt py-2 align-items-center ps-2">
