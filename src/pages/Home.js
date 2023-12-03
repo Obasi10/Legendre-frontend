@@ -4,7 +4,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import {Tooltip} from "bootstrap";
 import { Link } from 'react-router-dom';
 import {motion} from "framer-motion";
-import Variants from '../components/variants';
 import pic1 from "../images (3).jpeg";
 import pic2 from "../2022-07-20_16h11_15.png";
 import pic3 from "../2022-09-20_01h28_31.png";
@@ -27,8 +26,8 @@ const svgVariants = {
 
 const pathVariants = {
   hidden: {
-    opacity: 0,
-    pathLength: 0,
+    opacity: 0.5,
+    pathLength: 0.5,
   },
   visible: {
     opacity: 1,
@@ -59,6 +58,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
   const {logouter}=useLogout()
 
   useEffect(() => {
+    setp(0);
     const fetchWorkouts = async () => {
       try{
         const response = await fetch('/api/workouts', {
@@ -81,7 +81,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
       fetchWorkouts()
     }
   }, [])
-  useEffect(()=>{setn(undefined) ;setp(0);setInput("");setl("h"); setn1(undefined); setcalc(true); setm({...modal, Ready: false})},[lock, h,w])
+  useEffect(()=>{setn(undefined);setInput("");setl("h"); setn1(undefined); setcalc(true); setm({...modal, Ready: false})},[lock, h,w])
   
   const des=["black","purple","#B7BBBD","#49616E","rgb(34, 34, 212)"]
 
@@ -92,7 +92,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
               <div className="row g-md-2 g-1 col-lg-9 col-12 justify-content-around align-items-center" style={{margin: "auto"}}>
                 <div className="col-7 text-start">
                   <h1>
-                    <div className="loading11 fw-bolder mb-md-3 mt-lg-0 mt-4 mb-2 begin textpep text-start" style={{lineHeight: 1.1, fontFamily:"sans-serif"}} 
+                    <div className="loading11 fw-bolder mb-md-3 mt-lg-0 mt-4 mb-3 begin textpep text-start" style={{lineHeight: 1.1, fontFamily:"sans-serif"}} 
                     >The Ultimate Calculator</div>
                   </h1>
                   <div style={{fontStyle: "italic", lineHeight:1.1}}>
@@ -126,16 +126,17 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
 
           <motion.div className="accordion beginner col-lg-5 col-9 mt-lg-5 mt-md-2 mt-1" style={{margin: "auto"}} id="chapters" variants={nextVariants} initial="hidden" animate="visible"
           >
-            <div className="accordion-item bgsel" >
+            <div className="accordion-item bglight" >
               <h2 className="accordion-header" id="heading-1">
-                <button className="text-primary beginner accordion-button bgbtn mx-0 mt-0" style={{fontWeight: 700, textAlign: "center"}} 
+                <button className="beginner accordion-button bgbtn mx-0 mt-0" style={{fontWeight: 700, textAlign: "center", color:"rgb(240, 176, 240)"}} 
                 type="button" data-bs-toggle="collapse" data-bs-target="#chapter-1" aria-expanded="true" aria-controls="chapter-1">
                   Select Field
                 </button>
               </h2>
               <div id="chapter-1" className="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#chapters">
                 <div className={dim.w<700?"accordion-body beginner justify-content-center px-0":"accordion-body fs-5 justify-content-center px-0"}>
-                  <Link to="/calculation" style={{textDecoration: "none"}}><button className='btnlist col-12 align-items-center mx-0' style={{display:"flex"}} onClick={()=>{setc(count + 1); setcalc(true)}}><div className='text-start col-8 ps-lg-3'>Legendre Equation</div>
+                  <Link to="/calculation" style={{textDecoration: "none"}}><button className='btnlist col-12 align-items-center mx-0' style={{display:"flex"}} onClick={()=>{setc(count + 1); setcalc(true)}}>
+                    <motion.div className='text-start motion23 col-8 ps-lg-3'>Legendre Equation</motion.div>
                   <div className='textpop begine col-4 text-end me-0'>available</div>
                   </button></Link>
                   <button className='btnlist col-12 align-items-center mx-0' onClick={()=>{setc(count + 1); setm({...modal, av:true})}} style={{display:"flex"}}><div className='text-start col-8 ps-lg-3'>Laplace Equation</div>
@@ -161,10 +162,10 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
             </div>
           </motion.div>
         
-          <section id="projects" className="bglight my-5 py-4 col-lg-10 col-9" style={{borderRadius: "10%", margin:"auto"}}>
+          <section id="projects" className="bgcon my-5 py-4 col-lg-10 col-9" style={{borderRadius: "10%", margin:"auto"}}>
             <div className="container-lg">
               <div className="text-center">
-                <h2 className="fw-bolder fs-1">Other Projects</h2>
+                <h2 className="fw-bolder fs-1 textpele">Other Projects</h2>
                 <p className="lead text-muted beginner text-center">Review the projects that interests you...</p>
               </div>
 
@@ -230,7 +231,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
               <div className="row justify-content-center mb-1"  style={{borderRadius: "10%"}}>
                 <div className="col-lg-8">
                   <div className="list-group">
-                    <div className="list-group-item bglight py-3">
+                    <div className="list-group-item bgsel py-3">
                       <div className="pb-2">
                         <i className="bi bi-star-fill text-gold"></i>
                         <i className="bi bi-star-fill text-gold"></i>
@@ -242,7 +243,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                       <p className="mb-1 beginner">The design is really impressive. It will be helpful to students and researchers studying mathematics.</p>
                       <small className="textpop begine">Math_407</small>
                     </div>
-                    <div className="list-group-item bglight py-3">
+                    <div className="list-group-item bgsel py-3">
                       <div className="pb-2">
                         <i className="bi bi-star-fill text-gold"></i>
                         <i className="bi bi-star-fill text-gold"></i>
@@ -254,7 +255,7 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                       <p className="mb-1 beginner">Wow impressive, this is good work.</p>
                       <small className="textpop begine">Kobe_douche</small>
                     </div>
-                    <div className="list-group-item bglight py-3">
+                    <div className="list-group-item bgsel py-3">
                       <div className="pb-2">
                         <i className="bi bi-star-fill text-gold"></i>
                         <i className="bi bi-star-fill text-gold"></i>
