@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import Variants from "../components/variants";
 import { Link } from "react-router-dom";
@@ -14,11 +14,12 @@ var array=[
 const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, settab, setdim, setErrorr})=>{
   const {w,h}=dim
   const [select, setse]=useState(false)
+  const ref=useRef(null)
 
+  useEffect(()=>setp(0),[])
   useEffect(()=>{
     if(typeof window?.MathJax !== "undefined"){
       window.MathJax.typeset()
-      setp(0)
       setse(false)
     }
   },[n1])
@@ -41,6 +42,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
       window.MathJax.typeset()
       settab(false)
     }
+    setTimeout(()=>ref.current.focus(),3000)
   },[])
   const err=()=>{
     if((n1<0 || Number.isInteger(Number(n1))===false || n1>75 || !n1)){
@@ -94,7 +96,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                 <h2><span className={dim.w<700?"text-start beginner text-muted":"text-start fs-5 text-muted"}> Select the value of 'n':</span></h2>
                                 {(!n1 && calc)&&<p className={(n1<0 || Number.isInteger(Number(n1))===false || n1>75 || !n1)?"text-danger text-center beginne my-0 py-0":"textpop text-center beginner"}>Note that n must be either zero or a positive integer less than or equal to 75</p>}
                                 <div className="row g-0 note1 align-items-center justify-content-center">
-                                <input className="col-lg-4 col-6 text-center p-1" type="number" onInput={()=>setcalc(false)} id="input" placeholder="Enter the value of n (1,2,3...)"
+                                <input ref={ref} className="col-lg-4 col-6 text-center p-1" type="number" onInput={()=>setcalc(false)} id="input" placeholder="Enter the value of n (1,2,3...)"
                                   onChange={(e)=>{setn1(e.target.value); setn(Number(e.target.value))}} value={n1}/>
                                 <motion.button variants={Variants} whileHover="hover" className="btn textpele col-lg-2 col-3" id="btn--select" onClick={err}>Select</motion.button>
                                 </div>
@@ -115,8 +117,8 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                 </header>
                                 <h2>
                                 <div className="row text-center g-5 justify-content-center align-items-center">
-                                  <Link to={(n1 || n===0)?"/solution":""} className="col-lg-1 col-2 mx-4"><motion.button variants={Variants} whileHover="hover" className="btn bgpupp beginner textpele p-2" onClick={()=>{setm({...modal, Ready:true})}} id="yes">yes</motion.button></Link>
-                                  <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele col-lg-1 col-2 mx-4" id="no" onClick={()=>setse(false)}>No</motion.button>
+                                  <Link to={(n1 || n===0)?"/solution":""} className="col-lg-1 col-2 mx-4"><motion.button variants={Variants} whileHover="hover" className="btn bgpupp beginner col-lg-1 col-2 textpele px-3 py-1" onClick={()=>{setm({...modal, Ready:true})}} id="yes">yes</motion.button></Link>
+                                  <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele col-lg-1 col-2 px-3 py-2" id="no" onClick={()=>setse(false)}>No</motion.button>
                                 </div>
                                 </h2>
                               </motion.div>
@@ -168,7 +170,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                     <div className={dim.w<700?"accordion beginner":"accordion fs-5"} id="chapters">
                       <div className="accordion-item">
                         <h2 className="accordion-header" id="heading-1">
-                          <button className={dim.w<700?"accordion-button beginner m-0 bglite":"accordion-button fs-5 bglite"} style={{fontWeight: 700, textAlign: "center", color: "rgb(63, 2, 63)", background: "rgb(240, 176, 240)"}} 
+                          <button className={dim.w<700?"accordion-button beginner m-0 bgbtn":"accordion-button fs-5 bgbtn"} style={{fontWeight: 700, textAlign: "center", color:"rgb(240, 176, 240)"}} 
                           type="button" data-bs-toggle="collapse" data-bs-target="#chapter-1" aria-expanded="true" aria-controls="chapter-1">
                             Overview
                           </button>
@@ -189,7 +191,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                       </div>
                         <div className="accordion-item">
                           <h2 className="accordion-header" id="heading-2">
-                            <button className={dim.w<700?"accordion-button collapsed beginner m-0 bglite":"accordion-button collapsed fs-5 bglite"} style={{fontWeight: 700, textAlign: "center", color: "rgb(63, 2, 63)", background: "rgb(240, 176, 240)"}} 
+                          <button className={dim.w<700?"accordion-button beginner m-0 bgbtn":"accordion-button fs-5 bgbtn"} style={{fontWeight: 700, textAlign: "center", color:"rgb(240, 176, 240)"}} 
                             type="button" data-bs-toggle="collapse" data-bs-target="#chapter-2" aria-expanded="false" aria-controls="chapter-2">
                               Legendre function of the first kind, \(\ P_n(x)\)
                             </button>
@@ -207,7 +209,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                         </div>
                         <div className="accordion-item">
                           <h2 className="accordion-header" id="heading-3">
-                            <button className={dim.w<700?"accordion-button collapsed text-start beginner m-0 bglite":"accordion-button collapsed text-start fs-5 bglite"} style={{fontWeight: 700, textAlign: "center", color: "rgb(63, 2, 63)", background: "rgb(240, 176, 240)"}}
+                          <button className={dim.w<700?"accordion-button beginner m-0 bgbtn":"accordion-button fs-5 bgbtn"} style={{fontWeight: 700, textAlign: "center", color:"rgb(240, 176, 240)"}} 
                              type="button" data-bs-toggle="collapse" data-bs-target="#chapter-3" aria-expanded="false" aria-controls="chapter-1">
                               Legendre function of the second kind, \(\ Q_n(x)\)
                             </button>
@@ -238,7 +240,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                         </div>
                         <div className="accordion-item">
                           <h2 className="accordion-header" id="heading-4">
-                            <button className={dim.w<700?"accordion-button beginner collapsed m-0 bglite":"accordion-button collapsed fs-5 bglite"} style={{fontWeight: 700, textAlign: "center", color: "rgb(63, 2, 63)", background: "rgb(240, 176, 240)"}}
+                          <button className={dim.w<700?"accordion-button beginner m-0 bgbtn":"accordion-button fs-5 bgbtn"} style={{fontWeight: 700, textAlign: "center", color:"rgb(240, 176, 240)"}} 
                              type="button" data-bs-toggle="collapse" data-bs-target="#chapter-4" aria-expanded="false" aria-controls="chapter-4">
                               References
                             </button>
