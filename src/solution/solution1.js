@@ -23,9 +23,9 @@ const factorial=(num)=> {
     }
 }
 
-const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})=>{
+const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})=>{
     var k, w, a, k1, x1, y1, y2
-    const [h1, seth1]=useState(dim.w<=1280?((1280-dim.w))*(34/1000)+"%":"0%")
+    const [h1, seth1]=useState(dim.w<=1280?((1280-dim.w))*(22/1000)+"%":"0%")
     const [input2, setIn2]=useState(undefined)
     const {dispatch}=useWorkoutsContext()
     const [comp, setcom]=useState(false)
@@ -33,7 +33,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
     const {logouter}=useLogout()
     const title= "Legendre Equation"
     const details=n
-    useEffect(()=>{setn(Number(n))},[])
+    useEffect(()=>{setn(Number(n)); setp(1)},[])
 
     const findhcf=(x,y)=>{
         while (Math.max(x,y) % Math.min(x,y)!==0){
@@ -566,9 +566,11 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
 
     useEffect(()=>{
         const ett=async()=>{
-            setp(1);
             setl('ss');
             await window.MathJax.typeset()
+            setTimeout(()=>ref0.current.click(), 1000);
+            setTimeout(()=>ref1.current.click(), 15000);
+            setTimeout(()=>ref2.current.click(), 30000);
             setm({...modal, Ready:false})
         }
         if(typeof window?.MathJax !== "undefined"){
@@ -632,7 +634,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
             <motion.div className="tab-pane fade show active" id="nav-solution" role="tabpanel" 
                 key="solution1"
                 aria-labelledby="nav-solution-tab">
-                <section>
+                <section className="ms-md-3 ms-1">
                     <div className={dim.w>700?"fs-5":"beginner"}>
                     <div>
                         <div className="fw-bolder" id="m1"> Inputed equation:</div>
@@ -711,7 +713,7 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
                     <div>
                         <div className="mt-5" style={{alignContent: "center", display: "inline", alignItems: "center", alignSelf: "center", textAlign: "center", borderSpacing: "0ch"}}>
                         <input className="col-lg-5 col-8 text-center p-1" type="number" onChange={(e)=>setIn2(e.target.value)} value={input2} placeholder="Enter the value of x (-1 < x < 1)"/>
-                        <motion.button variants={Variants} whileHover="hover" className="btn bgpupp my-2 textpele" onClick={()=>{(compe || Number(input2)<-1 || Number(input2)>1)?setcom(false):compute()}}>Compute</motion.button>
+                        <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele" onClick={()=>{(compe || Number(input2)<-1 || Number(input2)>1)?setcom(false):compute()}}>Compute</motion.button>
                         </div>
                         {(comp && input2!==undefined) && (<div className={dim.w>800?"fs-5":"beginner"} style={{textAlign: "left", marginTop: "10%"}}>
                         <div style={{scale: "1.1"}}>{array[0]}</div>
@@ -822,8 +824,8 @@ const Solution=({n, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})
                         </div>
                 </div>
                 <div className="justify-content-center text-center mt-5 align-items-center">
-                    <button className="btn bgpupp textpele mx-3 my-2" id="download" onClick={()=>{setm({...modal, Ready: true});finish()}}>Download PDF</button>
-                    <button className="btn bgpupp textpele mx-3 my-2" onClick={handleSubmit}>Save</button>
+                    <button className="btn bgpupp textpele mx-3" id="download" onClick={()=>{setm({...modal, Ready: true});finish()}}>Download PDF</button>
+                    <button className="btn bgpupp textpele mx-3" onClick={handleSubmit}>Save</button>
                 </div>
                 </section>
                 <footer className='mb-3 row col-12'>
