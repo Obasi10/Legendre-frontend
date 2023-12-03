@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Variants from './variants';
 import {motion, AnimatePresence} from "framer-motion";
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const svgVariants = {
   hidden: { rotate: -180 },
@@ -31,9 +31,8 @@ const pathVariants = {
   }
 };
 
-const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, settab}) => {
+const Navbar = ({page, ref0, ref1, ref2, search, sets, modal, setm, input, setInput,setnav,lock, settab}) => {
   const { user } = useAuthContext()
-
   const text=[
     "Legendre Equation",
     "Laplace Equation",
@@ -43,8 +42,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
     "Mechanics",
     "Thermodynamics"
   ]
-
-  useEffect(()=>{},[search,input, setInput])
+  useEffect(()=>{},[search,input, setInput]);
   useEffect(()=>{sets(false);setInput("")},[modal.av])
   return (
     <>
@@ -53,18 +51,18 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
     (
     <div>
       <div className="container col-lg-10 col-12 mb-0">
-        <nav className="navbar fixed-top navbar-expand-md bgcon py-0 d-block">
-          <div style={document.documentElement.clientWidth<350?{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"97%"}:{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}
-          } className={document.documentElement.clientWidth<650?"container-md":"container-md table-responsive stytab2 fs-5"}>
-            <Link to="/" className="navbar-brand text-start text-decoration-none me-md-5 fs-4 p-2">
+        <nav className="navbar fixed-top navbar-expand-md bgcon py-1 d-block">
+          <div style={document.documentElement.clientWidth<350?{alignItems: "center", alignContent: "center", alignSelf: "center"}:{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}
+          } className={document.documentElement.clientWidth<650?"row container-md":"container-md table-responsive stytab2 fs-5"}>
+            <Link to="/" className="navbar-brand text-decoration-none fs-4 p-2 col-lg-3 col-6">
               <span className="fw-bold motion1">
                 <i className="bi bi-calculator"></i>
                 UltimateCalc
               </span>
             </Link>
-            <div className='d-flex align-items-center justify-content-space-around text-end ms-md-5'>
-            <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0 me-md-5' style={{background: "transparent"}}><i className='bi bi-search textpele'></i></button>
-            <button className="navbar-toggler border-0 py-1 col-1 text-end" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
+            <div className='d-flex col-lg-7 col-md-5 col-2 justify-content-space-around text-end'>
+            <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0' style={{background: "transparent"}}><i className='bi bi-search textpele'></i></button>
+            <button className="navbar-toggler border-0 py-1 text-end" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
               <i className="bi bi-three-dots-vertical textpele p-1" ></i>
             </button>
 
@@ -118,7 +116,7 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
                     type="string"
                     onChange={(e)=>setInput(e.target.value)}
                     value={input}
-                    autoFocus="true"
+                    autoFocus={setTimeout(()=>true,1000)}
                     className="row form-control mt-lg-2 mb-3 border-0 me-0 col-lg-3 col-6" />
                   {/* <!-- tooltip --> */}
                   <button className='border-0 col-lg-1 col-2 p-0' style={{background: "transparent"}} onClick={()=>{
@@ -162,30 +160,29 @@ const Navbar = ({page,search, sets, modal, setm, input, setInput,setnav,lock, se
           ))
           }
 
-          {page===1 && ( <div className="my-2 col-lg-8 align-items-center table-responsive justify-content-lg-center container-lg stytab">
-                <div id="nav-tab" style={{minWidth: "40rem"}} role="tablist" >
+          {page===1 && ( <div className="my-1 col-lg-8 align-items-center table-responsive justify-content-lg-center container-lg stytab">
+                <div id="nav-tab" style={document.documentElement.clientWidth<700?{minWidth: "32rem"}:{minWidth: "50rem"}} role="tablist" >
                     <ul className="nav nav-pills justify-content-around p-0">
-                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button className="nav-link active fw-bold px-2 fst-italic textpele" id="nav-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-solution" type="button"
+                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={ref2} className={"nav-link active fw-bold px-2 fst-italic textpele"} id="nav-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-solution" type="button"
                         role="tab" aria-controls="nav-solution" aria-selected="true" onClick={()=>settab(false)}>
                         Solution
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button className="nav-link fw-bold px-2 fst-italic textpele" id="nav-calculator-tab" data-bs-toggle="tab" data-bs-target="#nav-calculator" type="button"
-                        role="tab" aria-controls="nav-calculator" aria-selected="false" onClick={()=>settab(false)}>
+                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-calculator-tab" data-bs-toggle="tab" data-bs-target="#nav-calculator" type="button"
+                        role="tab" aria-controls="nav-calculator" aria-selected={"false"} onClick={()=>settab(false)}>
                         Calculator
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button className="nav-link fw-bold px-2 fst-italic textpele" id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button"
-                        role="tab" aria-controls="nav-graph" aria-selected="false" onClick={()=>settab(true)}>
+                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={ref0} className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button"
+                        role="tab" aria-controls="nav-graph" aria-selected={"false"} onClick={()=>settab(true)}>
                         Simulation
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button className="nav-link fw-bold px-2 fst-italic d-flex textpele" id="nav-full-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-full-solution" type="button"
-                        role="tab" aria-controls="nav-full-solution" aria-selected="false" onClick={()=>settab(false)}>
+                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={ref1} className={"nav-link fw-bold px-2 fst-italic d-flex textpele"} id="nav-full-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-full-solution" type="button"
+                        role="tab" aria-controls="nav-full-solution" aria-selected={"false"} onClick={()=>settab(false)}>
                         Full Solution
                         </button>
                     </li>
-        
                     </ul>
                 </div>
             </div>)}
