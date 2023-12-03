@@ -1238,7 +1238,10 @@ of styling from the begining all over again */
       font-weight: 600;
   }
   .bgsel{
-    border: 1px solid;
+    border-bottom: 0.5px solid purple;
+    border-left: 0.5px solid purple;
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 10%;
     background: rgb(243, 230, 230);
   }
 
@@ -1590,7 +1593,7 @@ of styling from the begining all over again */
               }
 
 .bglite{
-  background: rgb(238, 144, 238);
+  background: rgb(0, 0, 0);
 }
 .bglight{
   border: 1px solid rgb(43, 34, 43);
@@ -1748,7 +1751,7 @@ display: flex;
               }
               10%{
                   letter-spacing: 0.0005cm;
-                  color: blue;
+                  color: rgb(238, 154, 238);
               }
               20%{
                   letter-spacing: 0.001cm;
@@ -1756,7 +1759,7 @@ display: flex;
               }
               30%{
                   letter-spacing: 0.005cm;
-                  color: blue;
+                  color: rgb(238, 154, 238);
               }
               40%{
                   letter-spacing: 0.01cm;
@@ -1766,7 +1769,7 @@ display: flex;
               50%{
                   letter-spacing: 0.05cm;
                   font-style: normal;
-                  color: blue;
+                  color: rgb(238, 154, 238);
               }
               60%{
                   letter-spacing: 0.01cm;
@@ -1775,7 +1778,7 @@ display: flex;
               }
               70%{
                   letter-spacing: 0.005cm;
-                  color: blue;
+                  color: rgb(238, 154, 238);
               }
               80%{
                   letter-spacing: 0.001cm;
@@ -1783,11 +1786,27 @@ display: flex;
               }
               90%{
                   letter-spacing: 0.0005cm;
-                  color: blue;
+                  color: rgb(238, 154, 238);
               }
               100%{
                   letter-spacing: 0.0001cm;
               }
+          }
+          .motion23{
+            animation: motion23 1s infinite ease-in-out;
+          }
+
+          @keyframes motion23 {
+            0%{
+              scale: 1;
+            }
+            50%{
+              scale: 1.035;
+              color: #8a0f98;
+            }
+            100%{
+              scale: 1;
+            }
           }
 
 
@@ -2160,6 +2179,10 @@ section.split{
 
 .textpele:hover{
   color: rgb(15, 122, 164)
+}
+.accordion-button::after{
+  -webkit-filter: grayscale(1) invert(0);
+  filter: grayscale(0) invert(1)
 }
 
 /* 
