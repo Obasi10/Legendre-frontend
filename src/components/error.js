@@ -34,7 +34,7 @@ const Error =({dim, modal, setm, setErrorr, error,lock})=>{
     return (
         <AnimatePresence>
           {(modal.error) && (
-            <motion.div className="backdrop"
+            <motion.div className="backdroppe"
               variants={backdrop}
               initial="hidden"
               animate="visible"

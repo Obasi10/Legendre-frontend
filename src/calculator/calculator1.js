@@ -42,7 +42,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
       window.MathJax.typeset()
       settab(false)
     }
-    setTimeout(()=>ref.current.focus(),3000)
+    setTimeout(()=>ref.current.focus(),2000)
   },[])
   const err=()=>{
     if((n1<0 || Number.isInteger(Number(n1))===false || n1>75 || !n1)){
@@ -73,18 +73,6 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                               </a>
                               </h2>
                             </motion.div>
-                          {(!n1 && calc) && (
-                              <motion.header key="null"
-                                variants={Variants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit2"
-                              >
-                              <p className={dim.w<700?"beginner":"fs-5"}> The above equation represents the legendre equation, the solution presented by this calculator
-                                  consists of two terminating series \(P_n(x)\) and \(Q_n(x)\) as its fundamental solution; which makes it better than any other contemporary solution
-                              </p>
-                              </motion.header>
-                          )}
                           {
                             (!select) && (
                               <motion.div key="selecte"
@@ -93,8 +81,14 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                 animate="visible"
                                 exit="exit2"
                               >
-                                <h2><span className={dim.w<700?"text-start beginner text-muted":"text-start fs-5 text-muted"}> Select the value of 'n':</span></h2>
-                                {(!n1 && calc)&&<p className={(n1<0 || Number.isInteger(Number(n1))===false || n1>75 || !n1)?"text-danger text-center beginne my-0 py-0":"textpop text-center beginner"}>Note that n must be either zero or a positive integer less than or equal to 75</p>}
+                                <h2><span className={dim.w<700?"text-start beginner text-muted":"text-start fs-5 text-muted"}> Select the value of 'n': 
+                                <span className="ms-2">
+                                  <span className="tt" style={{maxWidth: "90%"}} data-bs-placement="bottom" title=" The above equation represents the legendre equation, the solution presented by this calculator
+                                  consists of two terminating series Pn(x) and Qn(x) as its fundamental solution; which makes it better than any other contemporary solution...">
+                                    <i className="bi bi-question-circle text-muted"></i>
+                                  </span>
+                                </span>
+                                </span></h2>
                                 <div className="row g-0 note1 align-items-center justify-content-center">
                                 <input ref={ref} className="col-lg-4 col-6 text-center p-1" type="number" onInput={()=>setcalc(false)} id="input" placeholder="Enter the value of n (1,2,3...)"
                                   onChange={(e)=>{setn1(e.target.value); setn(Number(e.target.value))}} value={n1}/>

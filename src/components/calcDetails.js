@@ -20,7 +20,7 @@ const CalcDetails = ({ workout, setn, n, modal, setm}) => {
       return
     }
 
-    const response = await fetch('https://the-ultimate-calc.onrender.com/api/workouts/' + workout._id, {
+    const response = await fetch('/api/workouts/' + workout._id, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`

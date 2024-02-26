@@ -39,26 +39,25 @@ const text=[
 ]
 
 const Selector=({modal, input,count, setm, setc, nav}) => {
-    const soy=""
     useEffect(()=>{},[input])
   return (
     <div>
     <AnimatePresence >
       { modal.S && (
-        <motion.div className="backdropp"
+        <motion.div className="backdrop"
           variants={backdrop}
           initial="hidden"
           animate="visible"
           exit="hidden"
         >
-        <div className="accordion beginner col-lg-5 col-9" style={{margin: "auto", marginTop:"20%", }} id="chapters" variants={nextVariants} initial="hidden" animate="visible">
+        <div className="accordion beginner col-lg-5 col-9" style={{margin: "auto", marginTop:"20%"}} id="chapters" variants={nextVariants} initial="hidden" animate="visible">
             <div className="accordion-item">
               <h2 className="accordion-header" id="heading-1">
 
               </h2>
                 <div id="chapter-1" className="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#chapters">
                         <div className='text-end'>
-                            <Link to={soy}><button className="btn-close text-primary fw-bolder mt-1 border-1" aria-label="Close"></button></Link>
+                            <button className="btn-close text-primary fw-bolder mt-1 border-1" aria-label="Close" onClick={()=>setm({...modal, S: false})}></button>
                         </div>
                         {text.map((i,k)=>(
                             <>

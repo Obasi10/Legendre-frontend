@@ -18,12 +18,12 @@ const modal = {
   },
 }
 
-const Available = ({modal, dim}) => {
+const Available = ({modal, dim, setm}) => {
     const {w, h}=dim
   return (
     <AnimatePresence>
       { modal.av && (
-        <motion.div className="backdrop"
+        <motion.div className="backdroppe"
           variants={backdrop}
           initial="hidden"
           animate="visible"
@@ -35,13 +35,13 @@ const Available = ({modal, dim}) => {
             style={w<=700? {marginTop:"30%", height: "fit-content"}:{marginTop:"20%", height: "fit-content"}}
           >
             <div className='text-end'>
-                <Link to="/"><button className="btn-close text-primary fw-bolder mt-1 border-1" aria-label="Close"></button></Link>
+                <Link to="/"><button className="btn-close text-primary fw-bolder mt-1 border-1" aria-label="Close" onClick={()=>setm({...modal, av: false})}></button></Link>
             </div>
             <p className='text-danger beginner'>
             Sorry, this field is not yet available. Suscribe to our news letter to be notified when it is made available. 
             </p>
             <div style={{ justifyContent:"center"}}>
-                <Link to="/"><button className="btn bgpupp textpep btn-lg-lg text-center p-1 px-2 align-center">view</button>
+                <Link to="/"><button className="btn bgpupp textpele btn-lg-lg text-center p-1 px-2 align-center">view</button>
                 </Link>
             </div>
           </motion.div>

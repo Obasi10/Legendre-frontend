@@ -44,7 +44,6 @@ const Offcanvas =({dim, modal, setm, lock})=>{
         <AnimatePresence>
           {(modal.offcanvas && w<=700) && (
             <motion.div className="backdroppe"
-                style={{background: "rgba(0,0,0,0.7)"}}
               variants={backdrop}
               initial="hidden"
               animate="visible"

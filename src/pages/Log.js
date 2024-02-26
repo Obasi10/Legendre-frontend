@@ -19,14 +19,14 @@ const modal1 = {
   hidden: { y: "-100vh", opacity: 0 },
   visible: {
     margin: "auto",
-    y: "60px", 
+    y: "100px", 
     opacity: 1,
     transition: { delay: 0.5 }
   },
   exit: { y: "100vh", opacity: 0 }
 }
 
-const Log = ({modal, setm, setlog, setErrorr, user}) => {
+const Log = ({modal, setm, setlog, setErrorr}) => {
   const w=document.documentElement.clientWidth
   const [email, setEmail] = useState('')
   const [butt, setb]=useState(false)
@@ -72,26 +72,26 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
           })
         })
         .catch(()=>{
-          setErrorr("Took too long to load");
+          handleSubmit(e)
         })
       })
     }
   }
   return (
     <AnimatePresence>
-      { (modal.logpage && !user) && (
-        <motion.div className="backdrop"
+      { (modal.logpage) && (
+        <motion.div className="backdropp"
           variants={backdrop}
           initial="hidden"
           animate="visible"
           exit="hidden"
         >
-          <motion.div className="modale1 col-lg-5 col-11 p-sm-0 bg-trans" 
+          <motion.div className="modale1 col-lg-5 col-11 p-0 bg-trans" 
             variants={modal1}
             initial="hidden"
             animate="visible"
             exit="exit"
-            style={{height: "fit-content"}}
+            style={w<=700? {marginTop:"10%", height: "fit-content"}:{marginTop:"10%", height: "fit-content"}}
           >
             <section className="beginner bgbtn container-lg pt-3" style={{borderRadius: "10%"}}>
               <div className={w<700?"text-center beginner":"text-center fs-5"}>
@@ -134,7 +134,7 @@ const Log = ({modal, setm, setlog, setErrorr, user}) => {
                 </div>
                 
                 <div className="mb-4 text-center">
-                  <button type="submit" disabled={isLoading} className="btn btn-secondary textpele bgpupp">Log in</button>
+                  <button type="submit" disabled={isLoading} className="btn btn-secondary textpep bgpupp">Log in</button>
                 </div>
                 <div className="beginer" style={{color: "white"}}>
                   Don't have an account yet? <Link to="/login"><span type="button" className="textpop text-decoration-underline" onClick={()=>{setlog(false); setm({...modal, logpage:false})}}>Sign up now </span></Link>

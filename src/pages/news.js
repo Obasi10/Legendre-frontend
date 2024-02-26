@@ -41,7 +41,7 @@ const News =({dim, modal, count, setm, setc})=>{
     return (
         <AnimatePresence>
           { (modal.News) && (
-            <motion.div className="backdropp"
+            <motion.div className="backdroppe"
               variants={backdrop}
               initial="hidden"
               animate="visible"
@@ -52,7 +52,7 @@ const News =({dim, modal, count, setm, setc})=>{
                 initial="hidden3"
                 animate="visible2"
                 exit="exit3"
-                style={w<=700? {marginTop:"10%", height: "fit-content"}:{marginTop:"5%", height: "fit-content"}}
+                style={w<=700? {marginTop:"10%", height: "fit-content"}:{marginTop:"0%", height: "fit-content"}}
               >
                 <section className="beginner bglight container-lg" style={{borderRadius: "10%"}}>
                     <div className='text-end m-2'>
@@ -64,7 +64,7 @@ const News =({dim, modal, count, setm, setc})=>{
                 </div>
                 <div className="row justify-content-center" >
                     <div className="text-center">
-                    <p className="text-muted my-4 mx-lg-2">We are on a journey to make life in mathematics easier for students, researchers, scientists, engineers etc. 
+                    <p className="beginer my-4 mx-lg-2">We are on a journey to make life in mathematics easier for students, researchers, scientists, engineers etc. 
                     We will be providing innovative calculator designs on the various aspects of mathematics. 
                     Register to be alerted on the latest addition; it is no under-statement to tell you that this calculator will surpass your expectations.</p>
                     <motion.button variants={Variants} whileHover="hover" className="btn rounded-pill bgpupp textpele"

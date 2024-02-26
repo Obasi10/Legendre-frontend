@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext';
 import {AnimatePresence} from 'framer-motion';
@@ -44,12 +44,15 @@ const App =()=>{
   const [calc, setcalc]=useState(false)
   const [tab, settab]=useState(false)
   const [log, setlog]=useState(true)
+  const ref0=useRef(null)
+  const ref1=useRef(null)
+  const ref2=useRef(null)
   useEffect(()=>{
     function handle(){
-    setdim({
+      setdim({
         w: document.documentElement.clientWidth,
         h: document.documentElement.clientHeight
-    })
+      })
     }
     window.addEventListener('resize', handle)
     
@@ -87,15 +90,15 @@ const App =()=>{
       <Error modal= {modal} dim={dim} setm={setm} setErrorr={setErrorr} error={error} lock={lock}/>
       <Reviewer modal= {modal} dim={dim} count={count} setm={setm} setc={setc} setErrorr={setErrorr}/>
       <Submit dim={dim} modal={modal} count={count} setm={setm}/>
-      <Available modal={modal} dim={dim}/>
+      <Available modal={modal} dim={dim} setm={setm}/>
       <Selector modal={modal} count={count} setc={setc} setm={setm} input={input} setnav={setnav} nav={nav}/>
-      <Log modal={modal} user={user} count={count} setm={setm} setc={setc} setlog={setlog} setErrorr={setErrorr}/>
+      <Log modal={modal} count={count} setm={setm} setc={setc} setlog={setlog} setErrorr={setErrorr}/>
       <Logout modal={modal} dim={dim} setm={setm} setl={setl}/>
       <News modal={modal} count={count} setm={setm} dim={dim} setc={setc}/>
       <Ready modal={modal} setm={setm} dim={dim}/>
       <Navbar page={page} dim={dim} search={search} setm={setm} sets={sets} modal={modal} settab={settab}
-      input={input} setInput={setInput} nav={nav} setnav={setnav} lock={lock}/>
-        <AnimatePresence mode="wait" onExitComplete={()=>{
+      input={input} setInput={setInput} nav={nav} setnav={setnav} lock={lock} ref0={ref0} ref1={ref1} ref2={ref2}/>
+        <AnimatePresence onExitComplete={()=>{
           setm({...modal, News: false, D: false, S:false, av:false, submit: false, alert: false, logSub: false, review:false, error:false})
         }
         }>
@@ -109,12 +112,13 @@ const App =()=>{
               path="/solution"
               element={ (n || n===0)?
                 <Solution dim={dim} setm={setm} count={count} setc={setc} setp={setp} n={n} setdim={setdim}
-                setn={setn} setl={setl} tab={tab} settab={settab} setErrorr={setErrorr}/>: <Navigate to="/calculation"/>
+                setn={setn} setl={setl} tab={tab} settab={settab} setErrorr={setErrorr}
+                ref0={ref0} ref1={ref1} ref2={ref2} lock={lock} page={page}/>: <Navigate to="/calculation"/>
               }
             />
             <Route
               path="/profile"
-              element={(user && lock!="ss")?<Profile setp={setp} setl={setl} lock={lock} setm={setm} modal={modal} dim={dim} 
+              element={(user && lock!=="ss")?<Profile setp={setp} setl={setl} lock={lock} setm={setm} modal={modal} dim={dim} 
               setdim={setdim} setn={setn} n={n} setErrorr={setErrorr} />: <Navigate to="/"
               />}
             />

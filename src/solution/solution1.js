@@ -23,7 +23,7 @@ const factorial=(num)=> {
     }
 }
 
-const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})=>{
+const Solution=({n, ref0, ref1, ref2, lock, page, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})=>{
     var k, w, a, k1, x1, y1, y2
     const [h1, seth1]=useState(dim.w<=1280?((1280-dim.w))*(22/1000)+"%":"0%")
     const [input2, setIn2]=useState(undefined)
@@ -33,7 +33,8 @@ const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim
     const {logouter}=useLogout()
     const title= "Legendre Equation"
     const details=n
-    useEffect(()=>{setn(Number(n)); setp(1)},[])
+    const [nul, setnul]=useState('')
+    useEffect(()=>{setn(Number(n))},[])
 
     const findhcf=(x,y)=>{
         while (Math.max(x,y) % Math.min(x,y)!==0){
@@ -568,12 +569,15 @@ const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim
         const ett=async()=>{
             setl('ss');
             await window.MathJax.typeset()
-            setTimeout(()=>ref0.current.click(), 1000);
-            setTimeout(()=>ref1.current.click(), 15000);
-            setTimeout(()=>ref2.current.click(), 30000);
+            if(title && page===1){
+               setTimeout(()=>ref1.current.click(),20000);
+                setTimeout(()=>ref0.current.click(), 40000);
+            }
+            else{ clearTimeout()}
             setm({...modal, Ready:false})
         }
         if(typeof window?.MathJax !== "undefined"){
+            setp(1);
             ett()
         }
     }, [])
@@ -591,31 +595,38 @@ const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim
     const handleSubmit = async (e) => {
         e.preventDefault()
         const workout = {title, details}
-        
         if (!user) {
             setErrorr('You must be logged in to save your files')
         } else {
             try{
-                setm({...modal, Ready: true})
-                const response = await fetch('/api/workouts/', {
-                    method: 'POST',
-                    body: JSON.stringify(workout),
-                    headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.token}`
-                    }
+                return new Promise(function(resolve, reject){
+                    const timeout= setTimeout(()=>{
+                      reject("error: timeout")
+                    }, 3000);
+
+                    setm({...modal, Ready: true})
+                    fetch('/api/workouts/', {
+                        method: 'POST',
+                        body: JSON.stringify(workout),
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${user.token}`
+                        }
+                    })
+                    .then(response=>{
+                        clearTimeout(timeout);
+                        if(response.status===401){
+                            logouter()
+                        }
+                        if (!response.ok) {
+                            throw new Error(response.json().error)
+                        }
+                        if (response.ok) {
+                            dispatch({type: 'CREATE_WORKOUT', payload: response.json()})
+                            setm({...modal, saved: true})
+                        }
+                    })
                 })
-                const json = await response.json()
-                if(response.status===401){
-                    logouter()
-                }
-        
-                if (!response.ok) {
-                    throw new Error(json.error)
-                }
-                if (response.ok) {
-                    dispatch({type: 'CREATE_WORKOUT', payload: json})
-                }
             } catch (err){
                 if(err.message[0]==="U"){
                     setErrorr("Network problem! check your connection and try again.")
@@ -623,7 +634,6 @@ const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim
             }
             setm({...modal, Ready: false})
         }
-        setm({...modal, saved: true})
     }
 
     return (
@@ -631,7 +641,116 @@ const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim
         <div className="d-block m-0 p-1" style={w<=1280?{minHeight: 1.1*f+"px", paddingTop:0+"%"}:{minHeight: 1.1*f+"px",paddingTop:"0%"}}>
         <div className="tab-content justify-content-center col-lg-8 col-12" id="nav-tabContent" style={{margin: "auto", marginTop: h1}}>
             <AnimatePresence >
-            <motion.div className="tab-pane fade show active" id="nav-solution" role="tabpanel" 
+            <motion.div className="tab-pane fade show active" id="nav-full-solution" role="tabpanel"
+                key="full"
+                aria-labelledby="nav-full-solution-tab">
+                <section>
+                    <div className="container-lg" id="pdf">
+                        <div>
+                        <div className={dim.w>700?"fs-5":"beginner"}>
+                            <div>
+                                <div className="fw-bolder" id="m1"> Inputed equation:</div>
+                                <div id="coeff" >{coeff}</div>
+                                <div className="fw-bolder" id="m2"> The General solution:</div>
+                                <div id="coeff1">{coeff1}</div>
+                                <div className="fw-bolder" id="m3"> Where:</div>
+                                <div id="m4">\(C_1\) and \(C_2\) are constants</div>
+                            </div>
+                            <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab">
+                            {(n!==0 && n!==1) && (<div className={(dim.w<700)?
+                                    "text-start ms-0 pe-2 ps-0 beginner mb-3":"text-start fs-5 mb-3"} style={{height: "fit-content"}}>
+                                    <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"500px", textAlign:"center"}}>
+                                        <div className="d-flex align-items-center mb-2">
+                                            <div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>{pn}</div>
+                                            <span style={{scale:"1.3", paddingLeft:da*2+"px", paddingRight: da*2+"px"}}>{a2}</span>
+                                            <span id="np" className="px-1" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
+                                        </div>
+                                    </div>
+                                </div>)}
+                                {n===0 && (<div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>\(P_0(x)\ =\ 1\)</div>)}
+                                {n===1 && (<div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>\(P_1(x)\ =\ x\)</div>)}
+                            </div>
+                            </div>
+                            <div style={{margin:"auto", justifyContent:"center", display:"flex"}} id="pic3">
+                                <Plot
+                                id="p_graph1"
+                                data={[data1]}
+                                layout={layout11}
+                                config={config}
+                                style={{textAlign: "center", justifyContent:"center",marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
+                            />
+                            </div>
+                    </div>
+                    <div>
+                        <div id="pic2" style={{lineHeight: 1.8}}>
+                        <div className={"table-responsive container pt-0 mt-2 stytab"}>
+                        {(n!==0 && n!==1) && (<div className={(dim.w<700)?
+                            "text-start ms-0 pe-2 ps-0 beginner mb-3":"text-start fs-5 mb-3"} style={{height: "fit-content"}}>
+                            <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"600px", textAlign:"center"}}>
+                                <div className="d-flex align-items-center mb-2">
+                                    <div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>{qn}</div>
+                                    <span style={{scale:"1.3", marginLeft:da*2+"px", marginRight: da*2+"px"}}>{a2}</span>
+                                    <span id="np" className="px-1" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
+                                    <span className="ps-3" style={{scale:"1.3"}} id="t">{"\\(tanh^{"+[-1]+"}(x) \\ -\\)"}</span>
+                                    {n<8 && (<span style={{scale:"1.3", display:"flex", paddingLeft:(40*n/7)+"px"}} 
+                                    >{qq}</span>)}
+                                </div>
+                                {n>=8 && (<div id="q101" className="mt-4 text-end"  style={{scale:"1.1", marginLeft:(90+2*da)+"px", minWidth:"700px"}}>
+                                    {qq}
+                                </div>)}
+                            </div>
+                        </div>)}
+                        {n===0 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_0(x)\ =\ tanh^{"+[-1]+"}(x)\\)"}</div>)}
+                        {n===1 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_1(x)\ =\ xtanh^{"+[-1]+"}(x)\\)"}</div>)}
+                        </div>
+                        </div>
+                        <div style={{margin:"auto", justifyContent:"center", display:"flex"}} id="pic4">
+                            <Plot
+                            id="q_graph1"
+                            data={[data2]}
+                            layout={layout22}
+                            config={config}
+                            style={{textAlign: "center", marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
+                            />
+                        </div>
+                        </div>
+                </div>
+                <div className="justify-content-center text-center mt-5 align-items-center">
+                    <button className="btn bgpupp textpele mx-3" id="download" onClick={()=>{setm({...modal, Ready: true});finish()}}>Download PDF</button>
+                    <button className="btn bgpupp textpele mx-3" onClick={handleSubmit}>Save</button>
+                </div>
+                </section>
+                <footer className='mb-3 row col-12'>
+                    <Copyright dim={dim}/>
+                </footer>
+            </motion.div>
+            <motion.div className="tab-pane fade" id="nav-graph" role="tabpanel"
+                    key="graph"
+                aria-labelledby="nav-graph-tab">
+                <section>
+                    <div className="justify-content-center container-lg align-items-center">
+                    <div style={{margin:"auto", justifyContent:"center", display:"flex"}}>
+                        <Plot
+                            id="p_graph"
+                            data={[data01]}
+                            layout={layout1}
+                            config={config}
+                            style={{textAlign: "center", marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
+                        />
+                    </div>
+                    <div style={{margin:"auto", justifyContent:"center", display:"flex"}}>
+                        <Plot
+                            id="q_graph"
+                            data={[data02]}
+                            layout={layout2}
+                            config={config}
+                            style={{textAlign: "center", marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
+                        />
+                    </div>
+                    </div>
+                </section>
+            </motion.div>
+            <motion.div className="tab-pane fade" id="nav-solution" role="tabpanel" 
                 key="solution1"
                 aria-labelledby="nav-solution-tab">
                 <section className="ms-md-3 ms-1">
@@ -722,115 +841,6 @@ const Solution=({n, ref0, ref1, ref2, setp, dim, setm, modal, setl, setn, setdim
                     </div>
                     </div>
                 </section>
-                </motion.div>
-                <motion.div className="tab-pane fade" id="nav-graph" role="tabpanel"
-                    key="graph"
-                aria-labelledby="nav-graph-tab">
-                <section>
-                    <div className="justify-content-center container-lg align-items-center">
-                    <div style={{margin:"auto", justifyContent:"center", display:"flex"}}>
-                        <Plot
-                            id="p_graph"
-                            data={[data01]}
-                            layout={layout1}
-                            config={config}
-                            style={{textAlign: "center", marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
-                        />
-                    </div>
-                    <div style={{margin:"auto", justifyContent:"center", display:"flex"}}>
-                        <Plot
-                            id="q_graph"
-                            data={[data02]}
-                            layout={layout2}
-                            config={config}
-                            style={{textAlign: "center", marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
-                        />
-                    </div>
-                    </div>
-                </section>
-            </motion.div>
-            <motion.div className="tab-pane fade" id="nav-full-solution" role="tabpanel"
-                key="full"
-                aria-labelledby="nav-full-solution-tab">
-                <section>
-                    <div className="container-lg" id="pdf">
-                        <div>
-                        <div className={dim.w>700?"fs-5":"beginner"}>
-                            <div>
-                                <div className="fw-bolder" id="m1"> Inputed equation:</div>
-                                <div id="coeff" >{coeff}</div>
-                                <div className="fw-bolder" id="m2"> The General solution:</div>
-                                <div id="coeff1">{coeff1}</div>
-                                <div className="fw-bolder" id="m3"> Where:</div>
-                                <div id="m4">\(C_1\) and \(C_2\) are constants</div>
-                            </div>
-                            <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab">
-                            {(n!==0 && n!==1) && (<div className={(dim.w<700)?
-                                    "text-start ms-0 pe-2 ps-0 beginner mb-3":"text-start fs-5 mb-3"} style={{height: "fit-content"}}>
-                                    <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"500px", textAlign:"center"}}>
-                                        <div className="d-flex align-items-center mb-2">
-                                            <div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>{pn}</div>
-                                            <span style={{scale:"1.3", paddingLeft:da*2+"px", paddingRight: da*2+"px"}}>{a2}</span>
-                                            <span id="np" className="px-1" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
-                                        </div>
-                                    </div>
-                                </div>)}
-                                {n===0 && (<div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>\(P_0(x)\ =\ 1\)</div>)}
-                                {n===1 && (<div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>\(P_1(x)\ =\ x\)</div>)}
-                            </div>
-                            </div>
-                            <div style={{margin:"auto", justifyContent:"center", display:"flex"}} id="pic3">
-                                <Plot
-                                id="p_graph1"
-                                data={[data1]}
-                                layout={layout11}
-                                config={config}
-                                style={{textAlign: "center", justifyContent:"center",marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
-                            />
-                            </div>
-                    </div>
-                    <div>
-                        <div id="pic2" style={{lineHeight: 1.8}}>
-                        <div className={"table-responsive container pt-0 mt-2 stytab"}>
-                        {(n!==0 && n!==1) && (<div className={(dim.w<700)?
-                            "text-start ms-0 pe-2 ps-0 beginner mb-3":"text-start fs-5 mb-3"} style={{height: "fit-content"}}>
-                            <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"600px", textAlign:"center"}}>
-                                <div className="d-flex align-items-center mb-2">
-                                    <div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>{qn}</div>
-                                    <span style={{scale:"1.3", marginLeft:da*2+"px", marginRight: da*2+"px"}}>{a2}</span>
-                                    <span id="np" className="px-1" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
-                                    <span className="ps-3" style={{scale:"1.3"}} id="t">{"\\(tanh^{"+[-1]+"}(x) \\ -\\)"}</span>
-                                    {n<8 && (<span style={{scale:"1.3", display:"flex", paddingLeft:(40*n/7)+"px"}} 
-                                    >{qq}</span>)}
-                                </div>
-                                {n>=8 && (<div id="q101" className="mt-4 text-end"  style={{scale:"1.1", marginLeft:(90+2*da)+"px", minWidth:"700px"}}>
-                                    {qq}
-                                </div>)}
-                            </div>
-                        </div>)}
-                        {n===0 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_0(x)\ =\ tanh^{"+[-1]+"}(x)\\)"}</div>)}
-                        {n===1 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_1(x)\ =\ xtanh^{"+[-1]+"}(x)\\)"}</div>)}
-                        </div>
-                        </div>
-                        <div style={{margin:"auto", justifyContent:"center", display:"flex"}} id="pic4">
-                            <Plot
-                            id="q_graph1"
-                            data={[data2]}
-                            layout={layout22}
-                            config={config}
-                            style={{textAlign: "center", marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
-                            />
-                        </div>
-                        </div>
-                </div>
-                <div className="justify-content-center text-center mt-5 align-items-center">
-                    <button className="btn bgpupp textpele mx-3" id="download" onClick={()=>{setm({...modal, Ready: true});finish()}}>Download PDF</button>
-                    <button className="btn bgpupp textpele mx-3" onClick={handleSubmit}>Save</button>
-                </div>
-                </section>
-                <footer className='mb-3 row col-12'>
-                    <Copyright dim={dim}/>
-                </footer>
             </motion.div>
             </AnimatePresence>
         </div>

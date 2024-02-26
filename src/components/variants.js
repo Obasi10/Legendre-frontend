@@ -92,11 +92,10 @@ const Variants= {
     exit2: {
         x: "-100vw",
         transition: {
-            duration: 1,
             ease: 'easeOut',
             when: "afterChildren",
-            spring: 700,
-            duration: 3
+            spring: 1200,
+            duration: 0.3
         }
     },
     exit3: {

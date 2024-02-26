@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import CalcDetails from "../components/calcDetails";
+import { motion } from "framer-motion";
 
 const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr})=>{
     const [f, setf]=useState(window.screen.availHeight*1.2)
@@ -16,17 +17,19 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr})=>{
     },[islo])
     useEffect(() => {
         const fetchWorkouts = async () => {
-          const response = await fetch('/api/workouts', {
+          fetch('/api/workouts', {
             headers: {'Authorization': `Bearer ${user.token}`},
           })
-          const json = await response.json()
-          .then((json)=>{
-            if (!json.error) {
-                dispatch({type: 'SET_WORKOUTS', payload: json})
-              } else {
-                setErrorr("Sorry, your log in time has expired.")
-              }
-                setislo(true)
+          .then(response=>{
+            response.json()
+            .then((json)=>{
+                if (!json.error) {
+                    dispatch({type: 'SET_WORKOUTS', payload: json})
+                  } else {
+                    setErrorr("Sorry, your log in time has expired.")
+                  }
+                    setislo(true)
+              })
           })
         }
     
@@ -75,7 +78,9 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr})=>{
                             {workouts && workouts.map((workout) => (
                             <CalcDetails key={workout._id} workout={workout} modal={modal} setm={setm} setn={setn} n={n} />
                             ))}
-                            {set && <div>Oops, you have not saved anything yet. Click on the save button in your solution so you can keep track of them</div>}
+                            {set && <motion.div 
+                                initial={{opacity: 0}} animate={{opacity:1}} transition={{delay:2, duration:4}}
+                            >Oops, you have not saved anything yet. Click on the save button in your solution so you can keep track of them</motion.div>}
                         </div>
                     </section>
                 </div>

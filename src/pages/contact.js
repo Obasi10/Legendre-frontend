@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Tooltip } from "bootstrap";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
+import Pic from "../IMG-20211001-WA0003.jpg";
 
 const svgVariants = {
     hidden: { rotate: [-180,0,180] },
@@ -58,7 +59,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
         return new Promise(function(resolve, reject){
           const timeout= setTimeout(()=>{
             reject()
-          }, 3000);
+          }, 500);
     
           fetch('/api/user/p1', {
             method: 'PATCH',
@@ -90,8 +91,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
             })
           })
           .catch(()=>{
-            setm({...modal, Ready: false})
-            setErrorr("Took too long to load")
+            queryfunction( user, queryName, queryEmail, queryType, query)
           });
         })
       }
@@ -101,6 +101,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
     e.preventDefault()
     await queryfunction(user, queryName, queryEmail, queryType, query)
   }
+  useEffect(()=>setp(0), [])
   useEffect(()=>{
     function handle(){setdim({
         w: document.documentElement.clientWidth,
@@ -121,14 +122,15 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
           <div className={w<=700?"m-0 beginner":"m-0 fs-5"}>
             <div className="container container-lg row col-lg-7 col-md-9 beginner" style={w<=1280?{margin:"auto", paddingTop:(9-(w/(1280/9)))+"%"}:{paddingTop:"0%"}} >
               <div className="text-center">
-                <h2 className="textpop fw-bold fs-1">About <span className="">Corner St<motion.span className="bi bi-diamond-fill text-primary" initial={{opacity:0, rotate:[0,180,0,-180]}}
-                  animate={{rotate: 0, opacity:1, transition:{repeat:Infinity, duration: 5}}}></motion.span>ne</span> Tech.</h2>
+                <h2 className="textpop fw-bold fs-1">About <span className="">Devel<motion.span className="bi bi-diamond-fill text-primary fs-5" initial={{opacity:0, rotate:[0,180,0,-180]}}
+                  animate={{rotate: 0, opacity:1, transition:{repeat:Infinity, duration: 5}}}></motion.span>per</span></h2>
                 <p className="beginner text-center lead text-muted">A pace-setter in web development and data presentation...</p>
               </div>
               <div className="bglight p-md-5 p-4" style={{borderRadius: "15%"}}>
-              <p style={{fontWeight:400, fontStyle: "italic"}}><span>Corner St<motion.span className="bi bi-diamond-fill text-primary" initial={{opacity:0, rotate:[0,180,0,-180]}}
-                  animate={{rotate: 0, opacity:1, transition:{repeat:Infinity, duration: 5}}}></motion.span>ne</span> Tech is a firm founded and chaired by <a href="https://innocent-obasi.vercel.app">Innocent Obasi</a>, its lead engineer and developer: with the sole purpuse of bringin a new dimension of innovation to the IT sector.</p>
-              <p style={{fontWeight:400, fontStyle: "italic"}}>Our aim is to champion comprehensible, better quality and aesthetical data presentations in the market of data presentation that yearns for more innovation.</p>
+              <p style={{fontWeight:400, fontStyle: "italic"}}>
+                <img className="styleimg" src={Pic} alt=""/>
+                 <a href="https://innocent-obasi.vercel.app" style={{textDecoration: "none", color: "purple", scale: 1.2}}>Innocent Obasi</a> is an innovative mathematician, engineer and web developer: with the sole purpose of bringing a new dimension of innovation to the IT sector.</p>
+              <p style={{fontWeight:400, fontStyle: "italic"}}>My aim is to champion comprehensible, better quality and aesthetical data presentations in the market of data presentation that yearns for more innovation.</p>
               <p style={{fontWeight:400, fontStyle: "italic"}}>Also; to harness skills in IT, science and engineering towards the goal of forming a niche in the cyberspace; that enhances the effective synchronization of these fields (careers), with the aim of providing quality and comprehensible solutions to the needs of the environment and the world at large.</p></div>
             </div>
             <div className="container-lg mt-4">
@@ -211,7 +213,7 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
                 </section>
                 <section className="alt py-2 align-items-center px-2">
                   <h5 className='textpop beginner'>Email</h5>
-                  <p className="change ms-2">contact.cornerStone.tech@gmail.com<br /> Obasiinno99@gmail.com<br />
+                  <p className="change ms-2"> Obasiinno99@gmail.com<br />
                   Questerstores4u@gmail.com</p>
                 </section>
                 <section className="alt py-2 align-items-center ps-2">

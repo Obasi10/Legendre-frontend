@@ -35,8 +35,8 @@ const Copyright=({dim})=>{
     return (
         
         <motion.footer className="align-items-center textpop copyright">
-                {(<span>&copy; 2023</span>)}<span className="nav-item px-2 change">Designer: <motion.span variants={Variants} animate="designer"><Link to="/about" className="Designer" 
-               >{(<span style={{textTransform:"none", fontStyle:"italic"}} className="textpop fw-bold motion3">Corner St<i className="bi bi-diamond-fill text-primary"></i>ne Tech.</span>)}
+                {(<span>&copy; 2023</span>)}<span className="nav-item px-2 text-primary">Designer: <motion.span variants={Variants} animate="designer"><Link to="/about" className="Designer" 
+               >{(<span style={{textTransform:"none", fontStyle:"italic"}} className="textpop fw-bold motion3">Innocent Obasi</span>)}
                     </Link></motion.span></span>
                     { w>430 && (<><span className="px-2 nav-link border-0"><Link to="https://www.linkedin.com/in/innocent-obasi-72ab6022a" target="_blank">
                 <motion.svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-linkedin" viewBox="0 0 16 16" variants={svgVariants} initial="hidden" animate="visible">

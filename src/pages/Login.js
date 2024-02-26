@@ -60,8 +60,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             })
           })
           .catch(()=>{
-            setm({...modal, Ready:false})
-            setErrorr("Took too long to load");
+            setErrorr("Took too long to load...")
           });
         })
       } else {
@@ -111,8 +110,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
           })
         })
         .catch(()=>{
-          setm({...modal, Ready:false})
-          setErrorr("Took too long to load");
+          setErrorr("Took too long to load...")
         })
       })
     }
@@ -138,13 +136,13 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             onSubmit={handleSubmit1}>
             <label htmlFor="email" className="form-label textpop">Email address:</label>
             <div className="input-group mb-4">
-              <span className="input-group-text">
+              <span className="input-group-text bgbtn">
                 <i className="bi bi-envelope-fill text-secondary"></i>
               </span>
               <input type="text" id="email" onChange={(e)=>setEmail(e.target.value)} value={email}
               className="form-control bgliter" placeholder="e.g. dean234@gmail.com" />
               
-              <span className="input-group-text textpop">
+              <span className="input-group-text bgbtn">
                 <span className="tt" data-bs-placement="bottom" title="Enter an email address we can reply to.">
                   <i className="bi bi-question-circle text-muted"></i>
                 </span>
@@ -152,13 +150,13 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             </div>
             <label htmlFor="name" className="form-label textpop">User Id:</label>
             <div className="mb-4 input-group">
-              <span className="input-group-text">
+              <span className="input-group-text bgbtn">
                 <i className="bi bi-person-fill text-secondary"></i>
               </span>
               <input type="text" id="name" onChange={(e)=>setsname(e.target.value)} value={name}
               className="form-control bgliter" placeholder="e.g. Daniel_127" />
               {/* <!-- tooltip --> */}
-              <span className="input-group-text">
+              <span className="input-group-text bgbtn">
                 <span className="tt" data-bs-placement="bottom" title="Pretty self explanatory really...">
                   <i className="bi bi-question-circle text-muted"></i>
                 </span>
@@ -176,7 +174,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
               </span>
               <input type={butt?"text":"password"} id="password" onChange={(e)=>setPassword(e.target.value)} value={password}
                 className="form-control bgliter"/>
-              <span className="input-group-text">
+              <span className="input-group-text bgbtn">
                 <span type="button" onClick={()=>butt?setb(false):setb(true)}>
                   <i className={!butt?"bi bi-eye-fill text-muted":"bi bi-eye text-muted"}></i>
                 </span>

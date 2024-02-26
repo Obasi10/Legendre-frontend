@@ -59,7 +59,7 @@ const Ready =({dim, modal})=>{
     return (
         <><AnimatePresence>
           { modal.Ready && (
-            <motion.div className="backdrop"
+            <motion.div className="backdroppe"
               variants={backdrop}
               initial="hidden"
               animate="visible"
