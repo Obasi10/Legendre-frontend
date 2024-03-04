@@ -169,7 +169,7 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             </div>
             <label htmlFor="subject" className="form-label textpop">Password</label>
             <div className="mb-4 input-group">
-              <span className="input-group-text">
+              <span className="input-group-text bgbtn">
                 <i className="bi bi-key text-secondary"></i>
               </span>
               <input type={butt?"text":"password"} id="password" onChange={(e)=>setPassword(e.target.value)} value={password}
@@ -182,12 +182,12 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
             </div>
             <label htmlFor="subject" className="form-label textpop">Confirm password</label>
             <div className="mb-4 input-group">
-              <span className="input-group-text">
+              <span className="input-group-text bgbtn">
                 <i className="bi bi-key text-secondary"></i>
               </span>
               <input type={butt1?"text":"password"} id="password1" onChange={(e)=>setPassword1(e.target.value)} value={password1}
                 className="form-control bgliter"/>
-              <span className="input-group-text">
+              <span className="input-group-text bgbtn">
                 <span type="button" onClick={()=>butt1?setb1(false):setb1(true)}>
                   <i className={!butt1?"bi bi-eye-fill text-muted":"bi bi-eye text-muted"}></i>
                 </span>
@@ -210,13 +210,13 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                 style={{margin:"auto"}}>
                 <label htmlFor="email" className="form-label textpop">Email address</label>
                 <div className="input-group mb-4">
-                  <span className="input-group-text">
+                  <span className="input-group-text bgbtn">
                     <i className="bi bi-envelope-fill text-secondary"></i>
                   </span>
                   <input type="text" id="email" onChange={(e)=>setEmail(e.target.value)} value={email}
                   className="form-control bgliter" />
                   
-                  <span className="input-group-text textpop">
+                  <span className="input-group-text bgbtn">
                     <span className="tt" data-bs-placement="bottom" title="Enter your email">
                       <i className="bi bi-question-circle text-muted"></i>
                     </span>
@@ -224,14 +224,14 @@ const Login = ({setm, modal, setl, log, setlog, setErrorr, setp}) => {
                 </div>
                 <label htmlFor="name" className="form-label textpop">Password</label>
                 <div className="mb-4 input-group">
-                  <span className="input-group-text">
+                  <span className="input-group-text bgbtn">
                     <i className="bi bi-key text-secondary"></i>
                   </span>
                   <input type={butt?"text":"password"} id="password" onChange={(e)=>setPassword(e.target.value)} value={password}
                   className="form-control bgliter"/>
-                  <span className="input-group-text">
+                  <span className="input-group-text bgbtn">
                     <span type="button" onClick={()=>butt?setb(false):setb(true)}>
-                      <i className="bi bi-eye-fill text-muted"></i>
+                    <i className={!butt?"bi bi-eye-fill text-muted":"bi bi-eye text-muted"}></i>
                     </span>
                   </span>
                 </div>
