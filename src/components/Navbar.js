@@ -52,21 +52,21 @@ const Navbar = ({page, ref0, ref1, ref2, search, sets, modal, setm, input, setIn
     <div>
       <div className="container col-lg-10 col-12 mb-0">
         <nav className="navbar fixed-top navbar-expand-md bgcon py-1 d-block">
-          <div style={document.documentElement.clientWidth<350?{alignItems: "center", alignContent: "center", alignSelf: "center"}:{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}
-          } className={document.documentElement.clientWidth>650?"ms-4 row container-md fs-5":"container-md table-responsive stytab2"}>
+          <div style={document.documentElement.clientWidth<500?{alignItems: "center", alignContent: "center", alignSelf: "center"}:{alignItems: "center", alignContent: "center", alignSelf: "center", maxWidth:"90%"}
+          } className={document.documentElement.clientWidth>650?"ms-lg-2 ms-md-0 container-md fs-5":"container-md"}>
             <Link to="/" className="navbar-brand text-decoration-none fs-4 pt-2 col-md-3 me-md-3">
               <span className="fw-bold motion1">
                 <i className="bi bi-calculator"></i>
                 UltimateCalc
               </span>
             </Link>
-            <div className='d-flex col-lg-8 col-2 text-end justify-content-space-around'>
-            <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0' style={{background: "transparent"}}><i className='bi bi-search textpele'></i></button>
+            <div className='d-flex col-lg-8 col-md-12 col-2 text-end justify-content-space-around'>
+            <span className='d-flex'> <button onClick={()=>{!search?sets(true):sets(false); setInput("")}} className='fw-bold border-0' style={{background: "transparent"}}><i className='bi bi-search textpele'></i></button>
             <button className="navbar-toggler border-0 py-1 text-end" type="button" onClick={()=>setm({...modal, offcanvas: true})} >
               <i className="bi bi-three-dots-vertical textpele p-1" ></i>
-            </button>
+            </button></span>
 
-            <div className="nav nav-pills collapse navbar-collapse align-center col-lg-8" id="nav-tab" role="tablist">
+            <div className="nav nav-pills collapse navbar-collapse align-center" id="nav-tab" role="tablist">
               <ul className={"navbar-nav align-items-center p-0 m-0"}>
                 <li className="nav-item px-3">
                   <Link to="/" style={{textDecoration:"none"}} className={lock==="h"?"nav-link active textpele":"nav-link textpele"}>Home</Link>
