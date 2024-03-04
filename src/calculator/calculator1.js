@@ -111,8 +111,8 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                 </header>
                                 <h2>
                                 <div className="row text-center g-5 justify-content-center align-items-center">
-                                  <Link to={(n1 || n===0)?"/solution":""} className="col-lg-1 col-2 mx-4"><motion.button variants={Variants} whileHover="hover" className="btn bgpupp beginner col-lg-1 col-2 textpele px-3 py-1" onClick={()=>{setm({...modal, Ready:true})}} id="yes">yes</motion.button></Link>
-                                  <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele col-lg-1 col-2 px-3 py-2" id="no" onClick={()=>setse(false)}>No</motion.button>
+                                  <Link to={(n1 || n===0)?"/solution":""} className="col-2 mx-4"><motion.button variants={Variants} whileHover="hover" className="btn bgpupp beginner col-2 textpele mx-3 px-3 py-1" onClick={()=>{setm({...modal, Ready:true})}} id="yes">yes</motion.button></Link>
+                                  <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele col-2 mx-3 px-3 py-2" id="no" onClick={()=>setse(false)}>No</motion.button>
                                 </div>
                                 </h2>
                               </motion.div>
