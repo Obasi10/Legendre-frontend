@@ -1544,7 +1544,7 @@ of styling from the begining all over again */
     -ms-transition-delay: 0.75s;
     transition-delay: 0.75s;
     background: #1e252d;
-    content: 'Ultimate-Calc';
+    content: '';
     display: block;
     height: 100%;
     left: 0;
