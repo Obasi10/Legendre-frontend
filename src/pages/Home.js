@@ -57,7 +57,14 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
   const width=w*0.3+""
   const {logouter}=useLogout()
 
+
+  useEffect(()=>{
+    if(typeof window?.MathJax !== "undefined"){
+      window.MathJax.typeset()
+    }
+  },[])
   useEffect(() => {
+    setcalc(false);
     setp(0);
     const fetchWorkouts = async () => {
       try{
@@ -137,6 +144,78 @@ const Home = ({dim, setInput, count, setc, setp, setm, modal,setn,setn1,setl, lo
                 <div className={dim.w<700?"accordion-body beginner justify-content-center px-0":"accordion-body fs-5 justify-content-center px-0"}>
                   <Link to="/calculation" style={{textDecoration: "none"}}><button className='btnlist col-12 align-items-center mx-0' style={{display:"flex"}} onClick={()=>{setc(count + 1); setcalc(true)}}>
                     <motion.div className='text-start motion23 col-8 ps-lg-3'>Legendre Equation</motion.div>
+                  <div className='textpop begine col-4 text-end me-0'>available</div>
+                  </button></Link>
+                  <Link to="/calculation2" style={{textDecoration: "none"}}><button className='btnlist col-12 align-items-center mx-0' style={{display:"flex"}} onClick={()=>{setc(count + 1); setcalc(true)}}>
+                  <div className="container table-responsive pt-0" style={{width:"fit-content", overflowX:"hidden", overflowY:"hidden"}}>
+                      <motion.div
+                        animate={{
+                          x:[0,-300,0,-300,0],
+                          transition:{
+                              delay:2,
+                              duration:140,
+                              repeat:Infinity,
+                              ease: "easeInOut",
+                              spring: 120
+                          }
+                        }}
+                      >
+                    <motion.div className='text-start motion23 col-8 ps-lg-3'>\((1-x^2)y''-2(m+1)xy'+(n-m)(n+m+1)y=0\)</motion.div>
+                      </motion.div>
+                    </div>
+                  <div className='textpop begine col-4 text-end me-0'>available</div>
+                  </button></Link>
+                  <Link to="/calculation3" style={{textDecoration: "none"}}><button className='btnlist col-12 align-items-center mx-0' style={{display:"flex"}} onClick={()=>{setc(count + 1); setcalc(true)}}>
+                    <div className="container table-responsive pt-0" style={{width:"fit-content", overflowX:"hidden", overflowY:"hidden"}}>
+                      <motion.div
+                        animate={{
+                          x:[0,-200,0,-200,0],
+                          transition:{
+                              delay:2,
+                              duration:100,
+                              repeat:Infinity,
+                              ease: "easeInOut",
+                              spring: 120
+                          }
+                        }}
+                      >
+                        <motion.div className='text-start motion23 col-8 ps-lg-3'>\((1-x^2)y''+2mxy'+(n-m)(n+m+1)y=0\)</motion.div>
+                      </motion.div>
+                    </div>
+                  <div className='textpop begine col-4 text-end me-0'>available</div>
+                  </button></Link>
+                  <Link to="/calculation4" style={{textDecoration: "none"}}><button className='btnlist col-12 align-items-center mx-0' style={{display:"flex"}} onClick={()=>{setc(count + 1); setcalc(true)}}>
+                  <div className="container table-responsive pt-0" style={{width:"fit-content", overflowX:"hidden", overflowY:"hidden"}}>
+                      <motion.div
+                        animate={{
+                          x:[0,-120,0,-120,0],
+                          transition:{
+                              delay:2,
+                              duration:60,
+                              repeat:Infinity,
+                              ease: "easeInOut",
+                              spring: 120
+                          }
+                        }}
+                      >
+                    <motion.div className='text-start motion23 col-8 ps-lg-3'><span>\((1-x^2)y''-(2n+1)xy'+ky=0\)</span></motion.div></motion.div></div>
+                  <div className='textpop begine col-4 text-end me-0'>available</div>
+                  </button></Link>
+                  <Link to="/calculation5" style={{textDecoration: "none"}}><button className='btnlist col-12 align-items-center mx-0' style={{display:"flex"}} onClick={()=>{setc(count + 1); setcalc(true)}}>
+                  <div className="container table-responsive pt-0" style={{width:"fit-content", overflowX:"hidden", overflowY:"hidden"}}>
+                      <motion.div
+                        animate={{
+                          x:[0,-120,0,-120,0],
+                          transition:{
+                              delay:2,
+                              duration:50,
+                              repeat:Infinity,
+                              ease: "easeInOut",
+                              spring: 120
+                          }
+                        }}
+                      >
+                    <motion.div className='text-start motion23 col-8 ps-lg-3'>\((1-x^2)y''+(2n+1)xy'+ky=0\)</motion.div></motion.div></div>
                   <div className='textpop begine col-4 text-end me-0'>available</div>
                   </button></Link>
                   <button className='btnlist col-12 align-items-center mx-0' onClick={()=>{setc(count + 1); setm({...modal, av:true})}} style={{display:"flex"}}><div className='text-start col-8 ps-lg-3'>Laplace Equation</div>

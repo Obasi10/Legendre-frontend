@@ -35,7 +35,7 @@ const Copyright=({dim})=>{
     return (
         
         <motion.footer className="align-items-center textpop copyright">
-                {(<span>&copy; 2023</span>)}<span className="nav-item px-2 text-primary">Designer: <motion.span variants={Variants} animate="designer"><Link to="/about" className="Designer" 
+                {(<span>&copy; 2023</span>)}<span className="nav-item px-2 text-primary">Developer: <motion.span variants={Variants} animate="designer"><Link to="/about" className="Designer" 
                >{(<span style={{textTransform:"none", fontStyle:"italic"}} className="textpop fw-bold motion3">Innocent Obasi</span>)}
                     </Link></motion.span></span>
                     { w>430 && (<><span className="px-2 nav-link border-0"><Link to="https://www.linkedin.com/in/innocent-obasi-72ab6022a" target="_blank">

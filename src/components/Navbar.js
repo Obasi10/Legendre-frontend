@@ -31,7 +31,7 @@ const pathVariants = {
   }
 };
 
-const Navbar = ({page, ref0, ref1, ref2, search, sets, modal, setm, input, setInput,setnav,lock, settab}) => {
+const Navbar = ({k,page, ref0, ref1, ref2, search, sets, modal, setm, input, setInput,setnav,lock, settab, selc}) => {
   const { user } = useAuthContext()
   const text=[
     "Legendre Equation",
@@ -42,7 +42,17 @@ const Navbar = ({page, ref0, ref1, ref2, search, sets, modal, setm, input, setIn
     "Mechanics",
     "Thermodynamics"
   ]
+
+
+
+//   else {
+//    clearTimeout(refe)
+//    clearTimeout(refe1)
+//    clearTimeout(refe2)
+//  }
+
   useEffect(()=>{},[search,input, setInput]);
+
   useEffect(()=>{sets(false);setInput("")},[modal.av])
   return (
     <>
@@ -168,18 +178,18 @@ const Navbar = ({page, ref0, ref1, ref2, search, sets, modal, setm, input, setIn
                         Full Solution
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={page===1?ref0:""} className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button"
+                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={ref0} className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button"
                         role="tab" aria-controls="nav-graph" aria-selected={"false"} onClick={()=>settab(true)}>
                         Simulation
                         </button>
                     </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={page===1?ref2:""} className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-solution" type="button"
+                    {(!k && k!==0)&& <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={ref1} className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-solution-tab" data-bs-toggle="tab" data-bs-target="#nav-solution" type="button"
                         role="tab" aria-controls="nav-solution" aria-selected="true" onClick={()=>settab(false)}>
                         Solution
                         </button>
-                    </li>
-                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-calculator-tab" data-bs-toggle="tab" data-bs-target="#nav-calculator" type="button"
-                        role="tab" aria-controls="nav-calculator" aria-selected={"false"} onClick={()=>settab(false)}>
+                    </li>}
+                    <li className={document.documentElement.clientWidth>700?"nav-item fs-5":"nav-item p-0 beginner"}><button ref={ref2} className={"nav-link fw-bold px-2 fst-italic textpele"} id="nav-calculator-tab" data-bs-toggle="tab" data-bs-target="#nav-calculator" type="button"
+                        role="tab" aria-controls="nav-calculator" aria-selected={"false"} onClick={()=>{settab(false); selc(true)}}>
                         Calculator
                         </button>
                     </li>

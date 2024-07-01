@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {Tooltip} from "bootstrap";
 import Copyright from "../components/copyright";
@@ -23,18 +23,31 @@ const factorial=(num)=> {
     }
 }
 
-const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})=>{
-    var k, w, a, k1, x1, y1, y2
+const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, setn, setdim, tab, setErrorr})=>{
+    var  w, a, x1, y1, y2
     const [h1, seth1]=useState(dim.w<=1280?((1280-dim.w))*(22/1000)+"%":"0%")
     const [input2, setIn2]=useState(undefined)
     const {dispatch}=useWorkoutsContext()
     const [comp, setcom]=useState(false)
     const {user}=useAuthContext()
+    const [v1, setv1]=useState(((k*1)+(Number(n)+1)**2))
     const {logouter}=useLogout()
-    const title= "Legendre Equation"
-    const detail1=n
-    const [tap, settap]=useState(false)
-    useEffect(()=>{setn(Number(n))},[])
+    const [v, setv]=useState(((k*1)+((n+1)*1)**2))
+    const title= "Variable Coefficient Differential Equations 4"
+    const [detail1, detail3]=[n1, k]
+    useEffect(()=>{setn(n1); setk(Number(k)); setv(math.abs(v)); setv1(k+(n+1)**2)},[])
+    const [sv,setsv]=useState(math.sqrt(math.abs(v)))
+    useEffect(()=>{
+        if (v1<0 && math.abs(v)!=1){
+            setsv(math.sqrt(math.abs(v))+'i')
+        } else if (v1<0 && math.abs(v)===1){
+            setsv('i')
+        } else if (v1>=0 && math.abs(v)===1){
+            setsv('')
+        }
+        else {setsv(math.sqrt(math.abs(v)))}
+        console.log(sv)
+    },[])
 
     const findhcf=(x,y)=>{
         while (Math.max(x,y) % Math.min(x,y)!==0){
@@ -85,96 +98,65 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         q=math.fraction((x/q),(y/q));
         return q
     }
-
-    if (Number.isInteger(n/2)) {
-        k=(n/2);
-        k1=(n-2)/2;
-    } else {
-        k=((n-1)/2);
-        k1=k
-    }
-    w=((factorial(2*n))/(factorial(n)**2))
-    a=findhcf(w,2**n)
-
-
-    const pin=(n)=> {
-        var t, S
-        t='x^'+'{'+ n +'}';
-        S='\\('+(w/a) + t+'\\)';
-        for (let r = 1; r < k+1; r++) {
-            if (n===2*r) {
-                t='\\)'
-            } else if (n===2*r+1) {
-                t='x\\)'
-            } else{
-                t='x^'+'{'+(n-2*r)+'}\\)'
+    
+    const p= (n,x)=> {
+        let C, S, Se
+        if (v1<0){
+            C=math.cosh(math.sqrt(v)*math.acos(x))
+            S=math.sinh(math.sqrt(v)*math.acos(x))
+            if (n==0){
+                Se=(x*S-math.sqrt(v*(1-x**2))*C)
+            } else if (n==1){
+                Se=(3*x**2*S-3*x*math.sqrt(v*(1-x**2))*C+(v-1)*(1-x**2)*S)
+            } else if (n==2){
+                Se=(15*x**3*S-15*x**2*math.sqrt(v*(1-x**2))*C+(6*v-9)*x*(1-x**2)*S-(v-4)*math.sqrt(v*(1-x**2)**3)*C)
+            } else if (n==3){
+                Se= (105*x**4*S-105*x**3*math.sqrt(v*(1-x**2))*C+(45*v-90)*x*(1-x**2)*S-(10*v-55)*math.sqrt(v*(1-x**2)**3)*C+(v**2-10*v+9)*(1-x**2)**2*S)
             }
-            if (Number.isInteger(r/2)) {
-                S= S + '\\(\\ +\\ '+ Math.round(((factorial(2*n-2*r))/(factorial(n-r)*factorial(n-2*r)*factorial(r)))/a) + t;
-            } else {
-                S= S + '\\(\\ -\\ '+ Math.round(((factorial(2*n-2*r))/(factorial(n-r)*factorial(n-2*r)*factorial(r)))/a) + t;
-            }
-        } 
-        return S
-    }
-
-    const qin=(n)=>{
-        var t, S, S1, S2
-        t='x^'+'{'+ (n-1) +'}\\)';
-        if (2**n===a) {
-            S='\\('+(w/a)+t;
         } else {
-            S='\\(\\frac {'+(w/a)+'} {'+(2**n/a)+'}'+t;
-        }
-        for (let r = 1; r < k1 + 1; r++) {
-            if (n===2*r+1) {
-                t='\\)'
-            } else if (n==2*r+2) {
-                t='x\\)'
-            } else{
-                t='x^'+'{'+(n-2*r-1)+'}\\)'
-            }
-            S1=0
-            var e,s
-            for (let i = 0; i < r+1; i++) {
-                e=factorial(2*n-2*i)*factorial(2*i)/(factorial(n-i)*factorial(i))**2
-                s=refrac(e,2**n)
-                S1 = math.add(S1,s);
-            }
-            S2=refrac(Math.round(factorial(n-1-r)*factorial(r)),Math.round(factorial(2*r+1)*factorial(n-1-2*r)))
-            S2=math.multiply(S1,S2)
-            S2='\\frac {'+S2['n']+'} {'+S2['d']+'}';
-            if (Number.isInteger(r/2)) {
-                S= S + '\\(\\ -\\ '+ S2 + t;
-            } else {
-                S= S + '\\(\\ +\\ '+ S2 + t;
+            C=math.cos(math.sqrt(v)*math.acos(x))
+            S=math.sin(math.sqrt(v)*math.acos(x))
+            if (n==0){
+                Se=(x*S-math.sqrt(v*(1-x**2))*C)
+            } else if (n==1){
+                Se=(3*x**2*S-3*x*math.sqrt(v*(1-x**2))*C-(v-1)*(1-x**2)*S)
+            } else if (n==2){
+                Se=(15*x**3*S-15*x**2*math.sqrt(v*(1-x**2))*C-(6*v-9)*x*(1-x**2)*S+(v-4)*math.sqrt(v*(1-x**2)**3)*C)
+            } else if (n==3){
+                Se= (105*x**4*S-105*x**3*math.sqrt(v*(1-x**2))*C-(45*v-90)*x*(1-x**2)*S+(10*v-55)*math.sqrt(v*(1-x**2)**3)*C+(v**2-10*v+9)*(1-x**2)**2*S)
             }
         }
-        return S
+        return Se
     }
 
-    const p= (n,k,x)=> {
-        var S=0
-        for (let r = 0; r < k+1; r++) {
-            S+=((-1)**r*factorial(2*n-2*r)*x**(n-2*r))/(factorial(n-r)*factorial(n-2*r)*factorial(r));   
-        }
-        return S/(2**n)
-    }
-
-    const qet= (n,k,k1,x)=> {
-        var S=0
-        var S1=0
-        for (let r = 0; r < k1+1; r++) {
-            for (let i = 0; i < r+1; i++) {
-                S1 += (factorial(2*n-2*i)*factorial(2*i))/(factorial(n-i)*factorial(i))**2;
+    const qet= (n,x)=> {
+        let C, S, Se
+        if (v<0){
+            C=math.cosh(math.sqrt(v)*math.acos(x))
+            S=math.sinh(math.sqrt(v)*math.acos(x))
+            if (n==0){
+                Se=(x*C-math.sqrt(v*(1-x**2))*S)
+            } else if (n==1){
+                Se=(3*x**2*C-3*x*math.sqrt(v*(1-x**2))*S+(v-1)*(1-x**2)*C)
+            } else if (n==2){
+                Se=(15*x**3*C-15*x**2*math.sqrt(v*(1-x**2))*S+(6*v-9)*x*(1-x**2)*C-(v-4)*math.sqrt(v*(1-x**2)**3)*S)
+            } else if (n==3){
+                Se= (105*x**4*C-105*x**3*math.sqrt(v*(1-x**2))*S+(45*v-90)*x*(1-x**2)*C-(10*v-55)*math.sqrt(v*(1-x**2)**3)*S+(v**2-10*v+9)*(1-x**2)**2*C)
             }
-            S +=(-1)**(r+1)*S1*((factorial(n-1-r)*factorial(r)*x**(n-1-2*r))/(factorial(2*r+1)*factorial(n-1-2*r)))
+        } else {
+            C=math.cos(math.sqrt(v)*math.acos(x))
+            S=math.sin(math.sqrt(v)*math.acos(x))
+            if (n==0){
+                Se=(math.sqrt(1-x**2)**(-3))*(-x*C-math.sqrt(v*(1-x**2))*S)
+            } else if (n==1){
+                Se=(math.sqrt(1-x**2)**(-5))*(-3*x**2*C-3*x*math.sqrt(v*(1-x**2))*S-(v-1)*(1-x**2)*C)
+            } else if (n==2){
+                Se=(math.sqrt(1-x**2)**(-7))*(-15*x**3*C-15*x**2*math.sqrt(v*(1-x**2))*S-(6*v-9)*x*(1-x**2)*C+(v-4)*math.sqrt(v*(1-x**2)**3)*S)
+            } else if (n==3){
+                Se= (math.sqrt(1-x**2)**(-9))*(-105*x**4*C-105*x**3*math.sqrt(v*(1-x**2))*S-(45*v-90)*x*(1-x**2)*C+(10*v-55)*math.sqrt(v*(1-x**2)**3)*S+(v**2-10*v+9)*(1-x**2)**2*C)
+            }
         }
-        return S/2**n
-    }
-
-    const qe=(n,k,k1,x)=> {
-        return p(n,k,x)*Math.atanh(x)+ qet(n,k,k1,x)
+        return Se
     }
 
     x1= []
@@ -182,8 +164,8 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
     y2= []
     for (let i = 0; i < (2*0.999/0.001)+1; i++) {
         x1[i]=-0.999+0.001*i;
-        y1[i]=p(n,k,x1[i])
-        y2[i]=qe(n,k,k1,x1[i])
+        y1[i]=p(n,x1[i])
+        y2[i]=qet(n,x1[i])
     }
 
     var data1={
@@ -207,7 +189,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
 
     const [data01, setdat01]=useState({
         x: [-0.999],
-        y: [p(n,k,-0.999)],
+        y: [p(n,-0.999)],
         name: 'graph',
         line: {
             color:'rgb(238, 66, 238)',
@@ -217,7 +199,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
 
     const [data02, setdat02]=useState({
         x: [-0.999],
-        y: [qe(n,k,k1,-0.999)],
+        y: [qet(n,-0.999)],
         name: 'graph',
         line: {
             color:'rgb(238, 66, 238)',
@@ -231,23 +213,23 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
                 setdat01({
                     ...data01,
                     x: [...data01.x, data01.x[data01.x.length-1]+0.02],
-                    y: [...data01.y, p(n,k,(data01.x[data01.x.length-1]+0.02))]
+                    y: [...data01.y, p(n,(data01.x[data01.x.length-1]+0.02))]
                 })
                 setdat02({
                     ...data02,
                     x: [...data02.x, data01.x[data01.x.length-1]+0.02],
-                    y: [...data02.y, qe(n,k,k1,(data01.x[data01.x.length-1]+0.02))]
+                    y: [...data02.y, qet(n,(data01.x[data01.x.length-1]+0.02))]
                 })
             } else {
                 setdat01({
                     ...data01,
                     x: [-0.999],
-                    y: [p(n,k,-0.999)]
+                    y: [p(n,-0.999)]
                 })
                 setdat02({
                     ...data02,
                     x: [-0.999],
-                    y: [qe(n,k,k1,-0.999)]
+                    y: [qet(n,-0.999)]
                 })
             }
             if (!tab){clearTimeout(get)}
@@ -461,29 +443,19 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         scale: 1
     }
 
-    const coeff='$$(1-x^2)y\'\'-2xy\'+'+n*(n+1)+'y=0$$';
-    const coeff1='$$y\\ =\\ C_1\\ P_{'+n+'}(x)\\ + C_2\\ Q_{'+n+'}(x)$$';
-    const pp=pin(n);
-    const qq=qin(n);
+    const coeff1='\\(y\\ =\\ C_1\\ F_{'+n+'}(x)\\ + C_2\\ G_{'+n+'}(x)\\)';
+    const coeff11='\\(y\\ =\\ C_1\\ P_{'+n+'}(x)\\ + C_2\\ Q_{'+n+'}(x)\\)';
     const pn="\\(P_{"+n+"}(x)=\\)";
     const qn="\\(Q_{"+n+"}(x)=\\)";
 
-
-    var aa, a2
-    if (2**n!==a && 2**n/a<100000000) {
-        aa ="\\(\\frac {1} {"+(2**n/a)+"}\\)"
-        a2="\\(\\frac {1} {"+(2**n/a)+"}\\)"
-
-    } else if (2**n/a>100000000){
-        let num =2**n/a
-        aa ="\\(\\frac {1} {"+num.toExponential(4)+"}\\)"
-        a2="\\(\\frac {1} {"+num.toExponential(4)+"}\\)"
-    }
-
+    var array1=[
+        "\\(x-i\\sqrt{1-x^2}\\)",
+        "\\(x+i\\sqrt{1-x^2}\\)",
+    ]
     const element=document.getElementById('pdf');
     const opt={
         margin: 1,
-        filename: 'Legendre Calculator.pdf',
+        filename: 'Ultimate Calculator.pdf',
         image: {type: 'jpeg', quality:0.98},
         html2canvas: {scale:1},
         jsPDF: {
@@ -560,37 +532,41 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         setcom(true);
         setarr([
             "\\(P_{"+n+"}("+Number(input2)+")=\\ " + (Math.round(p(n,k,Number(input2))*10**8)/(10**8)) +"\\)",
-            "\\(Q_{"+n+"}("+Number(input2)+")=\\ " +(Math.round(qe(n,k,k1,Number(input2))*10**8)/(10**8)) +"\\)"
+            "\\(Q_{"+n+"}("+Number(input2)+")=\\ " +(Math.round(qet(n,k,Number(input2))*10**8)/(10**8)) +"\\)"
         ])
         setcompe(false)
     }
 
     useEffect(()=>{
         const ett=async()=>{
-            const calco=()=>{setl('ss')}
-            setp(1);
-            await window.MathJax.typeset();
-            setTimeout(()=>setm({...modal, Ready:false}),((11/70)*n+3)*1000)
-            setTimeout(calco,8000)
+            setl('ss');
+            await window.MathJax.typeset()
+            if(title && page===1){
+               setTimeout(()=>ref1.current.click(),20000);
+                setTimeout(()=>ref0.current.click(), 40000);
+            }
+            else{ clearTimeout()}
+            setm({...modal, Ready:false})
         }
         if(typeof window?.MathJax !== "undefined"){
+            setp(1);
             ett()
         }
     }, [])
     useEffect(()=>{
         if(typeof window?.MathJax !== "undefined"){
-            window.MathJax.typeset()
+             window.MathJax.typeset()
         }
     },[compa, compute])
+    const [tap, settap]=useState(true)
     const [scaz, setscaz]=useState(false)
 
     useEffect( ()=>{
         if (!tap){
             const tapChange = async ()=> {
-                settap(window.scrollY >=5 || window.scrollX >=5)
+                settap(window.scrollY >=1 || window.scrollX >=1)
                 ref0.current=null
-                ref1.current=null
-                ref2.current=null
+                clearTimeout(setTimeout(async ()=>ref0.current.click(),25000))
             }
             window.addEventListener("scroll",tapChange);
             return ()=> window.removeEventListener("scroll",tapChange)
@@ -606,10 +582,11 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         if(tab){
             simulation()
         }
+
     },[tab, data01])
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const workout = {title, detail1}
+        const workout = {title, detail1, detail3}
         if (!user) {
             setErrorr('You must be logged in to save your files')
         } else {
@@ -657,9 +634,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         <div className="tab-content justify-content-center col-lg-8 col-12" id="nav-tabContent" style={{margin: "auto", marginTop: h1}}>
             <AnimatePresence >
             <motion.div className="tab-pane fade show active" id="nav-full-solution" role="tabpanel"
-                key="full" onTouchMoveu={()=>console.log("i love you")}
-                onScrollCapture={()=>console.log("i love you")}
-                onHoverEnd={()=>console.log("i love you")}
+                key="full"
                 aria-labelledby="nav-full-solution-tab">
                 <section>
                     <div className="container-lg" id="pdf">
@@ -667,25 +642,87 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
                         <div className={dim.w>700?"fs-5":"beginner"}>
                             <div>
                                 <div className="fw-bolder" id="m1"> Inputed equation:</div>
-                                <div id="coeff" >{coeff}</div>
-                                <div className="fw-bolder" id="m2"> The General solution:</div>
-                                <div id="coeff1">{coeff1}</div>
-                                <div className="fw-bolder" id="m3"> Where:</div>
-                                <div id="m4">\(C_1\) and \(C_2\) are constants</div>
+                                <div className="text-center">{`\\((1-x^2)y''+${n1===0?"":2*(n1*1)+1}xy'${(k*1)<0? "": "+"}${k*1}y=0\\)`}</div>
+                                <div className="fw-bolder" id="m2"> The General solution can be written as:</div>
+                                <div className="text-center">{coeff1}</div>
                             </div>
                             <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab">
-                            {(n!==0 && n!==1) && (<div className={(dim.w<700)?
-                                    "text-start ms-0 pe-2 ps-0 beginner fs-5 mb-3":"text-start beginner fs-5 mb-3"} style={{height: "fit-content"}}>
-                                    <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"500px", textAlign:"center"}}>
-                                        <div className="d-flex align-items-center mb-2">
-                                            <div style={{ marginLeft:"0%"}}>{pn}</div>
-                                            <span style={{scale:"1.15", paddingLeft:da*2+"px", paddingRight: da*2+"px"}}>{a2}</span>
-                                            <span id="np" className="px-2 py-2" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
-                                        </div>
-                                    </div>
-                                </div>)}
-                                {n===0 && (<div style={{marginLeft:"0%", paddingRight: "2%"}}>\(P_0(x)\ =\ 1\)</div>)}
-                                {n===1 && (<div style={{marginLeft:"0%", paddingRight: "2%"}}>\(P_1(x)\ =\ x\)</div>)}
+                            <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
+                                {
+                                    n===0 && (<><div>{"\\(F_0(x)=\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
+                                        <div>{"\\(G_0(x)=\\)"}<span className="npallf">{array1[1]}</span>{`\\(^${sv}\\)`}</div></>
+                                    )
+                                }
+                                {
+                                    n===1 && (
+                                        <><div>{"\\(F_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
+                                        <div>{"\\(G_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span></div></>
+                                    )
+                                }
+                                {
+                                    n===2 && (<><div>{"\\(F_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x+i\\sqrt{${v1}(1-x^2)}\\)`}</span></div>
+                                    <div>{"\\(G_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x-i\\sqrt{${v1}(1-x^2)}\\)`}</span></div></>)
+                                }
+                                {
+                                    n===3 && (<><div className="d-flex align-items-center">{"\\(F_3(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf d-flex">{`\\(3x^2+3ix\\sqrt{${v1}(1-x^2)}-(${v1-1})(1-x^2)\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{"\\(G_3(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf d-flex">{`\\(3x^2-3ix\\sqrt{${v1}(1-x^2)}-(${v1-1})(1-x^2)\\)`}</span></div>
+                                    </>)
+                                }
+                                {
+                                    n===4 && (<><div className="d-flex align-items-center">{"\\(F_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3+15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)-i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
+                                            <div className="d-flex align-items-center">{"\\(G_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3-15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)+i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
+                                    </>)
+                                }
+                                {
+                                    n===5 && (<><div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4+105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)-i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
+                                                <div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4-105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)+i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
+                                    </>)
+                                }
+                            </div>
+                            </div>
+                            <div className="fw-bolder" id="m2"> An alternative solution which might be preferable is:</div>
+                            <div className="text-center">{coeff11}</div>
+                            <div className="fw-bolder" id="m3"> Where:</div>
+                            <div id="m4">\(C_1\) and \(C_2\) are constants</div>
+                            <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab">
+                            <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
+                            {
+                                n===0 && (
+                                    <div>{`\\(P_${n}(x)=cos(${sv}cos^{-1}x)\\)`}</div>
+                                )
+                            }
+                            {
+                                n===1 && (
+                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{1-x^2}}\\)`}<span className="npallf">{`\\(sin(${sv}cos^{-1}x)\\)`}</span></div>
+                                )
+                            }
+                            {
+                                n===2 && (
+                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)`}<span className="npallf">{`\\(x.S-\\sqrt(${v1}(1-x^2)).C\\)`}</span></div>
+                                )
+                            }
+                            {
+                                n===3 && (
+                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)`}<span className="npallf">{`\\(3x^2.S-3x\\sqrt(${v1}(1-x^2)).C-(${v1-1})(1-x^2).S\\)`}</span></div>
+                                ) 
+                            }
+                            {
+                                n===4 && (
+                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)`}<span className="npallf">{`\\(15x^3.S-15x^2\\sqrt(${v1}(1-x^2)).C-(${6*v1-9})(1-x^2)x.S + (${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</span></div>
+                                ) 
+                            }
+                            
+                            {
+                                n===5 && (
+                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2))^9}}\\)`}<span className="npallf">{`\\(105x^3.S-105x^2\\sqrt{${v1}(1-x^2)}.C-(${45*v1-90})(1-x^2)x.S + (${10*v1-55})\\sqrt{${v1}(1-x^2)^3} + (${v1**2-10*v1+9})(1-x^2)^2\\)`}</span></div>
+                                ) 
+                            }
+                            {
+                                n>1 && (
+                                    <div>note also that, <span>{`\\(C=cos(${sv}cos^{-1}x)\\)`}</span> and <span>{`\\(S=sin(${sv}cos^{-1}x)\\)`}</span></div>
+                                )
+                            }
+                            </div>
                             </div>
                             </div>
                             <div style={{margin:"auto", justifyContent:"center", display:"flex"}} id="pic3">
@@ -699,26 +736,44 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
                             </div>
                     </div>
                     <div>
-                        <div id="pic2" style={{lineHeight: 1.8}}>
-                        <div className={"table-responsive container pt-0 mt-2 stytab"}>
-                        {(n!==0 && n!==1) && (<div className={(dim.w<700)?
-                            "text-start ms-0 pe-2 ps-0 beginner fs-5 mb-3":"text-start beginner fs-5 mb-3"} style={{height: "fit-content"}}>
-                            <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"600px", textAlign:"center"}}>
-                                <div className="d-flex align-items-center mb-2">
-                                    <div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>{qn}</div>
-                                    <span style={{scale:"1.3", marginLeft:da*2+"px", marginRight: da*2+"px"}}>{a2}</span>
-                                    <span id="np" className="px-1" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
-                                    <span className="ps-3" style={{scale:"1.3"}} id="t">{"\\(tanh^{"+[-1]+"}(x) \\ -\\)"}</span>
-                                    {n<8 && (<span style={{scale:"1.3", display:"flex", paddingLeft:(40*n/7)+"px"}} 
-                                    >{qq}</span>)}
-                                </div>
-                                {n>=8 && (<div id="q101" className="mt-4 text-end"  style={{scale:"1.1", marginLeft:(90+2*da)+"px", minWidth:"700px"}}>
-                                    {qq}
-                                </div>)}
-                            </div>
-                        </div>)}
-                        {n===0 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_0(x)\ =\ tanh^{"+[-1]+"}(x)\\)"}</div>)}
-                        {n===1 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_1(x)\ =\ xtanh^{"+[-1]+"}(x)\\)"}</div>)}
+                        <div id="pic2">
+                        <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
+                        {
+                                n===0 && (
+                                    <div>{`\\(Q_${n}(x)=sin(${sv}cos^{-1}x)\\)`}</div>
+                                )
+                            }
+                            {
+                                n===1 && (
+                                    <div>{`\\(Q_${n}(x)=\\frac{1}{sqrt{1-x^2}}\\)`}<span className="npallf">{`\\(-cos(${sv}cos^{-1}x)\\))`}</span></div>
+                                )
+                            }
+                            {
+                                n===2 && (
+                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)`}<span className="npallf">{`\\(-x.C-\\sqrt(${v1}(1-x^2)).S\\)`}</span></div>
+                                )
+                            }
+                            {
+                                n===3 && (
+                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt((1-x^2))^5}\\)`}<span className="npallf">{`\\(-3x^2.C-3x\\sqrt(${v1}(1-x^2)).S+(${v1-1})(1-x^2).C\\)`}</span></div>
+                                ) 
+                            }
+                            {
+                                n===4 && (
+                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)`}<span className="npallf">{`\\(-15x^3.C-15x^2\\sqrt(${v1}(1-x^2)).S+(${6*v1-9})(1-x^2)x.C + (${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</span></div>
+                                ) 
+                            }
+                            
+                            {
+                                n===5 && (
+                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)`}<span className="npallf">{`\\(-105x^4.S-105x^3\\sqrt(${v1}(1-x^2)).C+(${45*v1-90})(1-x^2)x^2.S + (${10*v1-55})x\\sqrt{${v1}(1-x^2)^3} -(${v1**2-10*v1+9})(1-x^2)^2\\)`}</span></div>
+                                ) 
+                            }
+                            {
+                                n>1 && (
+                                    <div>note also that, <span>{`\\(C=cos(${sv}cos^{-1}x)\\)`}</span> and <span>{`\\(S=sin(${sv}cos^{-1}x)\\)`}</span></div>
+                                )
+                            }
                         </div>
                         </div>
                         <div style={{margin:"auto", justifyContent:"center", display:"flex"}} id="pic4">
@@ -764,78 +819,6 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
                             style={{textAlign: "center", marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
                         />
                     </div>
-                    </div>
-                </section>
-            </motion.div>
-            <motion.div className="tab-pane fade" id="nav-solution" role="tabpanel" 
-                key="solution1"
-                aria-labelledby="nav-solution-tab">
-                <section className="ms-md-3 ms-1">
-                    <div className={dim.w>700?"fs-5":"beginner"}>
-                    <div>
-                        <div className="fw-bolder" id="m1"> Inputed equation:</div>
-                        <div className="m4">{coeff}</div>
-                        <div className="fw-bolder" id="m2"> The General solution:</div>
-                        <div className="m4">{coeff1}</div>
-                        <div className="fw-bolder" id="m3"> Where:</div>
-                        <div className="m4">\(C_1\) and \(C_2\) are constants</div>
-                    </div>
-                    <div className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab">
-                    {(n!==0 && n!==1) && (<motion.div className={(dim.w<700)?
-                            "text-start ms-0 pe-2 ps-0 beginner mb-3":"text-start fs-5 mb-3"} 
-                            animate={{
-                                x:[0,-100,0,100,0],
-                                transition:{
-                                    delay:5,
-                                    duration:60,
-                                    repeat:Infinity,
-                                    ease: "easeInOut",
-                                    spring: 120
-                                }
-                            }}
-                            style={{height: "fit-content"}}>
-                            <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"500px", textAlign:"center"}}>
-                                <div className="d-flex align-items-center mb-2">
-                                    <div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>{pn}</div>
-                                    <span style={{scale:"1.3", paddingLeft:da*2+"px", paddingRight: da*2+"px"}}>{a2}</span>
-                                    <span id="np" className="px-1" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
-                                </div>
-                            </div>
-                        </motion.div>)}
-                        {n===0 && (<div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>\(P_0(x)\ =\ 1\)</div>)}
-                        {n===1 && (<div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>\(P_1(x)\ =\ x\)</div>)}
-                    </div>
-                    <div className={"table-responsive container pt-0 mt-2 stytab"}>
-                        {(n!==0 && n!==1) && (<motion.div className={(dim.w<700)?
-                            "text-start ms-0 pe-2 ps-0 beginner mb-3":"text-start fs-5 mb-3"} 
-                            animate={{
-                                x:[0,-100,0,100,0],
-                                transition:{
-                                    delay:5,
-                                    duration:60,
-                                    repeat:Infinity,
-                                    ease: "easeInOut",
-                                    spring: 120
-                                }
-                            }}
-                            style={{height: "fit-content"}}>
-                            <div className="we p" id="we4" style={n<8?{textAlign:"start"}:{width:"600px", textAlign:"center"}}>
-                                <div className="d-flex align-items-center mb-2">
-                                    <div style={{scale:"1.2", marginLeft:"0%", paddingRight: "2%"}}>{qn}</div>
-                                    <span style={{scale:"1.3", paddingLeft:da*2+"px", paddingRight: da*2+"px"}}>{a2}</span>
-                                    <span id="np" className="px-1" style={n<8?{ minWidth: "fit-content", textAlign:"center"}:{minWidth: "fit-content", textAlign:"center"}}>{pp}</span>
-                                    <span className="ps-3" style={{scale:"1.3"}} id="t">{"\\(tanh^{"+[-1]+"}(x) \\ -\\)"}</span>
-                                    {n<8 && (<span style={{scale:"1.3", display:"flex", minWidth: "fit-content", paddingLeft:(40*n/7)+"px"}} 
-                                    >{qq}</span>)}
-                                </div>
-                                {n>=8 && (<div id="q101" className="mt-4 text-end"  style={{scale:"1.1", marginLeft:(90+2*da)+"px", minWidth:"700px"}}>
-                                    {qq}
-                                </div>)}
-                            </div>
-                        </motion.div>)}
-                        {n===0 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_0(x)\ =\ tanh^{"+[-1]+"}(x)\\)"}</div>)}
-                        {n===1 && (<div style={{scale:"1.2", marginLeft:"2%", paddingRight: "2%"}}>{"\\(Q_1(x)\ =\ xtanh^{"+[-1]+"}(x)\\)"}</div>)}
-                        </div>
                     </div>
                 </section>
             </motion.div>

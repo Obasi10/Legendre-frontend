@@ -5,6 +5,8 @@ import { Tooltip } from "bootstrap";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import Pic from "../IMG-20211001-WA0003.jpg";
+import Variants from "../components/variants";
+import doc from "../Best ever Solutions to sets of Riccatti Equation.pdf"
 
 const svgVariants = {
     hidden: { rotate: [-180,0,180] },
@@ -131,7 +133,14 @@ const Contact =({dim, setp, setl, lock, modal, setm, setdim, setErrorr})=>{
                 <img className="styleimg" src={Pic} alt=""/>
                  <a href="https://innocent-obasi.vercel.app" style={{textDecoration: "none", color: "purple", scale: 1.2}}>Innocent Obasi</a> is an innovative mathematician, engineer and web developer: with the sole purpose of bringing a new dimension of innovation to the IT sector.</p>
               <p style={{fontWeight:400, fontStyle: "italic"}}>My aim is to champion comprehensible, better quality and aesthetical data presentations in the market of data presentation that yearns for more innovation.</p>
-              <p style={{fontWeight:400, fontStyle: "italic"}}>Also; to harness skills in IT, science and engineering towards the goal of forming a niche in the cyberspace; that enhances the effective synchronization of these fields (careers), with the aim of providing quality and comprehensible solutions to the needs of the environment and the world at large.</p></div>
+              
+              <p style={{fontWeight:400, fontStyle: "italic"}}>Also; to harness skills in IT, science and engineering towards the goal of forming a niche in the cyberspace; that enhances the effective synchronization of these fields (careers), with the aim of providing quality and comprehensible solutions to the needs of the environment and the world at large.</p>
+              <p style={{fontWeight:400, fontStyle: "italic"}}>The PDF document below, authored by me, provides a detailed documentation to the formula used in this calculator</p>
+              <div className="text-center"><motion.a href={doc} variants={Variants} download={""} type="button" whileHover="hover" className="btn rounded-pill bgpupp align-items-center text-center textpele"
+                    >
+                        Download
+                    </motion.a></div>
+              </div>
             </div>
             <div className="container-lg mt-4">
               <div className="text-center">

@@ -4,7 +4,7 @@ import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import CalcDetails from "../components/calcDetails";
 import { motion } from "framer-motion";
 
-const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr})=>{
+const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr, setn1, setk, m, k, setem, n1})=>{
     const [f, setf]=useState(window.screen.availHeight*1.2)
     const {user}=useAuthContext()
     const [islo, setislo]=useState(false)
@@ -76,7 +76,8 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr})=>{
                     <section>
                         <div className="mt-4 text-danger">
                             {workouts && workouts.map((workout) => (
-                            <CalcDetails key={workout._id} workout={workout} modal={modal} setm={setm} setn={setn} n={n} />
+                            <CalcDetails key={workout._id} workout={workout} modal={modal} setm={setm} n1={n1} k={k} setn1={setn1} m={m} 
+                            setem={setem} setk={setk} setn={setn} n={n} />
                             ))}
                             {set && <motion.div 
                                 initial={{opacity: 0}} animate={{opacity:1}} transition={{delay:2, duration:4}}

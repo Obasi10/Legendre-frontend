@@ -42,7 +42,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
       window.MathJax.typeset()
       settab(false)
     }
-    setTimeout(()=>ref.current.focus(),2000)
+    setcalc(true)
   },[])
   const err=()=>{
     if((n1<0 || Number.isInteger(Number(n1))===false || n1>75 || !n1)){
@@ -51,6 +51,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
     } else {
       setse(true)
       setcalc(false)
+      setm({...modal, Ready: true})
     }
   }
     return (
@@ -68,8 +69,8 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                               transition={{spring: 700, ease: 'easeIn', duration:1}}
                               exit={{opacity:0}}
                             >
-                              <h2 style={{textTransform: "none", textAlign: "center", fontWeight: 900}}><a href="#input" className={dim.w<700?"beginner fw-bolder":"fs-5 fw-bolder"} style={{color: "rgb(48, 1, 48)"}}><span>\((1-x^2)y''-2xy'+\)</span>
-                                <span style={{textDecoration: "none"}}>{(!n1 || n1<0 || Number.isInteger(Number(n1))===false || n1>75)?"\\(n(n+1)\\)":`\\(${n*(n+1)}\\)`}</span><span>\(y=0\)</span>
+                              <h2 style={{textTransform: "none", textAlign: "center", fontWeight: 900}}><a href="#input" className={dim.w<700?"beginner fw-bolder":"fs-5 fw-bolder"} style={{color: "rgb(48, 1, 48)"}}>\((1-x^2)y''-2xy'+\)
+                                {(!n1 || n1<0 || Number.isInteger(Number(n1))===false || n1>75)?"\\(n(n+1)\\)":`\\(${(n*1)*((n*1)+1)}\\)`}\(y=0\)
                               </a>
                               </h2>
                             </motion.div>
@@ -89,32 +90,11 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                   </span>
                                 </span>
                                 </span></h2>
-                                <div className="row g-0 note1 align-items-center justify-content-center">
-                                <input ref={ref} className="col-lg-4 col-6 text-center p-1" type="number" onInput={()=>setcalc(false)} id="input" placeholder="Enter the value of n (1,2,3...)"
+                                <div className="row g-0 col-10 note1 align-contents-center align-items-center justify-contents-center">
+                                <input ref={ref} className="col-lg-6 col-8 text-center p-1" type="number" onInput={()=>setcalc(false)} id="input" placeholder="Enter the value of n (1,2,3...)"
                                   onChange={(e)=>{setn1(e.target.value); setn(Number(e.target.value))}} value={n1}/>
-                                <motion.button variants={Variants} whileHover="hover" className="btn textpele col-lg-2 col-3" id="btn--select" onClick={err}>Select</motion.button>
+                                <Link className="col-3 col-lg-1" to={!n? "":"/solution"}><motion.button variants={Variants} whileHover="hover" className="btn textpele p-1 px-2" id="btn--select" onClick={err}>Select</motion.button></Link>
                                 </div>
-                              </motion.div>
-                            )
-                          }
-                          {
-                            (select && n1) && (
-                              <motion.div key="dialogue"
-                              variants={Variants}
-                              initial="hidden"
-                              animate="visible"
-                              exit="exitmode"
-                              >
-                                <header>
-                                <p> Is the above equation the intended equation?
-                                </p>
-                                </header>
-                                <h2>
-                                <div className="row text-center g-5 justify-content-center align-items-center">
-                                  <Link to={(n1 || n===0)?"/solution":""} className="col-2 mx-4"><motion.button variants={Variants} whileHover="hover" className="btn bgpupp beginner col-2 textpele mx-3 px-3 py-1" onClick={()=>{setm({...modal, Ready:true})}} id="yes">yes</motion.button></Link>
-                                  <motion.button variants={Variants} whileHover="hover" className="btn bgpupp textpele col-2 mx-3 px-3 py-2" id="no" onClick={()=>setse(false)}>No</motion.button>
-                                </div>
-                                </h2>
                               </motion.div>
                             )
                           }
@@ -136,21 +116,21 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                     <header id="logo" className="textpep py-3 beginner">
                       \((1-x^2)y''-2xy'+n(n+1)y=0
                       \)
-                      <div className="left1">\( where\ n=1,2,3,...\)</div>
+                      <div className="left1">\( where\ n=0,1,2,3,...\)</div>
                       <div>\(y=C_1\ P_n(x)+ C_2\ Q_n(x)\)</div>
                       <div className="left1">\( where: \)</div><span>{array[0]}</span>
                       <div className="px-2 container table-responsive pt-0 my-3" style={{width:"fit-content", overflowX:"hidden", overflowY:"hidden"}} >
                         <motion.div className="align-items-center d-flex"
-                          animate={{
-                            x:[0,-300,0,300,0],
-                            transition:{
-                                delay:2,
-                                duration:60,
-                                repeat:Infinity,
-                                ease: "easeInOut",
-                                spring: 120
-                            }
-                          }}
+                              animate={{
+                                x:[0,-300,0,300,0],
+                                transition:{
+                                    delay:2,
+                                    duration:60,
+                                    repeat:Infinity,
+                                    ease: "easeInOut",
+                                    spring: 120
+                                }
+                              }}
                         >
                           {array[1]+array[2]+array[3]+array[4]}
                         </motion.div>
@@ -223,7 +203,7 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                                 }
                               }}
                             >
-                              {array[1]+array[2]+array[3]+array[4]}
+                              {array[1]+array[2]}<span className="npall">{array[3]}</span>{array[4]}
                             </motion.div>
                             </div>
                               <p>
@@ -253,6 +233,12 @@ const Calculation=({n, setn,n1,setn1,dim, setm, modal,calc, setcalc, setp, setta
                   </div>
                 </div>
               </div>
+              <script>
+                function focusor() {
+                    ref.current && !n1 && n1!==0 && calc? setTimeout(()=>ref.current.focus(),2000): n1=n1
+                }
+                document.getElementById("calculate").addEventListener("load", focusor) 
+              </script>
             </section>
 
         </>
