@@ -31,10 +31,10 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
     const [comp, setcom]=useState(false)
     const {user}=useAuthContext()
     const {logouter}=useLogout()
-    const title= "Legendre Equation"
-    const detail1=n
-    const [tap, settap]=useState(false)
     useEffect(()=>{setn(Number(n))},[])
+    const title= "Legendre Equation"
+    const [detail1]=[n]
+    const [tap, settap]=useState(false)
 
     const findhcf=(x,y)=>{
         while (Math.max(x,y) % Math.min(x,y)!==0){
@@ -610,46 +610,49 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const workout = {title, detail1}
-        if (!user) {
-            setErrorr('You must be logged in to save your files')
+        console.log(workout)
+        if (navigator.onLine===false){
+          setErrorr("Network problem! check your connection and try again.")
         } else {
-            try{
+          if(user){
+            setm({...modal, Ready:true})
                 return new Promise(function(resolve, reject){
-                    const timeout= setTimeout(()=>{
-                      reject("error: timeout")
-                    }, 3000);
+                const timeout= setTimeout(()=>{
+                  reject("error: Sorry for the delay")
+                }, 5000);
 
-                    setm({...modal, Ready: true})
-                    fetch('/api/workouts/', {
-                        method: 'POST',
-                        body: JSON.stringify(workout),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${user.token}`
-                        }
-                    })
-                    .then(response=>{
-                        clearTimeout(timeout);
-                        if(response.status===401){
-                            logouter()
-                        }
-                        if (!response.ok) {
-                            throw new Error(response.json().error)
-                        }
-                        if (response.ok) {
-                            dispatch({type: 'CREATE_WORKOUT', payload: response.json()})
-                            setm({...modal, saved: true})
-                        }
-                    })
+                setm({...modal, Ready: true})
+                fetch('/api/workouts/', {
+                    method: 'POST',
+                    body: JSON.stringify(workout),
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                    }
                 })
-            } catch (err){
-                if(err.message[0]==="U"){
-                    setErrorr("Network problem! check your connection and try again.")
-                } else {setErrorr(err.message)}
-            }
-            setm({...modal, Ready: false})
+              .then(response=>{
+                clearTimeout(timeout);
+                if(response.status===401){
+                    logouter()
+                }
+                if (!response.ok) {
+                    throw new Error(response.json().error)
+                }
+                if (response.ok) {
+                    dispatch({type: 'CREATE_WORKOUT', payload: response.json()})
+                    setm({...modal, saved: true})
+                }
+              })
+              .catch(()=>{
+                setErrorr("Took too long to load...")
+                setm({...modal, Ready: false})
+              });
+            })
+          } else {
+            setErrorr('You must be logged in to save your files')
+          }
         }
-    }
+      }
 
     return (
         <>
@@ -657,9 +660,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         <div className="tab-content justify-content-center col-lg-8 col-12" id="nav-tabContent" style={{margin: "auto", marginTop: h1}}>
             <AnimatePresence >
             <motion.div className="tab-pane fade show active" id="nav-full-solution" role="tabpanel"
-                key="full" onTouchMoveu={()=>console.log("i love you")}
-                onScrollCapture={()=>console.log("i love you")}
-                onHoverEnd={()=>console.log("i love you")}
+                key="full" 
                 aria-labelledby="nav-full-solution-tab">
                 <section>
                     <div className="container-lg" id="pdf">
