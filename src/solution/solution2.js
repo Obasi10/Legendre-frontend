@@ -36,7 +36,7 @@ const Solution2=({n, lock, ref0, ref1, ref2, page, setp, dim, setm, modal, setl,
     const {user}=useAuthContext()
     const {logouter}=useLogout()
     const title= "Variable Coefficient Differential Equation 1"
-    const [detail1, detail2]=[n, m]
+    const [detail1, detail2, detail3]=[n, m, null]
     const [tap, settap]=useState(false)
 
     const findhcf=(x,y)=>{
@@ -700,49 +700,49 @@ const Solution2=({n, lock, ref0, ref1, ref2, page, setp, dim, setm, modal, setl,
     },[tab, data01])
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const workout = {title, detail1, detail2}
-        if (!user) {
-            setErrorr('You must be logged in to save your files')
+        const workout = {title, detail1, detail2, detail3}
+        if (navigator.onLine===false){
+          setErrorr("Network problem! check your connection and try again.")
         } else {
-            try{
+          if(user){
+            setm({...modal, Ready:true})
                 return new Promise(function(resolve, reject){
-                    const timeout= setTimeout(()=>{
-                      reject("error: timeout")
-                    }, 3000);
+                const timeout= setTimeout(()=>{
+                  reject("error: Sorry for the delay")
+                }, 3000);
 
-                    setm({...modal, Ready: true})
-                    fetch('/api/workouts/', {
-                        method: 'POST',
-                        body: JSON.stringify(workout),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${user.token}`
-                        }
-                    })
-                    .then(response=>{
-                        clearTimeout(timeout);
-                        if(response.status===401){
-                            logouter()
-                        }
-                        if(navigator.onLine===false){
-                            throw new Error("Network problem! check your connection and try again.")
-                        } else if (!response.ok && navigator.onLine) {
-                            throw new Error(response.json().error)
-                        }
-                        if (response.ok) {
-                            dispatch({type: 'CREATE_WORKOUT', payload: response.json()})
-                            setm({...modal, saved: true})
-                        }
-                    })
+                setm({...modal, Ready: true})
+                fetch('/api/workouts/', {
+                    method: 'POST',
+                    body: JSON.stringify(workout),
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                    }
                 })
-            } catch (err){
-                if(err){
-                    setErrorr(err.message)
-                }     
-            }
-            setm({...modal, Ready: false})
+              .then(response=>{
+                clearTimeout(timeout);
+                if(response.status===401){
+                    logouter()
+                }
+                if (!response.ok) {
+                    throw new Error(response.json().error)
+                }
+                if (response.ok) {
+                    dispatch({type: 'CREATE_WORKOUT', payload: response.json()})
+                    setm({...modal, saved: true})
+                }
+              })
+              .catch(()=>{
+                setErrorr("Took too long to load...")
+                setm({...modal, Ready: false})
+              });
+            })
+          } else {
+            setErrorr('You must be logged in to save your files')
+          }
         }
-    }
+      }
 
     return (
         <>
@@ -824,14 +824,14 @@ const Solution2=({n, lock, ref0, ref1, ref2, page, setp, dim, setm, modal, setl,
                                       formap.map((i,k)=>(
                                         <>
                                         {(i!=m) &&(
-                                        <div className="my-2 d-flex align-items-center"><span key={k}>{qen1(m,i)}</span>
-                                        <span key={k} className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
-                                        <span key={k} className="npall text-center npadd">{pin(n,m-i)}</span>{"\\(\\ +\\ \\)"}</div>
+                                        <div className="my-2 d-flex align-items-center"><span key={k+'w'}>{qen1(m,i)}</span>
+                                        <span key={k+'q'} className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
+                                        <span key={k+'r'} className="npall text-center npadd">{pin(n,m-i)}</span>{"\\(\\ +\\ \\)"}</div>
                                         )}
                                         {(i==m) &&(
-                                        <div className="my-2 d-flex align-items-center"><span key={k}>{qen1(m,i)}</span>
-                                        <span key={k}className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
-                                        <span key={k}className="npall npadd">{pin(n,m-i)}</span></div>
+                                        <div className="my-2 d-flex align-items-center"><span key={k+'w'}>{qen1(m,i)}</span>
+                                        <span key={k+'q'}className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
+                                        <span key={k+'r'}className="npall npadd">{pin(n,m-i)}</span></div>
                                         )}
                                         </>
                                       ))  
@@ -950,14 +950,14 @@ const Solution2=({n, lock, ref0, ref1, ref2, page, setp, dim, setm, modal, setl,
                                       formap.map((i,k)=>(
                                         <>
                                         {(i!=m) &&(
-                                        <div className="my-2 d-flex align-items-center"><span key={k}>{qen1(m,i)}</span>
-                                        <span key={k} className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
-                                        <span key={k} className="npall npadd">{pin(n,m-i)}</span>{"\\(\\ +\\ \\)"}</div>
+                                        <div className="my-2 d-flex align-items-center"><span key={k+'w'}>{qen1(m,i)}</span>
+                                        <span key={k+'q'} className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
+                                        <span key={k+'r'} className="npall npadd">{pin(n,m-i)}</span>{"\\(\\ +\\ \\)"}</div>
                                         )}
                                         {(i==m) &&(
-                                        <div className="my-2 d-flex align-items-center"><span key={k}>{qen1(m,i)}</span>
-                                        <span key={k}className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
-                                        <span key={k}className="npall npadd">{pin(n,m-i)}</span> {"\\(\\ \\ \\)"}</div>
+                                        <div className="my-2 d-flex align-items-center"><span key={k+'w'}>{qen1(m,i)}</span>
+                                        <span key={k+'q'}className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
+                                        <span key={k+'r'}className="npall npadd">{pin(n,m-i)}</span> {"\\(\\ \\ \\)"}</div>
                                         )}
                                         </>
                                       ))  
@@ -970,14 +970,14 @@ const Solution2=({n, lock, ref0, ref1, ref2, page, setp, dim, setm, modal, setl,
                                       formap.map((i,k)=>(
                                         <>
                                         {(i!=m) &&(
-                                        <div className="my-2 d-flex align-items-center"><span key={k}>{qen1(m,i)}</span>
-                                        <span key={k} className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
-                                        <span key={k} className="npall npadd">{pin(n,m-i)}</span>{"\\(\\ +\\ \\)"}</div>
+                                        <div className="my-2 d-flex align-items-center"><span key={k+'w'}>{qen1(m,i)}</span>
+                                        <span key={k+'q'} className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
+                                        <span key={k+'r'} className="npall npadd">{pin(n,m-i)}</span>{"\\(\\ +\\ \\)"}</div>
                                         )}
                                         {(i==m) &&(
-                                        <div className="my-2 d-flex align-items-center"><span key={k}>{qen1(m,i)}</span>
-                                        <span key={k}className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
-                                        <span key={k}className="npall npadd">{pin(n,m-i)}</span> {"\\(\\ \\ \\)"}</div>
+                                        <div className="my-2 d-flex align-items-center"><span key={k+'w'}>{qen1(m,i)}</span>
+                                        <span key={k+'q'}className={qen2(i)==''?"":"npall me-1"}>{qen2(i)}</span>
+                                        <span key={k+'r'}className="npall npadd">{pin(n,m-i)}</span> {"\\(\\ \\ \\)"}</div>
                                         )}
                                         </>
                                       ))  
