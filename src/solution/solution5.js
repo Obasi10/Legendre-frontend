@@ -34,7 +34,6 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
     const {logouter}=useLogout()
     const [v, setv]=useState(((k*1)+((n+1)*1)**2))
     const title= "Variable Coefficient Differential Equations 4"
-    const [detail1, detail3]=[n1, k]
     useEffect(()=>{setn(n1); setk(Number(k)); setv(math.abs(v)); setv1(k+(n+1)**2)},[])
     const [sv,setsv]=useState(math.sqrt(math.abs(v)))
     useEffect(()=>{
@@ -48,7 +47,7 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
         else {setsv(math.sqrt(math.abs(v)))}
         console.log(sv)
     },[])
-
+    const [detail1, detail2, detail3]=[n, null, k]
     const findhcf=(x,y)=>{
         while (Math.max(x,y) % Math.min(x,y)!==0){
             if (x>y){
@@ -586,47 +585,49 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
     },[tab, data01])
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const workout = {title, detail1, detail3}
-        if (!user) {
-            setErrorr('You must be logged in to save your files')
+        const workout = {title, detail1, detail2, detail3}
+        if (navigator.onLine===false){
+          setErrorr("Network problem! check your connection and try again.")
         } else {
-            try{
+          if(user){
+            setm({...modal, Ready:true})
                 return new Promise(function(resolve, reject){
-                    const timeout= setTimeout(()=>{
-                      reject("error: timeout")
-                    }, 3000);
+                const timeout= setTimeout(()=>{
+                  reject("error: Sorry for the delay")
+                }, 3000);
 
-                    setm({...modal, Ready: true})
-                    fetch('/api/workouts/', {
-                        method: 'POST',
-                        body: JSON.stringify(workout),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${user.token}`
-                        }
-                    })
-                    .then(response=>{
-                        clearTimeout(timeout);
-                        if(response.status===401){
-                            logouter()
-                        }
-                        if (!response.ok) {
-                            throw new Error(response.json().error)
-                        }
-                        if (response.ok) {
-                            dispatch({type: 'CREATE_WORKOUT', payload: response.json()})
-                            setm({...modal, saved: true})
-                        }
-                    })
+                setm({...modal, Ready: true})
+                fetch('/api/workouts/', {
+                    method: 'POST',
+                    body: JSON.stringify(workout),
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                    }
                 })
-            } catch (err){
-                if(err.message[0]==="U"){
-                    setErrorr("Network problem! check your connection and try again.")
-                } else {setErrorr(err.message)}
-            }
-            setm({...modal, Ready: false})
+              .then(response=>{
+                clearTimeout(timeout);
+                if(response.status===401){
+                    logouter()
+                }
+                if (!response.ok) {
+                    throw new Error(response.json().error)
+                }
+                if (response.ok) {
+                    dispatch({type: 'CREATE_WORKOUT', payload: response.json()})
+                    setm({...modal, saved: true})
+                }
+              })
+              .catch(()=>{
+                setErrorr("Took too long to load...")
+                setm({...modal, Ready: false})
+              });
+            })
+          } else {
+            setErrorr('You must be logged in to save your files')
+          }
         }
-    }
+      }
 
     return (
         <>
