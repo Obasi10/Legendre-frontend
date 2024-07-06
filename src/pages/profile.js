@@ -10,11 +10,11 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr, setn1,
     const [islo, setislo]=useState(false)
     const [set, sets]=useState(false)
     const {workouts, dispatch}=useWorkoutsContext()
-    useEffect(()=>{
-        if(!islo){
-            setm({...modal, Ready:false})
-        }
-    },[islo])
+    // useEffect(()=>{
+    //     if(!islo){
+    //         setm({...modal, Ready:true})
+    //     }
+    // },[islo])
     useEffect(() => {
         const fetchWorkouts = async () => {
           fetch('/api/workouts', {
@@ -28,7 +28,7 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr, setn1,
                   } else {
                     setErrorr("Sorry, your log in time has expired.")
                   }
-                    setislo(true)
+                    // setislo(true)
               })
           })
         }
@@ -38,7 +38,7 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr, setn1,
         }
 
       }, [dispatch, user])
-      useEffect(()=>{setp(0);setl("p"); setm({...modal, Ready: false})},[])
+      useEffect(()=>{setp(0);setl("p");setm({...modal, Ready:true})},[])
 
     useEffect(()=>{
         function handle(){setdim({
@@ -56,9 +56,11 @@ const Profile =({setl, setm, modal, setdim, setp, dim,n, setn, setErrorr, setn1,
     useEffect(()=>{
         if(workouts){
             sets(false)
-        } else {
+
+        } else if (!workouts) {
             sets(true)
         }
+        setm({...modal, Ready:false})
     },[workouts])
     return(
         <div className={dim.w<700?"wrapper3 beginner px-1": "wrapper3 fs-4 px-1"}>
