@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext';
 import {AnimatePresence} from 'framer-motion';
+import { useWorkoutsContext } from "./hooks/useWorkoutsContext";
 
 // pages & components
 import Home from './pages/Home';
@@ -121,6 +122,13 @@ const App =()=>{
               setnav={setnav} setInput={setInput} setn={setn} setn1={setn1} setl={setl} lock={lock} setcalc={setcalc}/>}
             />
             <Route
+              path="/profo"
+              element={(lock==='ss')?
+                <Profile
+                calcu={calcu}  lock={lock} page={page}/>: <Navigate to="/profile"/>
+              }
+            />
+            <Route
               path="/solution"
               element={ (n || n===0)?
                 <Solution dim={dim} setm={setm} count={count} setc={setc} setp={setp} n={n} setdim={setdim}
@@ -162,7 +170,7 @@ const App =()=>{
             />
             <Route
               path="/profile"
-              element={(user && lock!=="ss")?<Profile setp={setp} setl={setl} lock={lock} setm={setm} modal={modal} dim={dim} 
+              element={(user)?<Profile setp={setp} setl={setl} lock={lock} setm={setm} modal={modal} dim={dim} 
               setdim={setdim} setn={setn} n={n} k={k} setk={setk} n1={n1} setn1={setn1} m={m} setem={setem}
                setErrorr={setErrorr} />: <Navigate to="/"
               />}
