@@ -35,17 +35,16 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
     const [v, setv]=useState(((k*1)+((n+1)*1)**2))
     const title= "Variable Coefficient Differential Equations 4"
     useEffect(()=>{setn(n1); setk(Number(k)); setv(math.abs(v)); setv1(k+(n+1)**2)},[])
-    const [sv,setsv]=useState(math.sqrt(math.abs(v)))
+    const [sv,setsv]=useState(math.round(math.sqrt(math.abs(v))*10**3)/10**3)
     useEffect(()=>{
         if (v1<0 && math.abs(v)!=1){
-            setsv(math.sqrt(math.abs(v))+'i')
+            setsv(math.round(math.sqrt(math.abs(v))*10**3)/10**3+'i')
         } else if (v1<0 && math.abs(v)===1){
             setsv('i')
         } else if (v1>=0 && math.abs(v)===1){
             setsv('')
         }
-        else {setsv(math.sqrt(math.abs(v)))}
-        console.log(sv)
+        else {setsv(math.round(math.sqrt(math.abs(v))*10**3)/10**3)}
     },[])
     const [detail1, detail2, detail3]=[n, null, k]
     const findhcf=(x,y)=>{
@@ -647,36 +646,36 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
                                 <div className="fw-bolder" id="m2"> The General solution can be written as:</div>
                                 <div className="text-center">{coeff1}</div>
                             </div>
-                            <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab">
+                            <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab" style={{width:"fit-content", overflowY:"hidden"}}>
                             <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
                                 {
-                                    n===0 && (<><div>{"\\(F_0(x)=\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
-                                        <div>{"\\(G_0(x)=\\)"}<span className="npallf">{array1[1]}</span>{`\\(^${sv}\\)`}</div></>
+                                    n===0 && (<><div>{"\\(F_0(x)=\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^{${sv}}\\)`}</span></div>
+                                        <div>{"\\(G_0(x)=\\)"}<span className="npallf">{array1[1]}</span>{`\\(^{${sv}}\\)`}</div></>
                                     )
                                 }
                                 {
                                     n===1 && (
-                                        <><div>{"\\(F_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
-                                        <div>{"\\(G_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span></div></>
+                                        <><div>{"\\(F_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^{${sv}}\\)`}</span></div>
+                                        <div>{"\\(G_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^{${sv}}\\)`}</span></div></>
                                     )
                                 }
                                 {
-                                    n===2 && (<><div>{"\\(F_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x+i\\sqrt{${v1}(1-x^2)}\\)`}</span></div>
-                                    <div>{"\\(G_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x-i\\sqrt{${v1}(1-x^2)}\\)`}</span></div></>)
+                                    n===2 && (<><div className="d-flex align-items-center">{"\\(F_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^{${sv}}\\)`}</span><span className="mx-1 npallf">{`\\(x+i\\sqrt{${v1}(1-x^2)}\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{"\\(G_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^{${sv}}\\)`}</span><span className="mx-1 npallf">{`\\(x-i\\sqrt{${v1}(1-x^2)}\\)`}</span></div></>)
                                 }
                                 {
-                                    n===3 && (<><div className="d-flex align-items-center">{"\\(F_3(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf d-flex">{`\\(3x^2+3ix\\sqrt{${v1}(1-x^2)}-(${v1-1})(1-x^2)\\)`}</span></div>
-                                    <div className="d-flex align-items-center">{"\\(G_3(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf d-flex">{`\\(3x^2-3ix\\sqrt{${v1}(1-x^2)}-(${v1-1})(1-x^2)\\)`}</span></div>
+                                    n===3 && (<><div className="d-flex align-items-center">{"\\(F_3(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^{${sv}}\\)`}</span><span className="mx-1 npallf d-flex">{`\\(3x^2+3ix\\sqrt{${v1}(1-x^2)}-(${v1-1})(1-x^2)\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{"\\(G_3(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^{${sv}}\\)`}</span><span className="mx-1 npallf d-flex">{`\\(3x^2-3ix\\sqrt{${v1}(1-x^2)}-(${v1-1})(1-x^2)\\)`}</span></div>
                                     </>)
                                 }
                                 {
-                                    n===4 && (<><div className="d-flex align-items-center">{"\\(F_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3+15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)-i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
-                                            <div className="d-flex align-items-center">{"\\(G_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3-15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)+i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
+                                    n===4 && (<><div className="d-flex align-items-center">{"\\(F_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^{${sv}}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3+15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)-i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
+                                            <div className="d-flex align-items-center">{"\\(G_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^{${sv}}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3-15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)+i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
                                     </>)
                                 }
                                 {
-                                    n===5 && (<><div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4+105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)-i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
-                                                <div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4-105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)+i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
+                                    n===5 && (<><div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^{${sv}}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4+105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)-i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
+                                                <div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^{${sv}}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4-105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)+i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
                                     </>)
                                 }
                             </div>
