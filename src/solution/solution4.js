@@ -667,7 +667,7 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
                                 <div className="fw-bolder" id="m2"> The General solution can be written as:</div>
                                 <div className="text-center">{coeff1}</div>
                             </div>
-                            <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab">
+                            <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab" style={{width:"fit-content", overflowY:"hidden"}}>
                             <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
                                 {
                                     n===0 && (<><div>{"\\(F_0(x)=\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
@@ -681,8 +681,8 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
                                     )
                                 }
                                 {
-                                    n===2 && (<><div>{"\\(F_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x+i\\sqrt{${v1}(1-x^2)}\\)`}</span></div>
-                                    <div>{"\\(G_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x-i\\sqrt{${v1}(1-x^2)}\\)`}</span></div></>)
+                                    n===2 && (<><div className="d-flex align-items-center">{"\\(F_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x+i\\sqrt{${v1}(1-x^2)}\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{"\\(G_2(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf">{`\\(x-i\\sqrt{${v1}(1-x^2)}\\)`}</span></div></>)
                                 }
                                 {
                                     n===3 && (<><div className="d-flex align-items-center">{"\\(F_3(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><span className="mx-1 npallf d-flex">{`\\(3x^2+3ix\\sqrt{${v1}(1-x^2)}-(${v1-1})(1-x^2)\\)`}</span></div>
