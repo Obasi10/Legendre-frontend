@@ -670,14 +670,14 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
                             <div id="pic1" className="mt-lg-5 mt-3 container table-responsive pt-0 mt-2 stytab" style={{width:"fit-content", overflowY:"hidden"}}>
                             <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
                                 {
-                                    n===0 && (<><div>{"\\(F_0(x)=\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
-                                        <div>{"\\(G_0(x)=\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span></div></>
+                                    n===0 && (<><div className="d-flex align-items-center">{"\\(F_0(x)=\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
+                                        <div className="d-flex align-items-center">{"\\(G_0(x)=\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span></div></>
                                     )
                                 }
                                 {
                                     n===1 && (
-                                        <><div>{"\\(F_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
-                                        <div>{"\\(G_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span></div></>
+                                        <><div className="d-flex align-items-center">{"\\(F_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span></div>
+                                        <div className="d-flex align-items-center">{"\\(G_1(x)=\\frac{1}{\\sqrt{1-x^2}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span></div></>
                                     )
                                 }
                                 {
@@ -691,12 +691,12 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
                                 }
                                 {
                                     n===4 && (<><div className="d-flex align-items-center">{"\\(F_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3+15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)-i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
-                                            <div className="d-flex align-items-center">{"\\(G_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[0]}</span><span>{`\\(^${sv}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3-15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)+i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
+                                            <div className="d-flex align-items-center">{"\\(G_4(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)"}<span className="npallf">{array1[1]}</span><span>{`\\(^${sv}\\)`}</span><div className="mx-1 npallf d-flex">{`\\(15x^3-15ix^2\\sqrt{${v1}(1-x^2)}-(${6*v1-9})x(1-x^2)+i(${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</div></div>
                                     </>)
                                 }
                                 {
-                                    n===5 && (<><div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4+105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)-i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
-                                                <div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array[0]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4-105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)+i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
+                                    n===5 && (<><div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array1[0]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4+105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)-i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
+                                                <div className="max">{"\\(F_5(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)"}<div className="npallf">{array1[1]}</div><div>{`\\(^${sv}\\)`}</div><span className="mx-1 npallf d-flex">{`\\(105x^4-105ix^3\\sqrt{${v1}(1-x^2)}-(${45*v1-90})x^2(1-x^2)+i(${10*v1-55})x\\sqrt{${v1}(1-x^2)^3}+(${v1**2-10*v+9})(1-x^2)^2\\)`}</span></div>
                                     </>)
                                 }
                             </div>
@@ -709,33 +709,33 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
                             <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
                             {
                                 n===0 && (
-                                    <div>{`\\(P_${n}(x)=cos(${sv}cos^{-1}x)\\)`}</div>
+                                    <div className="d-flex align-items-center">{`\\(P_${n}(x)=cos(${sv}cos^{-1}x)\\)`}</div>
                                 )
                             }
                             {
                                 n===1 && (
-                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{1-x^2}}\\)`}<span className="npallf">{`\\(sin(${sv}cos^{-1}x)\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(P_${n}(x)=\\frac{1}{\\sqrt{1-x^2}}\\)`}<span className="npallf">{`\\(sin(${sv}cos^{-1}x)\\)`}</span></div>
                                 )
                             }
                             {
                                 n===2 && (
-                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)`}<span className="npallf">{`\\(x.S-\\sqrt(${v1}(1-x^2)).C\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)`}<span className="npallf">{`\\(x.S-\\sqrt(${v1}(1-x^2)).C\\)`}</span></div>
                                 )
                             }
                             {
                                 n===3 && (
-                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)`}<span className="npallf">{`\\(3x^2.S-3x\\sqrt(${v1}(1-x^2)).C-(${v1-1})(1-x^2).S\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^5}}\\)`}<span className="npallf">{`\\(3x^2.S-3x\\sqrt(${v1}(1-x^2)).C-(${v1-1})(1-x^2).S\\)`}</span></div>
                                 ) 
                             }
                             {
                                 n===4 && (
-                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)`}<span className="npallf">{`\\(15x^3.S-15x^2\\sqrt(${v1}(1-x^2)).C-(${6*v1-9})(1-x^2)x.S + (${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)`}<span className="npallf">{`\\(15x^3.S-15x^2\\sqrt(${v1}(1-x^2)).C-(${6*v1-9})(1-x^2)x.S + (${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</span></div>
                                 ) 
                             }
                             
                             {
                                 n===5 && (
-                                    <div>{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2))^9}}\\)`}<span className="npallf">{`\\(105x^3.S-105x^2\\sqrt{${v1}(1-x^2)}.C-(${45*v1-90})(1-x^2)x.S + (${10*v1-55})\\sqrt{${v1}(1-x^2)^3} + (${v1**2-10*v1+9})(1-x^2)^2\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(P_${n}(x)=\\frac{1}{\\sqrt{(1-x^2))^9}}\\)`}<span className="npallf">{`\\(105x^3.S-105x^2\\sqrt{${v1}(1-x^2)}.C-(${45*v1-90})(1-x^2)x.S + (${10*v1-55})\\sqrt{${v1}(1-x^2)^3} + (${v1**2-10*v1+9})(1-x^2)^2\\)`}</span></div>
                                 ) 
                             }
                             {
@@ -761,33 +761,33 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
                         <div className="text-start ms-0 pe-2 ps-0 fs-5 mb-3">
                         {
                                 n===0 && (
-                                    <div>{`\\(Q_${n}(x)=sin(${sv}cos^{-1}x)\\)`}</div>
+                                    <div className="d-flex align-items-center">{`\\(Q_${n}(x)=sin(${sv}cos^{-1}x)\\)`}</div>
                                 )
                             }
                             {
                                 n===1 && (
-                                    <div>{`\\(Q_${n}(x)=\\frac{1}{sqrt{1-x^2}}\\)`}<span className="npallf">{`\\(-cos(${sv}cos^{-1}x)\\))`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{1-x^2}}\\)`}<span className="npallf">{`\\(-cos(${sv}cos^{-1}x)\\))`}</span></div>
                                 )
                             }
                             {
                                 n===2 && (
-                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)`}<span className="npallf">{`\\(-x.C-\\sqrt(${v1}(1-x^2)).S\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^3}}\\)`}<span className="npallf">{`\\(-x.C-\\sqrt(${v1}(1-x^2)).S\\)`}</span></div>
                                 )
                             }
                             {
                                 n===3 && (
-                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt((1-x^2))^5}\\)`}<span className="npallf">{`\\(-3x^2.C-3x\\sqrt(${v1}(1-x^2)).S+(${v1-1})(1-x^2).C\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(Q_${n}(x)=\\frac{1}{\\sqrt((1-x^2))^5}\\)`}<span className="npallf">{`\\(-3x^2.C-3x\\sqrt(${v1}(1-x^2)).S+(${v1-1})(1-x^2).C\\)`}</span></div>
                                 ) 
                             }
                             {
                                 n===4 && (
-                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)`}<span className="npallf">{`\\(-15x^3.C-15x^2\\sqrt(${v1}(1-x^2)).S+(${6*v1-9})(1-x^2)x.C + (${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^7}}\\)`}<span className="npallf">{`\\(-15x^3.C-15x^2\\sqrt(${v1}(1-x^2)).S+(${6*v1-9})(1-x^2)x.C + (${v1-4})\\sqrt{${v1}(1-x^2)^3}\\)`}</span></div>
                                 ) 
                             }
                             
                             {
                                 n===5 && (
-                                    <div>{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)`}<span className="npallf">{`\\(-105x^4.S-105x^3\\sqrt(${v1}(1-x^2)).C+(${45*v1-90})(1-x^2)x^2.S + (${10*v1-55})x\\sqrt{${v1}(1-x^2)^3} -(${v1**2-10*v1+9})(1-x^2)^2\\)`}</span></div>
+                                    <div className="d-flex align-items-center">{`\\(Q_${n}(x)=\\frac{1}{\\sqrt{(1-x^2)^9}}\\)`}<span className="npallf">{`\\(-105x^4.S-105x^3\\sqrt(${v1}(1-x^2)).C+(${45*v1-90})(1-x^2)x^2.S + (${10*v1-55})x\\sqrt{${v1}(1-x^2)^3} -(${v1**2-10*v1+9})(1-x^2)^2\\)`}</span></div>
                                 ) 
                             }
                             {
