@@ -91,7 +91,7 @@ const Log = ({modal, setm, setlog, setErrorr}) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            style={w<=700? {marginTop:"10%", height: "fit-content"}:{marginTop:"10%", height: "fit-content"}}
+            style={w<=700? {height: "fit-content"}:{marginTop:"10%", height: "fit-content"}}
           >
             <section className="beginner bgbtn container-lg pt-3" style={{borderRadius: "10%"}}>
               <div className={w<700?"text-center beginner":"text-center fs-5"}>
