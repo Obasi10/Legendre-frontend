@@ -81,7 +81,7 @@ const Calculation3=({n, setn,n1,setn1,dim, setm, modal,calc,ref0, m, setem, setc
                             >
                               <div className="container table-responsive pt-0" style={(!n1 || n1<0 || Number.isInteger(Number(n1))===false||(!m)||Number.isInteger(Number(m))==false || Number(m)<0 || Number(m)>=Number(n) || n1-m>35 || m>15)?
                                 { width: "fit-content", overflowX:"hidden", overflowY:"hidden"}:{width: "80%", overflowX:"hidden", overflowY:"hidden"}}>
-                                <motion.h2 style={{textTransform: "none", textAlign: "center", fontWeight: 900}}
+                                <motion.div style={{textTransform: "none", textAlign: "center", fontWeight: 900}}
                                     animate={{
                                       x:[0,-100,0,100,0],
                                       transition:{
@@ -93,12 +93,12 @@ const Calculation3=({n, setn,n1,setn1,dim, setm, modal,calc,ref0, m, setem, setc
                                       }
                                     }}
                                 >
-                                  <a href="#input" className={"fs-5 fw-bolder"} style={{color: "rgb(48, 1, 48)"}}>
+                                  <a href="#input" className={"fs-md-5 fw-bolder"} style={{color: "rgb(48, 1, 48)"}}>
                                   <span style={{textDecoration: "none"}}>{
                                   (!n1 || n1<0 || Number.isInteger(Number(n1))===false||(!m)||Number.isInteger(Number(m))==false || Number(m)<0 || Number(m)>=Number(n) || n1-m>35 || m>15)?
                                   "\\((1-x^2)y''+2mxy'+(n-m)(n+m+1)y=0\\)":`\\((1-x^2)y''+${2*(m*1)}xy'+${((n*1)-(m*1))*((n*1)+(m*1)+1)}y=0\\)`}</span>
                                 </a>
-                                </motion.h2>
+                                </motion.div>
                               </div>
                             </motion.div>
                           {
