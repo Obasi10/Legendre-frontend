@@ -105,7 +105,7 @@ const Reviewer =({dim, modal, setm, count, setc, setErrorr})=>{
     }
     return (
         <AnimatePresence>
-          { (modal.review) && (
+          { (!modal.review) && (
             <motion.div className="backdropp"
               variants={backdrop}
               initial="hidden"
@@ -117,7 +117,7 @@ const Reviewer =({dim, modal, setm, count, setc, setErrorr})=>{
                 initial="hidden3"
                 animate="visible2"
                 exit="exit3"
-                style={w<=700? {marginTop:"25%", height: "fit-content"}:{marginTop:"8%", height: "fit-content"}}
+                style={rev? { height: "fit-content"}:{marginTop:"8%", height: "fit-content"}}
               >
               <section className={rev?"beginner bgbtn container-lg pt-1":"beginner bglight container-lg pt-1"} style={{borderRadius: "10%"}}>
                 <div className='text-end m-0 p-0'>
@@ -168,7 +168,7 @@ const Reviewer =({dim, modal, setm, count, setc, setErrorr})=>{
                     </div>
                     <div className="mb-2 mt-2 form-floating">
                     <textarea className={emptyFields.includes('review') ? 'form-control error' : 'form-control'} id="query" onChange={(e)=>setBody(e.target.value)} value={review}
-                       style={{height: "140px"}}></textarea>
+                       style={{height: "8rem"}}></textarea>
                       <label htmlFor="query">Drop your review...</label>
                     </div>
                     <div className="mb-0 pb-0 text-center">
