@@ -105,7 +105,7 @@ const Reviewer =({dim, modal, setm, count, setc, setErrorr})=>{
     }
     return (
         <AnimatePresence>
-          { (!modal.review) && (
+          { (modal.review) && (
             <motion.div className="backdropp"
               variants={backdrop}
               initial="hidden"
