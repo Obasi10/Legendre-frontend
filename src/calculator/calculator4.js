@@ -80,12 +80,12 @@ const Calculation=({n, setn,k,setk,n1,setn1,dim, setm, modal,calc, setcalc, setp
                               transition={{spring: 700, ease: 'easeIn', duration:1}}
                               exit={{opacity:0}}
                             >
-                              <h2 style={{textTransform: "none", textAlign: "center", fontWeight: 900}}><a href="#input" className="fs-5 fw-bolder" style={{color: "rgb(48, 1, 48)"}}>
+                              <div style={{textTransform: "none", textAlign: "center", fontWeight: 900}}><a href="#input" className="fs-md-5 fw-bolder" style={{color: "rgb(48, 1, 48)"}}>
                               <span style={{textDecoration: "none"}}>
                                     {((!k && Number.isInteger(k)==false) || (!n1 && Number.isInteger(n1)===false))?
                                     "\\((1-x^2)y''-2(n+1)xy'+ky=0\\)":`\\((1-x^2)y''-${n1===0?"":2*(n1*1)+1}xy'${(k*1)<0? "": "+"}${k*1}y=0\\)`}</span>
                               </a>
-                              </h2>
+                              </div>
                             </motion.div>
                           {
                             (!select) && (
