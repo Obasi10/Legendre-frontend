@@ -8,7 +8,7 @@
     <title>Ultimate Calculator</title>
 	<meta property="og:title" content="Ultimate Calculator" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="Ultimate-calc.vercel.app" />
+	<meta property="og:url" content="Ultimate--calc.com" />
 	<meta property="og:image" content="%PUBLIC_URL%/icons8-calculator.gif" />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:description" content="A calculator built to solve the ambiguous mathematical equations">
@@ -54,10 +54,9 @@
 				document.getElementById('not').style.display='none'
 				document.getElementById('load').style.display='block'
 			}
-			function call(){
-				setTimeout(hide,3000)
-			}
-			window.addEventListener('load', call)
+			window.addEventListener('DOMContentLoaded', function(){
+				setTimeout(hide,1500)
+			})
 			document.getElementById("wrapper").style.minHeight="fit-content"
 			
 	</script>
