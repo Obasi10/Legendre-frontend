@@ -1,21 +1,3 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* fonts */
-/* @font-face {
-  font-family: 'Quicksand';
-  src: url('./Quicksand-Light.woff2') format('woff2'),
-      url('./Quicksand-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-} */
-
 
 body {
   margin: 0;
@@ -132,7 +114,7 @@ header a {
   width: calc(100% - 4rem);
   max-width: 40rem;
   z-index: 0;
-  background-image: linear-gradient(to top right, rgb(170, 168, 168) 0%, rgb(218, 215, 215) 25%,white 50%, rgb(218, 215, 215) 75%, rgb(170, 168, 168) 100%);	
+  background: rgb(255, 255, 255)
 }
 #main1 {
   position: relative;
@@ -143,7 +125,7 @@ header a {
   max-height: 50rem;
   border: rgb(61, 0, 61) solid 8px;
   border-bottom: none;
-  background-image: linear-gradient(to top right, rgb(170, 168, 168) 0%, rgb(218, 215, 215) 25%,white 50%, rgb(218, 215, 215) 75%, rgb(170, 168, 168) 100%);	
+  background: rgb(255, 255, 255)
 }
 
 
@@ -627,7 +609,7 @@ tbody#tb1{
 }
   
     #main>.main4 {
-      background: linear-gradient(to top right, rgb(170, 168, 168) 0%, rgb(218, 215, 215) 25%,white 50%, rgb(218, 215, 215) 75%, rgb(170, 168, 168) 100%);
+      background: rgb(255, 255, 255);
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
@@ -665,7 +647,7 @@ text-align: center;
 align-content: center;
 }
 #main > .main1{
-  background: linear-gradient(to top right, rgb(170, 168, 168) 0%, rgb(218, 215, 215) 25%,white 50%, rgb(218, 215, 215) 75%, rgb(170, 168, 168) 100%);
+  background: white;
   flex: 50%;
   padding: 2.5rem;
   display: flex;
@@ -1536,7 +1518,7 @@ of styling from the begining all over again */
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgb(242, 241, 238);
+            background: rgb(255, 255, 255);
             background-size: contain,							auto,														100% auto;
             background-position: center,								center,														top center;
             background-repeat: repeat,								no-repeat,													no-repeat;
@@ -1568,7 +1550,8 @@ of styling from the begining all over again */
     -ms-transition-delay: 0.75s;
     transition-delay: 0.75s;
     background: #1e252d;
-    content: '';
+    content: ' Please wait';
+    color: white;
     display: block;
     height: 100%;
     left: 0;
