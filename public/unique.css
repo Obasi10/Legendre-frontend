@@ -99,8 +99,9 @@
 			-webkit-transition-delay: 0.75s;
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
-			background: #1e252d;
-			content: '';
+			background: hsl(300, 25%, 15%);
+			content: ' Please wait';
+      color: white;
 			display: block;
 			height: 100%;
 			left: 0;
@@ -184,7 +185,7 @@
 
             .note{
                 opacity: 0;
-                animation: motion11 16s 0.1s infinite ease-out;
+                animation: motion11 4s 0.1s infinite ease-out;
             }
             
             @keyframes motion11 {
@@ -229,22 +230,22 @@
                 opacity: 0.6;
               }
               72%{
-                transform: rotateZ(240deg);
+                transform: rotateZ(-240deg);
                 margin-left: 65%;
                 opacity: 1;
               }
               81%{
-                transform: rotateZ(180deg);
+                transform: rotateZ(-180deg);
                 margin-left: 50%;
                 opacity: 0.6;
               }
               90%{
-                transform: rotateZ(120deg);
+                transform: rotateZ(-120deg);
                 margin-left: 35%;
                 opacity: 1;
               }
               99%{
-                transform: rotateZ(60deg);
+                transform: rotateZ(-60deg);
                 margin-left: 20%;
                 opacity: 0.6;
               }
