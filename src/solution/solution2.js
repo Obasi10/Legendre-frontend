@@ -342,7 +342,7 @@ const Solution2=({n, lock, ref0, ref1, ref2, page, setp, dim, setm, modal, setl,
     }
     
 
-    const width=dim.w<700? dim.w*0.94: dim.w*0.6
+    const width=dim.w<700? dim.w*0.94: dim.w*0.45
     const height=width*0.8
     var layout1={
         title:{
