@@ -235,7 +235,7 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
     }
     
 
-    const width=dim.w<700? dim.w*0.94: dim.w*0.6
+    const width=dim.w<700? dim.w*0.94: dim.w*0.45
     const height=width*0.8
     var layout1={
         title:{
@@ -459,7 +459,7 @@ const Solution=({n1,n,ref0, ref1,setk,k, page, setp, dim, setm, modal, setl, set
         jsPDF: {
             unit: 'in',
             format: 'a4',
-            orientation: 'l'
+            orientation: 'p'
         },
         pagebreak: {
         avoid: ['#pic1', '#pic2', "#pic3", "#pic4"]
