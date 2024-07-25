@@ -255,7 +255,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
     }
     
 
-    const width=dim.w<700? dim.w*0.94: dim.w*0.6
+    const width=dim.w<700? dim.w*0.94: dim.w*0.45
     const height=width*0.8
     var layout1={
         title:{
@@ -461,8 +461,8 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         scale: 1
     }
 
-    const coeff='$$(1-x^2)y\'\'-2xy\'+'+n*(n+1)+'y=0$$';
-    const coeff1='$$y\\ =\\ C_1\\ P_{'+n+'}(x)\\ + C_2\\ Q_{'+n+'}(x)$$';
+    const coeff='\\((1-x^2)y\'\'-2xy\'+'+n*(n+1)+'y=0\\)';
+    const coeff1='\\(y\\ =\\ C_1\\ P_{'+n+'}(x)\\ + C_2\\ Q_{'+n+'}(x)\\)';
     const pp=pin(n);
     const qq=qin(n);
     const pn="\\(P_{"+n+"}(x)=\\)";
@@ -479,7 +479,11 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         aa ="\\(\\frac {1} {"+num.toExponential(4)+"}\\)"
         a2="\\(\\frac {1} {"+num.toExponential(4)+"}\\)"
     }
-
+    const orient =()=>{
+        if (n>10){
+            return 'l'
+        } else return 'p'
+    }
     const element=document.getElementById('pdf');
     const opt={
         margin: 1,
@@ -489,7 +493,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
         jsPDF: {
             unit: 'in',
             format: 'a4',
-            orientation: 'l'
+            orientation: orient()
         },
         pagebreak: {
         avoid: ['#pic1', '#pic2', "#pic3", "#pic4"]
@@ -663,7 +667,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
                 key="full" 
                 aria-labelledby="nav-full-solution-tab">
                 <section>
-                    <div className="container-lg" id="pdf">
+                    <div className="" id="pdf">
                         <div>
                         <div className={dim.w>700?"fs-5":"beginner"}>
                             <div>
@@ -695,8 +699,7 @@ const Solution=({lock, n, ref0, ref1, ref2, page, setp, dim, setm, modal, setl, 
                                 data={[data1]}
                                 layout={layout11}
                                 config={config}
-                                style={{textAlign: "center", justifyContent:"center",marginBottom: "5%", marginTop: "5%", alignItems: "center"}}
-                            />
+                                style={{textAlign: "center", justifyContent:"center",marginBottom: "5%", marginTop: "5%", alignItems: "center"}}/>
                             </div>
                     </div>
                     <div>
