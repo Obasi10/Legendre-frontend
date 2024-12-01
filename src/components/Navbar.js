@@ -16,19 +16,6 @@ const svgVariants = {
 }
 
 const pathVariants = {
-  hidden: {
-      opacity: 0,
-      pathLength: 0,
-  },
-  visible: {
-      opacity: 1,
-      pathLength: 1,
-      transition: { 
-      duration: 10,
-      repeat: Infinity,
-      ease: "easeInOut",
-      }
-  }
 };
 
 const Navbar = ({k,page, ref0, ref1, ref2, search, sets, modal, setm, input, setInput,setnav,lock, settab, selc}) => {
@@ -42,8 +29,6 @@ const Navbar = ({k,page, ref0, ref1, ref2, search, sets, modal, setm, input, set
     "Mechanics",
     "Thermodynamics"
   ]
-
-
 
 //   else {
 //    clearTimeout(refe)
